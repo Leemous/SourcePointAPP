@@ -13,11 +13,13 @@ class VCarInfoView: UIView {
     var lisenceLabel: UILabel!
     var frameLabel: UILabel!
     var scrapValueLabel: UILabel!
+    var forceScrappedDateLabel: UILabel!
     var memoLabel: UILabel!
 
     var lisenceText: TextFieldWithFinishButton!
     var frameText: TextFieldWithFinishButton!
     var scrapValueText: TextFieldWithFinishButton!
+    var forceScrappedDateText: DatePickerField!
     var memoText: TextViewWithFinishButton!
     
     var carInfoViewDelegate = CarInfoViewDelegate()
@@ -29,6 +31,7 @@ class VCarInfoView: UIView {
         self.lisenceText.text = carInfoViewDelegate.lisenceNo
         self.frameText.text = carInfoViewDelegate.frameNo
         self.scrapValueText.text = carInfoViewDelegate.scrapValue
+        self.forceScrappedDateText.text = carInfoViewDelegate.forceScrappedDate
         self.memoText.text = carInfoViewDelegate.memo
     }
     
@@ -63,6 +66,16 @@ class VCarInfoView: UIView {
         self.scrapValueLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addConstraint(NSLayoutConstraint(item: self.scrapValueLabel, attribute: .leading, relatedBy: .equal, toItem: self.frameLabel, attribute: .leading, multiplier: 1, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: self.scrapValueLabel, attribute: .top, relatedBy: .equal, toItem: self.frameLabel, attribute: .bottom, multiplier: 1, constant: 20))
+        
+        // 强制报废日期标签
+        self.forceScrappedDateLabel = UILabel()
+        self.addSubview(self.forceScrappedDateLabel)
+        self.forceScrappedDateLabel.font = systemFont
+        self.forceScrappedDateLabel.textColor = mainTextColor
+        self.forceScrappedDateLabel.text = "强制报废日期"
+        self.forceScrappedDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateLabel, attribute: .leading, relatedBy: .equal, toItem: self.scrapValueLabel, attribute: .leading, multiplier:1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateLabel, attribute: .top, relatedBy: .equal, toItem: self.scrapValueLabel, attribute: .bottom, multiplier:1, constant: 20))
 
         // 备注标签
         self.memoLabel = UILabel()
@@ -71,8 +84,8 @@ class VCarInfoView: UIView {
         self.memoLabel.textColor = systemTintColor
         self.memoLabel.text = "备注"
         self.memoLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.memoLabel, attribute: .leading, relatedBy: .equal, toItem: self.scrapValueLabel, attribute: .leading, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.memoLabel, attribute: .top, relatedBy: .equal, toItem: self.scrapValueLabel, attribute: .bottom, multiplier: 1, constant: 22))
+        self.addConstraint(NSLayoutConstraint(item: self.memoLabel, attribute: .leading, relatedBy: .equal, toItem: self.forceScrappedDateLabel, attribute: .leading, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self.memoLabel, attribute: .top, relatedBy: .equal, toItem: self.forceScrappedDateLabel, attribute: .bottom, multiplier: 1, constant: 22))
         
         // 设置所有文本框
         // 车牌号文本框
@@ -107,6 +120,17 @@ class VCarInfoView: UIView {
         self.addConstraint(NSLayoutConstraint(item: self.scrapValueText, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 84))
         self.addConstraint(NSLayoutConstraint(item: self.scrapValueText, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -18))
         self.addConstraint(NSLayoutConstraint(item: self.scrapValueText, attribute: .centerY, relatedBy: .equal, toItem: self.scrapValueLabel, attribute: .centerY, multiplier: 1, constant: 0))
+        
+        // 强制报废日期文本框
+        self.forceScrappedDateText = DatePickerField()
+        self.addSubview(self.forceScrappedDateText)
+        self.forceScrappedDateText.contentMode = .redraw
+        self.forceScrappedDateText.font = textFont
+        self.forceScrappedDateText.textColor = mainTextColor
+        self.forceScrappedDateText.translatesAutoresizingMaskIntoConstraints = false
+        self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateText, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 124))
+        self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateText, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -18))
+        self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateText, attribute: .centerY, relatedBy: .equal, toItem: self.forceScrappedDateLabel, attribute: .centerY, multiplier: 1, constant: 0))
 
         // 备注文本框
         self.memoText = TextViewWithFinishButton()
@@ -154,11 +178,23 @@ class VCarInfoView: UIView {
         self.addConstraint(NSLayoutConstraint(item: hline3, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -18))
         self.addConstraint(NSLayoutConstraint(item: hline3, attribute: .top, relatedBy: .equal, toItem: self.scrapValueText, attribute: .bottom, multiplier: 1, constant: 5))
         
+        // 为强制报废日期设置下划线
+        let hline4 = UIView()
+        hline4.backgroundColor = separatorLineColor
+        self.addSubview(hline4)
+        hline4.translatesAutoresizingMaskIntoConstraints = false
+        self.addConstraint(NSLayoutConstraint(item: hline4, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 1))
+        self.addConstraint(NSLayoutConstraint(item: hline4, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 124))
+        self.addConstraint(NSLayoutConstraint(item: hline4, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -18))
+        self.addConstraint(NSLayoutConstraint(item: hline4, attribute: .top, relatedBy: .equal, toItem: self.forceScrappedDateText, attribute: .bottom, multiplier: 1, constant: 5))
+        
         // 设置备注文本框的圆角边框
         let _ = drawRoundBorderForView(memoText, borderRadius: 6, borderWidth: 1, borderColor: systemTintColor)
     }
 }
 
+
+/// 单行文本框
 class TextFieldWithFinishButton: UITextField {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
@@ -185,6 +221,7 @@ class TextFieldWithFinishButton: UITextField {
     }
 }
 
+/// 多行文本框
 class TextViewWithFinishButton: UITextView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
@@ -195,7 +232,7 @@ class TextViewWithFinishButton: UITextView {
         let finishButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 30))
         finishButton.setTitle("完成", for: .normal)
         finishButton.setTitleColor(systemTintColor, for: .normal)
-        finishButton.addTarget(self, action: #selector(TextFieldWithFinishButton.release(_:)), for: .touchUpInside)
+        finishButton.addTarget(self, action: #selector(TextViewWithFinishButton.release(_:)), for: .touchUpInside)
         let barItem2 = UIBarButtonItem(customView: finishButton)
         
         let space = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth - finishButton.frame.width - 30, height: 25))
@@ -211,10 +248,18 @@ class TextViewWithFinishButton: UITextView {
     }
 }
 
+/// 日历选择框
+class DatePickerField: UITextField {
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+    }
+}
+
 class CarInfoViewDelegate {
     var lisenceNo: String?
     var frameNo: String?
     var scrapValue: String?
+    var forceScrappedDate: String?
     var memo: String?
 }
 

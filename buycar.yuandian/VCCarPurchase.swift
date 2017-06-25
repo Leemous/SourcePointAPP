@@ -47,6 +47,15 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.photoPicker = initPhotoPicker()
         self.photoPicker.delegate = self
     }
+    
+    
+    /// 控件加载完成后所作的处理
+    ///
+    /// - Parameter animated: <#animated description#>
+    override func viewDidAppear(_ animated: Bool) {
+        // 强制报废日期
+        self.hv.forceScrappedDateText.delegate = self
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -58,7 +67,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.headerView.backgroundColor = heavyBackgroundColor
 
         // 初始化header view的第一段
-        self.hv = VCarInfoView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 318))
+        self.hv = VCarInfoView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 368))
         self.hv.backgroundColor = UIColor.white
         self.headerView.addSubview(self.hv)
 
@@ -69,7 +78,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 1
         layout.headerReferenceSize = CGSize(width: screenWidth, height: 30)
-        self.cpc = CVCarPhotoCollection(frame: CGRect(x: 0, y: 328, width: screenWidth, height: 146), collectionViewLayout: layout)
+        self.cpc = CVCarPhotoCollection(frame: CGRect(x: 0, y: 378, width: screenWidth, height: 146), collectionViewLayout: layout)
         self.cpc.backgroundColor = UIColor.white
         self.cpc.isScrollEnabled = false
         self.cpc.delegate = self
@@ -80,7 +89,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         
         // 添加一个显示“车况检查”的label
         
-        self.lv = UIView(frame: CGRect(x: 0, y: 318 + self.cpc.frame.size.height + 20 , width: screenWidth, height: 45))
+        self.lv = UIView(frame: CGRect(x: 0, y: 368 + self.cpc.frame.size.height + 20 , width: screenWidth, height: 45))
         self.lv.backgroundColor = UIColor.white
         self.headerView.addSubview(self.lv)
         
@@ -244,8 +253,9 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         var paramDict: [String : Any] = [:]
         paramDict["carNumber"] = self.hv.lisenceText.text
         paramDict["carShelfNumber"] = self.hv.frameText.text!
-        paramDict["remark"] = self.hv.memoText.text!
         paramDict["salvage"] = self.hv.scrapValueText.text!
+        paramDict["forceScrappedDate"] = self.hv.forceScrappedDateText.text!
+        paramDict["remark"] = self.hv.memoText.text!
         for ci in cis {
             paramDict[ci.itemKey] = ci.itemOptions[ci.optionAnswer].optionKey
         }
@@ -407,6 +417,28 @@ extension VCCarPurchase: UICollectionViewDelegate {
                 }
             }
         }
+    }
+}
+
+
+// MARK: - 自定义文本输入框委托
+extension VCCarPurchase: UITextFieldDelegate {
+    /// 重写文本输入框委托方法，是否开始编辑文本
+    ///
+    /// - Parameter textField: 文本输入框
+    /// - Returns: 返回true成为第一响应项，显示键盘开始编辑，返回false，无法获得焦点
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if (textField is DatePickerField) {
+            // 取消其它输入框的第一响应，弹出日期选择器
+            self.hv.lisenceText.resignFirstResponder()
+            self.hv.frameText.resignFirstResponder()
+            self.hv.scrapValueText.resignFirstResponder()
+            self.hv.memoText.resignFirstResponder()
+            
+            self.showDatePicker(dateField: textField as! DatePickerField, minimumDate: Date.init(timeIntervalSinceNow: 24 * 60 * 60), maximumDate: nil)
+            return false
+        }
+        return true
     }
 }
 

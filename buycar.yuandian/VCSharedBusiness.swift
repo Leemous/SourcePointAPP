@@ -100,6 +100,17 @@ extension UIViewController {
         }
         return arc4random_uniform(1000)
     }
+    
+    
+    /// 显示日期选择器
+    ///
+    /// - Parameter dateField: 日期输入框
+    func showDatePicker(dateField: DatePickerField, minimumDate: Date?, maximumDate: Date?) {
+        let datePicker = VCDatePicker()
+        datePicker.initWithDateField(datePickerField: dateField, minimumDate: minimumDate, maximumDate: maximumDate)
+        datePicker.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        self.present(datePicker, animated: true, completion: nil)
+    }
 }
 
 
