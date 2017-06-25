@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "VCCarPurchase.tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell:VCCarPurchase.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.section">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "VCarPurchaseHeaderView.getHeaderViewHeight() -&gt; CGFloat:VCarPurchaseHeaderView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "VCCarPurchase.imagePickerController(UIImagePickerController, didFinishPickingMediaWithInfo : [String : Any]) -&gt; ():VCCarPurchase.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.cpc.frame.size.height">
+            </PersistentString>
+            <PersistentString
+               value = "self.cpc.carPhtotCollectionDelegate.carPhotos.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.carInfoTable.tableHeaderView?.frame.size.height">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CVCCarPhotoCell.setItem(UIImage, setted : Bool) -&gt; ():CVCCarPhotoCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.carPhotoImage.viewWithTag(1111)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CVCarPhotoCollection.getframeHeight(itemNumber : Int) -&gt; CGFloat:CVCarPhotoCollection.swift">
+      </ContextState>
+      <ContextState
+         contextName = "UIViewController.alert(viewToBlock : UIView?, msg : String) -&gt; ():VCUnifiedSetting.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "screenWidth">
+            </PersistentString>
+            <PersistentString
+               value = "screenHeight">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CVCarPhotoCollection.collectionView(UICollectionView, cellForItemAt : IndexPath) -&gt; UICollectionViewCell:CVCarPhotoCollection.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.carPhtotCollectionDelegate.carPhotos.count">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.item">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "VCCarPhoto.collectionView(UICollectionView, didSelectItemAt : IndexPath) -&gt; ():VCCarPhoto.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "pickedIndex">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "VCCarPurchase.initView() -&gt; ():VCCarPurchase.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cpc.frame.size.height">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

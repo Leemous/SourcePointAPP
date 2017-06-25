@@ -1,0 +1,1129 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4F0AE4DE392D99216CE0BDB1 /* Pods_buycar_yuandianTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89528B727E3DCA439FBE9255 /* Pods_buycar_yuandianTests.framework */; };
+		73C1C5A2D8E437396A63F1B8 /* Pods_buycar_yuandianUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE270EA97796B68EBC795D3 /* Pods_buycar_yuandianUITests.framework */; };
+		E41D4E681EE10B440063A644 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41D4E671EE10B440063A644 /* SwiftyJSON.swift */; };
+		E41D4E761EE10D730063A644 /* QNUploadUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E41D4E751EE10D730063A644 /* QNUploadUtil.m */; };
+		E4378A481EE57DCC00284E23 /* Qiniu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4378A471EE57DCC00284E23 /* Qiniu.swift */; };
+		E44F8C6B1EDAA60100540FA7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44F8C551EDAA57F00540FA7 /* Alamofire.framework */; };
+		E44F8C6C1EDAA60100540FA7 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E44F8C551EDAA57F00540FA7 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E6288CBF8C458BCE87438A56 /* Pods_buycar_yuandian.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15DE131EE952E0EFA857EFF1 /* Pods_buycar_yuandian.framework */; };
+		EA105F6C1E83721200705ECD /* VCCarPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA105F6B1E83721200705ECD /* VCCarPurchase.swift */; };
+		EA105F6E1E83739A00705ECD /* VCarInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA105F6D1E83739A00705ECD /* VCarInfoView.swift */; };
+		EA105F741E83893500705ECD /* CarPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA105F731E83893500705ECD /* CarPhotoCell.xib */; };
+		EA105F761E838AA000705ECD /* CVCCarPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA105F751E838AA000705ECD /* CVCCarPhotoCell.swift */; };
+		EA105F781E83D90500705ECD /* CVCarPhotoCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA105F771E83D90500705ECD /* CVCarPhotoCollection.swift */; };
+		EA105F7C1E84192900705ECD /* CarPhotoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA105F7B1E84192900705ECD /* CarPhotoHeaderView.xib */; };
+		EA13B3E11E8220440020F1FF /* CarPurchaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13B3E01E8220440020F1FF /* CarPurchaseCell.xib */; };
+		EA13B3E31E8221920020F1FF /* TVCCarPurchaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA13B3E21E8221920020F1FF /* TVCCarPurchaseCell.swift */; };
+		EA13B3E51E8268E50020F1FF /* VCSeekForPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA13B3E41E8268E50020F1FF /* VCSeekForPhoto.swift */; };
+		EA13B3E71E82790A0020F1FF /* VCDailyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA13B3E61E82790A0020F1FF /* VCDailyList.swift */; };
+		EA13B3E91E82795E0020F1FF /* Daily.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA13B3E81E82795E0020F1FF /* Daily.swift */; };
+		EA13B3EB1E82A88F0020F1FF /* VCMyAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA13B3EA1E82A88F0020F1FF /* VCMyAccount.swift */; };
+		EA13B3ED1E82B9C60020F1FF /* VCAddDaily.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA13B3EC1E82B9C60020F1FF /* VCAddDaily.swift */; };
+		EA13B43D1E82EA410020F1FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA13B43B1E82EA410020F1FF /* LaunchScreen.storyboard */; };
+		EA1753F01E7FDB490020F407 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1753EF1E7FDB490020F407 /* AppDelegate.swift */; };
+		EA1753F51E7FDB490020F407 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA1753F31E7FDB490020F407 /* Main.storyboard */; };
+		EA1753F71E7FDB490020F407 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA1753F61E7FDB490020F407 /* Assets.xcassets */; };
+		EA1754051E7FDB490020F407 /* buycar_yuandianTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1754041E7FDB490020F407 /* buycar_yuandianTests.swift */; };
+		EA1754101E7FDB490020F407 /* buycar_yuandianUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA17540F1E7FDB490020F407 /* buycar_yuandianUITests.swift */; };
+		EA1754241E7FDD880020F407 /* SystemConsts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1754231E7FDD880020F407 /* SystemConsts.swift */; };
+		EA1754281E7FDED60020F407 /* NCHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1754271E7FDED60020F407 /* NCHome.swift */; };
+		EA17542A1E7FDF2A0020F407 /* VCHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1754291E7FDF2A0020F407 /* VCHome.swift */; };
+		EA17542D1E7FE1E90020F407 /* VCUnifiedSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA17542C1E7FE1E90020F407 /* VCUnifiedSetting.swift */; };
+		EA17542F1E7FE2370020F407 /* StringTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA17542E1E7FE2370020F407 /* StringTools.swift */; };
+		EA1913F91E84C260007AE9C3 /* VCCarPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1913F81E84C260007AE9C3 /* VCCarPhoto.swift */; };
+		EAACCD2B1E80C85600AA8DB9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAACCD2A1E80C85600AA8DB9 /* Login.storyboard */; };
+		EAACCD2D1E80C8E000AA8DB9 /* ViewForReleaseKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAACCD2C1E80C8E000AA8DB9 /* ViewForReleaseKeyboard.swift */; };
+		EAACCD321E80D13100AA8DB9 /* VCSharedBusiness.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAACCD311E80D13100AA8DB9 /* VCSharedBusiness.swift */; };
+		EAACCD341E80D29F00AA8DB9 /* VCLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAACCD331E80D29F00AA8DB9 /* VCLogin.swift */; };
+		EAACCD361E80D2DD00AA8DB9 /* DrawingTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAACCD351E80D2DD00AA8DB9 /* DrawingTools.swift */; };
+		EAACCD381E80DF7500AA8DB9 /* NCLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAACCD371E80DF7500AA8DB9 /* NCLogin.swift */; };
+		EAACCD3A1E80E62800AA8DB9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAACCD391E80E62800AA8DB9 /* User.swift */; };
+		EAACCD3C1E80E69400AA8DB9 /* CommonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAACCD3B1E80E69400AA8DB9 /* CommonModel.swift */; };
+		EAACCD3E1E80FCDE00AA8DB9 /* NoConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAACCD3D1E80FCDE00AA8DB9 /* NoConnectionView.xib */; };
+		EAACCD401E80FCF400AA8DB9 /* NoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAACCD3F1E80FCF400AA8DB9 /* NoDataView.xib */; };
+		EAACCD441E80FE2100AA8DB9 /* VNoConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAACCD431E80FE2100AA8DB9 /* VNoConnectionView.swift */; };
+		EAACCD461E80FE3000AA8DB9 /* VNoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAACCD451E80FE3000AA8DB9 /* VNoDataView.swift */; };
+		EAACCD481E80FE4000AA8DB9 /* VAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAACCD471E80FE4000AA8DB9 /* VAlertView.swift */; };
+		EAACCD4A1E8135FC00AA8DB9 /* SystemTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAACCD491E8135FC00AA8DB9 /* SystemTools.swift */; };
+		EAACCD501E817DD200AA8DB9 /* FeatureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAACCD4F1E817DD200AA8DB9 /* FeatureCell.xib */; };
+		EAACCD521E817E0100AA8DB9 /* CVCFeatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAACCD511E817E0100AA8DB9 /* CVCFeatureCell.swift */; };
+		EAACCD541E8189BA00AA8DB9 /* CarPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAACCD531E8189BA00AA8DB9 /* CarPurchase.swift */; };
+		EAACCD561E818B0300AA8DB9 /* CheckItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAACCD551E818B0300AA8DB9 /* CheckItem.swift */; };
+		EAACCD581E818CDA00AA8DB9 /* CheckItemOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAACCD571E818CDA00AA8DB9 /* CheckItemOption.swift */; };
+		EAACCD5A1E818E2C00AA8DB9 /* WebTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAACCD591E818E2C00AA8DB9 /* WebTools.swift */; };
+		EAEC5DB31E88D1C3006C8CD9 /* CheckItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEC5DB21E88D1C3006C8CD9 /* CheckItemCell.xib */; };
+		EAEC5DB91E88F2B0006C8CD9 /* TVCCheckItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEC5DB81E88F2B0006C8CD9 /* TVCCheckItemCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E44F8C541EDAA57F00540FA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E44F8C491EDAA57F00540FA7 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS";
+		};
+		E44F8C561EDAA57F00540FA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E44F8C491EDAA57F00540FA7 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS Tests";
+		};
+		E44F8C581EDAA57F00540FA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E44F8C491EDAA57F00540FA7 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4DD67C0B1A5C55C900ED2280;
+			remoteInfo = "Alamofire macOS";
+		};
+		E44F8C5A1EDAA57F00540FA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E44F8C491EDAA57F00540FA7 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F829C6B21A7A94F100A2CD59;
+			remoteInfo = "Alamofire macOS Tests";
+		};
+		E44F8C5C1EDAA57F00540FA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E44F8C491EDAA57F00540FA7 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CF626EF1BA7CB3E0011A099;
+			remoteInfo = "Alamofire tvOS";
+		};
+		E44F8C5E1EDAA57F00540FA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E44F8C491EDAA57F00540FA7 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CF626F81BA7CB3E0011A099;
+			remoteInfo = "Alamofire tvOS Tests";
+		};
+		E44F8C601EDAA57F00540FA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E44F8C491EDAA57F00540FA7 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E4202FE01B667AA100C997FB;
+			remoteInfo = "Alamofire watchOS";
+		};
+		E44F8C6D1EDAA60100540FA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E44F8C491EDAA57F00540FA7 /* Alamofire.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS";
+		};
+		EA1754011E7FDB490020F407 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA1753E41E7FDB480020F407 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA1753EB1E7FDB490020F407;
+			remoteInfo = buycar.yuandian;
+		};
+		EA17540C1E7FDB490020F407 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA1753E41E7FDB480020F407 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA1753EB1E7FDB490020F407;
+			remoteInfo = buycar.yuandian;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E44F8C6F1EDAA60100540FA7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E44F8C6C1EDAA60100540FA7 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		15DE131EE952E0EFA857EFF1 /* Pods_buycar_yuandian.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_buycar_yuandian.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		645B63707035126B924D2ABA /* Pods-buycar.yuandianTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buycar.yuandianTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-buycar.yuandianTests/Pods-buycar.yuandianTests.release.xcconfig"; sourceTree = "<group>"; };
+		7CE270EA97796B68EBC795D3 /* Pods_buycar_yuandianUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_buycar_yuandianUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		89528B727E3DCA439FBE9255 /* Pods_buycar_yuandianTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_buycar_yuandianTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B34B2273739884483DCB2893 /* Pods-buycar.yuandianUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buycar.yuandianUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-buycar.yuandianUITests/Pods-buycar.yuandianUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B3DA87025EE57CF222C67F7E /* Pods-buycar.yuandianTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buycar.yuandianTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-buycar.yuandianTests/Pods-buycar.yuandianTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BC3566D9CEABFF0C3A13ED14 /* Pods-buycar.yuandianUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buycar.yuandianUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-buycar.yuandianUITests/Pods-buycar.yuandianUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E41D4E671EE10B440063A644 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = "../../../../Learning/swift/SwiftyJSON-master/Source/SwiftyJSON.swift"; sourceTree = "<group>"; };
+		E41D4E731EE10D720063A644 /* buycar.yuandian-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "buycar.yuandian-Bridging-Header.h"; sourceTree = "<group>"; };
+		E41D4E741EE10D730063A644 /* QNUploadUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUploadUtil.h; sourceTree = "<group>"; };
+		E41D4E751EE10D730063A644 /* QNUploadUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNUploadUtil.m; sourceTree = "<group>"; };
+		E4378A471EE57DCC00284E23 /* Qiniu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Qiniu.swift; sourceTree = "<group>"; };
+		E44F8C491EDAA57F00540FA7 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
+		E80F8C096789E80DF9466CCA /* Pods-buycar.yuandian.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buycar.yuandian.release.xcconfig"; path = "Pods/Target Support Files/Pods-buycar.yuandian/Pods-buycar.yuandian.release.xcconfig"; sourceTree = "<group>"; };
+		EA105F6B1E83721200705ECD /* VCCarPurchase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCCarPurchase.swift; sourceTree = "<group>"; };
+		EA105F6D1E83739A00705ECD /* VCarInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCarInfoView.swift; sourceTree = "<group>"; };
+		EA105F731E83893500705ECD /* CarPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarPhotoCell.xib; sourceTree = "<group>"; };
+		EA105F751E838AA000705ECD /* CVCCarPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVCCarPhotoCell.swift; sourceTree = "<group>"; };
+		EA105F771E83D90500705ECD /* CVCarPhotoCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVCarPhotoCollection.swift; sourceTree = "<group>"; };
+		EA105F7B1E84192900705ECD /* CarPhotoHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarPhotoHeaderView.xib; sourceTree = "<group>"; };
+		EA13B3E01E8220440020F1FF /* CarPurchaseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarPurchaseCell.xib; sourceTree = "<group>"; };
+		EA13B3E21E8221920020F1FF /* TVCCarPurchaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVCCarPurchaseCell.swift; sourceTree = "<group>"; };
+		EA13B3E41E8268E50020F1FF /* VCSeekForPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCSeekForPhoto.swift; sourceTree = "<group>"; };
+		EA13B3E61E82790A0020F1FF /* VCDailyList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCDailyList.swift; sourceTree = "<group>"; };
+		EA13B3E81E82795E0020F1FF /* Daily.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Daily.swift; sourceTree = "<group>"; };
+		EA13B3EA1E82A88F0020F1FF /* VCMyAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCMyAccount.swift; sourceTree = "<group>"; };
+		EA13B3EC1E82B9C60020F1FF /* VCAddDaily.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCAddDaily.swift; sourceTree = "<group>"; };
+		EA13B43C1E82EA410020F1FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = buycar.yuandian/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EA1753EC1E7FDB490020F407 /* buycar.yuandian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = buycar.yuandian.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA1753EF1E7FDB490020F407 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EA1753F41E7FDB490020F407 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EA1753F61E7FDB490020F407 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EA1753FB1E7FDB490020F407 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA1754001E7FDB490020F407 /* buycar.yuandianTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = buycar.yuandianTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA1754041E7FDB490020F407 /* buycar_yuandianTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = buycar_yuandianTests.swift; sourceTree = "<group>"; };
+		EA1754061E7FDB490020F407 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA17540B1E7FDB490020F407 /* buycar.yuandianUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = buycar.yuandianUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA17540F1E7FDB490020F407 /* buycar_yuandianUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = buycar_yuandianUITests.swift; sourceTree = "<group>"; };
+		EA1754111E7FDB490020F407 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA1754231E7FDD880020F407 /* SystemConsts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemConsts.swift; sourceTree = "<group>"; };
+		EA1754271E7FDED60020F407 /* NCHome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NCHome.swift; sourceTree = "<group>"; };
+		EA1754291E7FDF2A0020F407 /* VCHome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCHome.swift; sourceTree = "<group>"; };
+		EA17542C1E7FE1E90020F407 /* VCUnifiedSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCUnifiedSetting.swift; sourceTree = "<group>"; };
+		EA17542E1E7FE2370020F407 /* StringTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTools.swift; sourceTree = "<group>"; };
+		EA1913F81E84C260007AE9C3 /* VCCarPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCCarPhoto.swift; sourceTree = "<group>"; };
+		EAACCD2A1E80C85600AA8DB9 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		EAACCD2C1E80C8E000AA8DB9 /* ViewForReleaseKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewForReleaseKeyboard.swift; sourceTree = "<group>"; };
+		EAACCD311E80D13100AA8DB9 /* VCSharedBusiness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCSharedBusiness.swift; sourceTree = "<group>"; };
+		EAACCD331E80D29F00AA8DB9 /* VCLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCLogin.swift; sourceTree = "<group>"; };
+		EAACCD351E80D2DD00AA8DB9 /* DrawingTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingTools.swift; sourceTree = "<group>"; };
+		EAACCD371E80DF7500AA8DB9 /* NCLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NCLogin.swift; sourceTree = "<group>"; };
+		EAACCD391E80E62800AA8DB9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EAACCD3B1E80E69400AA8DB9 /* CommonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonModel.swift; sourceTree = "<group>"; };
+		EAACCD3D1E80FCDE00AA8DB9 /* NoConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoConnectionView.xib; sourceTree = "<group>"; };
+		EAACCD3F1E80FCF400AA8DB9 /* NoDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoDataView.xib; sourceTree = "<group>"; };
+		EAACCD431E80FE2100AA8DB9 /* VNoConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VNoConnectionView.swift; sourceTree = "<group>"; };
+		EAACCD451E80FE3000AA8DB9 /* VNoDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VNoDataView.swift; sourceTree = "<group>"; };
+		EAACCD471E80FE4000AA8DB9 /* VAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VAlertView.swift; sourceTree = "<group>"; };
+		EAACCD491E8135FC00AA8DB9 /* SystemTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemTools.swift; sourceTree = "<group>"; };
+		EAACCD4F1E817DD200AA8DB9 /* FeatureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeatureCell.xib; sourceTree = "<group>"; };
+		EAACCD511E817E0100AA8DB9 /* CVCFeatureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVCFeatureCell.swift; sourceTree = "<group>"; };
+		EAACCD531E8189BA00AA8DB9 /* CarPurchase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarPurchase.swift; sourceTree = "<group>"; };
+		EAACCD551E818B0300AA8DB9 /* CheckItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckItem.swift; sourceTree = "<group>"; };
+		EAACCD571E818CDA00AA8DB9 /* CheckItemOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckItemOption.swift; sourceTree = "<group>"; };
+		EAACCD591E818E2C00AA8DB9 /* WebTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebTools.swift; sourceTree = "<group>"; };
+		EAEC5DB21E88D1C3006C8CD9 /* CheckItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckItemCell.xib; sourceTree = "<group>"; };
+		EAEC5DB81E88F2B0006C8CD9 /* TVCCheckItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVCCheckItemCell.swift; sourceTree = "<group>"; };
+		F6BE95CE5A478CCFAF2C3315 /* Pods-buycar.yuandian.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buycar.yuandian.debug.xcconfig"; path = "Pods/Target Support Files/Pods-buycar.yuandian/Pods-buycar.yuandian.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EA1753E91E7FDB490020F407 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E44F8C6B1EDAA60100540FA7 /* Alamofire.framework in Frameworks */,
+				E6288CBF8C458BCE87438A56 /* Pods_buycar_yuandian.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA1753FD1E7FDB490020F407 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F0AE4DE392D99216CE0BDB1 /* Pods_buycar_yuandianTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA1754081E7FDB490020F407 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73C1C5A2D8E437396A63F1B8 /* Pods_buycar_yuandianUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5C17384E92AB705ACF514DFF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F6BE95CE5A478CCFAF2C3315 /* Pods-buycar.yuandian.debug.xcconfig */,
+				E80F8C096789E80DF9466CCA /* Pods-buycar.yuandian.release.xcconfig */,
+				B3DA87025EE57CF222C67F7E /* Pods-buycar.yuandianTests.debug.xcconfig */,
+				645B63707035126B924D2ABA /* Pods-buycar.yuandianTests.release.xcconfig */,
+				B34B2273739884483DCB2893 /* Pods-buycar.yuandianUITests.debug.xcconfig */,
+				BC3566D9CEABFF0C3A13ED14 /* Pods-buycar.yuandianUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		888A3304906553F6E32DC291 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				15DE131EE952E0EFA857EFF1 /* Pods_buycar_yuandian.framework */,
+				89528B727E3DCA439FBE9255 /* Pods_buycar_yuandianTests.framework */,
+				7CE270EA97796B68EBC795D3 /* Pods_buycar_yuandianUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E41D4E6A1EE10D0A0063A644 /* qiniu */ = {
+			isa = PBXGroup;
+			children = (
+				E41D4E741EE10D730063A644 /* QNUploadUtil.h */,
+				E41D4E751EE10D730063A644 /* QNUploadUtil.m */,
+				E41D4E731EE10D720063A644 /* buycar.yuandian-Bridging-Header.h */,
+			);
+			name = qiniu;
+			sourceTree = "<group>";
+		};
+		E44F8C4A1EDAA57F00540FA7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E44F8C551EDAA57F00540FA7 /* Alamofire.framework */,
+				E44F8C571EDAA57F00540FA7 /* Alamofire iOS Tests.xctest */,
+				E44F8C591EDAA57F00540FA7 /* Alamofire.framework */,
+				E44F8C5B1EDAA57F00540FA7 /* Alamofire macOS Tests.xctest */,
+				E44F8C5D1EDAA57F00540FA7 /* Alamofire.framework */,
+				E44F8C5F1EDAA57F00540FA7 /* Alamofire tvOS Tests.xctest */,
+				E44F8C611EDAA57F00540FA7 /* Alamofire.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EA1753E31E7FDB480020F407 = {
+			isa = PBXGroup;
+			children = (
+				E44F8C491EDAA57F00540FA7 /* Alamofire.xcodeproj */,
+				EA1753EE1E7FDB490020F407 /* buycar.yuandian */,
+				EA1754031E7FDB490020F407 /* buycar.yuandianTests */,
+				EA17540E1E7FDB490020F407 /* buycar.yuandianUITests */,
+				EA1753ED1E7FDB490020F407 /* Products */,
+				5C17384E92AB705ACF514DFF /* Pods */,
+				888A3304906553F6E32DC291 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EA1753ED1E7FDB490020F407 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA1753EC1E7FDB490020F407 /* buycar.yuandian.app */,
+				EA1754001E7FDB490020F407 /* buycar.yuandianTests.xctest */,
+				EA17540B1E7FDB490020F407 /* buycar.yuandianUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EA1753EE1E7FDB490020F407 /* buycar.yuandian */ = {
+			isa = PBXGroup;
+			children = (
+				EA1753FB1E7FDB490020F407 /* Info.plist */,
+				EA1753EF1E7FDB490020F407 /* AppDelegate.swift */,
+				EA1753F61E7FDB490020F407 /* Assets.xcassets */,
+				EA1754221E7FDD380020F407 /* controllers */,
+				EA17541D1E7FDBDE0020F407 /* interfaces */,
+				EA1754211E7FDCE40020F407 /* models */,
+				E41D4E6A1EE10D0A0063A644 /* qiniu */,
+				EA1754201E7FDCDD0020F407 /* tools */,
+				EAACCD2E1E80CB8700AA8DB9 /* views */,
+			);
+			path = buycar.yuandian;
+			sourceTree = "<group>";
+		};
+		EA1754031E7FDB490020F407 /* buycar.yuandianTests */ = {
+			isa = PBXGroup;
+			children = (
+				EA1754041E7FDB490020F407 /* buycar_yuandianTests.swift */,
+				EA1754061E7FDB490020F407 /* Info.plist */,
+			);
+			path = buycar.yuandianTests;
+			sourceTree = "<group>";
+		};
+		EA17540E1E7FDB490020F407 /* buycar.yuandianUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EA17540F1E7FDB490020F407 /* buycar_yuandianUITests.swift */,
+				EA1754111E7FDB490020F407 /* Info.plist */,
+			);
+			path = buycar.yuandianUITests;
+			sourceTree = "<group>";
+		};
+		EA17541D1E7FDBDE0020F407 /* interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				EAACCD2A1E80C85600AA8DB9 /* Login.storyboard */,
+				EA105F731E83893500705ECD /* CarPhotoCell.xib */,
+				EA105F7B1E84192900705ECD /* CarPhotoHeaderView.xib */,
+				EA13B3E01E8220440020F1FF /* CarPurchaseCell.xib */,
+				EAEC5DB21E88D1C3006C8CD9 /* CheckItemCell.xib */,
+				EAACCD4F1E817DD200AA8DB9 /* FeatureCell.xib */,
+				EAACCD3D1E80FCDE00AA8DB9 /* NoConnectionView.xib */,
+				EAACCD3F1E80FCF400AA8DB9 /* NoDataView.xib */,
+				EA13B43B1E82EA410020F1FF /* LaunchScreen.storyboard */,
+				EA1753F31E7FDB490020F407 /* Main.storyboard */,
+			);
+			name = interfaces;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		EA1754201E7FDCDD0020F407 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				E41D4E671EE10B440063A644 /* SwiftyJSON.swift */,
+				EA1754231E7FDD880020F407 /* SystemConsts.swift */,
+				EA17542E1E7FE2370020F407 /* StringTools.swift */,
+				EAACCD351E80D2DD00AA8DB9 /* DrawingTools.swift */,
+				EAACCD491E8135FC00AA8DB9 /* SystemTools.swift */,
+				EAACCD591E818E2C00AA8DB9 /* WebTools.swift */,
+			);
+			name = tools;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		EA1754211E7FDCE40020F407 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				EAACCD391E80E62800AA8DB9 /* User.swift */,
+				EAACCD3B1E80E69400AA8DB9 /* CommonModel.swift */,
+				EAACCD531E8189BA00AA8DB9 /* CarPurchase.swift */,
+				EAACCD551E818B0300AA8DB9 /* CheckItem.swift */,
+				EAACCD571E818CDA00AA8DB9 /* CheckItemOption.swift */,
+				EA13B3E81E82795E0020F1FF /* Daily.swift */,
+				E4378A471EE57DCC00284E23 /* Qiniu.swift */,
+			);
+			name = models;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		EA1754221E7FDD380020F407 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EA1754271E7FDED60020F407 /* NCHome.swift */,
+				EAACCD371E80DF7500AA8DB9 /* NCLogin.swift */,
+				EA13B3EC1E82B9C60020F1FF /* VCAddDaily.swift */,
+				EA105F6B1E83721200705ECD /* VCCarPurchase.swift */,
+				EA13B3E61E82790A0020F1FF /* VCDailyList.swift */,
+				EA1754291E7FDF2A0020F407 /* VCHome.swift */,
+				EAACCD331E80D29F00AA8DB9 /* VCLogin.swift */,
+				EA13B3EA1E82A88F0020F1FF /* VCMyAccount.swift */,
+				EA13B3E41E8268E50020F1FF /* VCSeekForPhoto.swift */,
+				EAACCD311E80D13100AA8DB9 /* VCSharedBusiness.swift */,
+				EA17542C1E7FE1E90020F407 /* VCUnifiedSetting.swift */,
+				EA1913F81E84C260007AE9C3 /* VCCarPhoto.swift */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		EAACCD2E1E80CB8700AA8DB9 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				EA105F771E83D90500705ECD /* CVCarPhotoCollection.swift */,
+				EA105F751E838AA000705ECD /* CVCCarPhotoCell.swift */,
+				EAACCD511E817E0100AA8DB9 /* CVCFeatureCell.swift */,
+				EA13B3E21E8221920020F1FF /* TVCCarPurchaseCell.swift */,
+				EAACCD471E80FE4000AA8DB9 /* VAlertView.swift */,
+				EA105F6D1E83739A00705ECD /* VCarInfoView.swift */,
+				EAACCD2C1E80C8E000AA8DB9 /* ViewForReleaseKeyboard.swift */,
+				EAACCD431E80FE2100AA8DB9 /* VNoConnectionView.swift */,
+				EAACCD451E80FE3000AA8DB9 /* VNoDataView.swift */,
+				EAEC5DB81E88F2B0006C8CD9 /* TVCCheckItemCell.swift */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EA1753EB1E7FDB490020F407 /* buycar.yuandian */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA1754141E7FDB490020F407 /* Build configuration list for PBXNativeTarget "buycar.yuandian" */;
+			buildPhases = (
+				796005893E9DDEED0710ACA3 /* [CP] Check Pods Manifest.lock */,
+				EA1753E81E7FDB490020F407 /* Sources */,
+				EA1753E91E7FDB490020F407 /* Frameworks */,
+				EA1753EA1E7FDB490020F407 /* Resources */,
+				E44F8C6F1EDAA60100540FA7 /* Embed Frameworks */,
+				EB30582071B92A7C0EACD195 /* [CP] Embed Pods Frameworks */,
+				84E46C65EC9ABA04C2DFB90C /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E44F8C6E1EDAA60100540FA7 /* PBXTargetDependency */,
+			);
+			name = buycar.yuandian;
+			productName = buycar.yuandian;
+			productReference = EA1753EC1E7FDB490020F407 /* buycar.yuandian.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EA1753FF1E7FDB490020F407 /* buycar.yuandianTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA1754171E7FDB490020F407 /* Build configuration list for PBXNativeTarget "buycar.yuandianTests" */;
+			buildPhases = (
+				9136B383A986F6B8E80D56D2 /* [CP] Check Pods Manifest.lock */,
+				EA1753FC1E7FDB490020F407 /* Sources */,
+				EA1753FD1E7FDB490020F407 /* Frameworks */,
+				EA1753FE1E7FDB490020F407 /* Resources */,
+				4D0A215A2A3124E1B5CFCF58 /* [CP] Embed Pods Frameworks */,
+				3B6B8CBE772B92317BF96B26 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA1754021E7FDB490020F407 /* PBXTargetDependency */,
+			);
+			name = buycar.yuandianTests;
+			productName = buycar.yuandianTests;
+			productReference = EA1754001E7FDB490020F407 /* buycar.yuandianTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EA17540A1E7FDB490020F407 /* buycar.yuandianUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA17541A1E7FDB490020F407 /* Build configuration list for PBXNativeTarget "buycar.yuandianUITests" */;
+			buildPhases = (
+				86274138987ACBC11FBFF698 /* [CP] Check Pods Manifest.lock */,
+				EA1754071E7FDB490020F407 /* Sources */,
+				EA1754081E7FDB490020F407 /* Frameworks */,
+				EA1754091E7FDB490020F407 /* Resources */,
+				84906CBADBEB1F2F1038B0A9 /* [CP] Embed Pods Frameworks */,
+				8AADBAB7EB8DCAA8227175F5 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA17540D1E7FDB490020F407 /* PBXTargetDependency */,
+			);
+			name = buycar.yuandianUITests;
+			productName = buycar.yuandianUITests;
+			productReference = EA17540B1E7FDB490020F407 /* buycar.yuandianUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EA1753E41E7FDB480020F407 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = tymaker;
+				TargetAttributes = {
+					EA1753EB1E7FDB490020F407 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 4V22RC6WNA;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
+					EA1753FF1E7FDB490020F407 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 4V22RC6WNA;
+						ProvisioningStyle = Automatic;
+						TestTargetID = EA1753EB1E7FDB490020F407;
+					};
+					EA17540A1E7FDB490020F407 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 4V22RC6WNA;
+						ProvisioningStyle = Automatic;
+						TestTargetID = EA1753EB1E7FDB490020F407;
+					};
+				};
+			};
+			buildConfigurationList = EA1753E71E7FDB480020F407 /* Build configuration list for PBXProject "buycar.yuandian" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EA1753E31E7FDB480020F407;
+			productRefGroup = EA1753ED1E7FDB490020F407 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E44F8C4A1EDAA57F00540FA7 /* Products */;
+					ProjectRef = E44F8C491EDAA57F00540FA7 /* Alamofire.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				EA1753EB1E7FDB490020F407 /* buycar.yuandian */,
+				EA1753FF1E7FDB490020F407 /* buycar.yuandianTests */,
+				EA17540A1E7FDB490020F407 /* buycar.yuandianUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E44F8C551EDAA57F00540FA7 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = E44F8C541EDAA57F00540FA7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E44F8C571EDAA57F00540FA7 /* Alamofire iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire iOS Tests.xctest";
+			remoteRef = E44F8C561EDAA57F00540FA7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E44F8C591EDAA57F00540FA7 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = E44F8C581EDAA57F00540FA7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E44F8C5B1EDAA57F00540FA7 /* Alamofire macOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire macOS Tests.xctest";
+			remoteRef = E44F8C5A1EDAA57F00540FA7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E44F8C5D1EDAA57F00540FA7 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = E44F8C5C1EDAA57F00540FA7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E44F8C5F1EDAA57F00540FA7 /* Alamofire tvOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire tvOS Tests.xctest";
+			remoteRef = E44F8C5E1EDAA57F00540FA7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E44F8C611EDAA57F00540FA7 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = E44F8C601EDAA57F00540FA7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EA1753EA1E7FDB490020F407 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA1753F71E7FDB490020F407 /* Assets.xcassets in Resources */,
+				EA13B43D1E82EA410020F1FF /* LaunchScreen.storyboard in Resources */,
+				EAACCD3E1E80FCDE00AA8DB9 /* NoConnectionView.xib in Resources */,
+				EAEC5DB31E88D1C3006C8CD9 /* CheckItemCell.xib in Resources */,
+				EA13B3E11E8220440020F1FF /* CarPurchaseCell.xib in Resources */,
+				EA105F7C1E84192900705ECD /* CarPhotoHeaderView.xib in Resources */,
+				EAACCD501E817DD200AA8DB9 /* FeatureCell.xib in Resources */,
+				EA1753F51E7FDB490020F407 /* Main.storyboard in Resources */,
+				EAACCD2B1E80C85600AA8DB9 /* Login.storyboard in Resources */,
+				EAACCD401E80FCF400AA8DB9 /* NoDataView.xib in Resources */,
+				EA105F741E83893500705ECD /* CarPhotoCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA1753FE1E7FDB490020F407 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA1754091E7FDB490020F407 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3B6B8CBE772B92317BF96B26 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-buycar.yuandianTests/Pods-buycar.yuandianTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D0A215A2A3124E1B5CFCF58 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-buycar.yuandianTests/Pods-buycar.yuandianTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		796005893E9DDEED0710ACA3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		84906CBADBEB1F2F1038B0A9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-buycar.yuandianUITests/Pods-buycar.yuandianUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		84E46C65EC9ABA04C2DFB90C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-buycar.yuandian/Pods-buycar.yuandian-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86274138987ACBC11FBFF698 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8AADBAB7EB8DCAA8227175F5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-buycar.yuandianUITests/Pods-buycar.yuandianUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9136B383A986F6B8E80D56D2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EB30582071B92A7C0EACD195 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-buycar.yuandian/Pods-buycar.yuandian-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EA1753E81E7FDB490020F407 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA1913F91E84C260007AE9C3 /* VCCarPhoto.swift in Sources */,
+				EA13B3ED1E82B9C60020F1FF /* VCAddDaily.swift in Sources */,
+				EA17542D1E7FE1E90020F407 /* VCUnifiedSetting.swift in Sources */,
+				EA13B3E51E8268E50020F1FF /* VCSeekForPhoto.swift in Sources */,
+				EA13B3EB1E82A88F0020F1FF /* VCMyAccount.swift in Sources */,
+				EAACCD3C1E80E69400AA8DB9 /* CommonModel.swift in Sources */,
+				EA1754241E7FDD880020F407 /* SystemConsts.swift in Sources */,
+				EAACCD561E818B0300AA8DB9 /* CheckItem.swift in Sources */,
+				EA17542A1E7FDF2A0020F407 /* VCHome.swift in Sources */,
+				EAEC5DB91E88F2B0006C8CD9 /* TVCCheckItemCell.swift in Sources */,
+				EAACCD481E80FE4000AA8DB9 /* VAlertView.swift in Sources */,
+				EAACCD381E80DF7500AA8DB9 /* NCLogin.swift in Sources */,
+				EAACCD2D1E80C8E000AA8DB9 /* ViewForReleaseKeyboard.swift in Sources */,
+				EA13B3E31E8221920020F1FF /* TVCCarPurchaseCell.swift in Sources */,
+				EAACCD541E8189BA00AA8DB9 /* CarPurchase.swift in Sources */,
+				EA13B3E91E82795E0020F1FF /* Daily.swift in Sources */,
+				EAACCD4A1E8135FC00AA8DB9 /* SystemTools.swift in Sources */,
+				EAACCD341E80D29F00AA8DB9 /* VCLogin.swift in Sources */,
+				EAACCD581E818CDA00AA8DB9 /* CheckItemOption.swift in Sources */,
+				EA1753F01E7FDB490020F407 /* AppDelegate.swift in Sources */,
+				EA13B3E71E82790A0020F1FF /* VCDailyList.swift in Sources */,
+				EAACCD441E80FE2100AA8DB9 /* VNoConnectionView.swift in Sources */,
+				EA105F6C1E83721200705ECD /* VCCarPurchase.swift in Sources */,
+				EAACCD5A1E818E2C00AA8DB9 /* WebTools.swift in Sources */,
+				EAACCD521E817E0100AA8DB9 /* CVCFeatureCell.swift in Sources */,
+				EAACCD361E80D2DD00AA8DB9 /* DrawingTools.swift in Sources */,
+				EA105F6E1E83739A00705ECD /* VCarInfoView.swift in Sources */,
+				E41D4E761EE10D730063A644 /* QNUploadUtil.m in Sources */,
+				EAACCD3A1E80E62800AA8DB9 /* User.swift in Sources */,
+				E4378A481EE57DCC00284E23 /* Qiniu.swift in Sources */,
+				EA105F781E83D90500705ECD /* CVCarPhotoCollection.swift in Sources */,
+				EAACCD321E80D13100AA8DB9 /* VCSharedBusiness.swift in Sources */,
+				EA17542F1E7FE2370020F407 /* StringTools.swift in Sources */,
+				EAACCD461E80FE3000AA8DB9 /* VNoDataView.swift in Sources */,
+				EA105F761E838AA000705ECD /* CVCCarPhotoCell.swift in Sources */,
+				E41D4E681EE10B440063A644 /* SwiftyJSON.swift in Sources */,
+				EA1754281E7FDED60020F407 /* NCHome.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA1753FC1E7FDB490020F407 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA1754051E7FDB490020F407 /* buycar_yuandianTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA1754071E7FDB490020F407 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA1754101E7FDB490020F407 /* buycar_yuandianUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E44F8C6E1EDAA60100540FA7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Alamofire iOS";
+			targetProxy = E44F8C6D1EDAA60100540FA7 /* PBXContainerItemProxy */;
+		};
+		EA1754021E7FDB490020F407 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA1753EB1E7FDB490020F407 /* buycar.yuandian */;
+			targetProxy = EA1754011E7FDB490020F407 /* PBXContainerItemProxy */;
+		};
+		EA17540D1E7FDB490020F407 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA1753EB1E7FDB490020F407 /* buycar.yuandian */;
+			targetProxy = EA17540C1E7FDB490020F407 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EA13B43B1E82EA410020F1FF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA13B43C1E82EA410020F1FF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		EA1753F31E7FDB490020F407 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA1753F41E7FDB490020F407 /* Base */,
+			);
+			name = Main.storyboard;
+			path = buycar.yuandian;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EA1754121E7FDB490020F407 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EA1754131E7FDB490020F407 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EA1754151E7FDB490020F407 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6BE95CE5A478CCFAF2C3315 /* Pods-buycar.yuandian.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Tianjin Tianyi Maker Technology Co.Ltd. (4V22RC6WNA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4V22RC6WNA;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = buycar.yuandian/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.tymaker.yuandian;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "buycar.yuandian/buycar.yuandian-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		EA1754161E7FDB490020F407 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E80F8C096789E80DF9466CCA /* Pods-buycar.yuandian.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Tianjin Tianyi Maker Technology Co.Ltd. (4V22RC6WNA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4V22RC6WNA;
+				GCC_OPTIMIZATION_LEVEL = fast;
+				INFOPLIST_FILE = buycar.yuandian/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.tymaker.yuandian;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "buycar.yuandian/buycar.yuandian-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		EA1754181E7FDB490020F407 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3DA87025EE57CF222C67F7E /* Pods-buycar.yuandianTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4V22RC6WNA;
+				INFOPLIST_FILE = buycar.yuandianTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "tymaker.buycar-yuandianTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/buycar.yuandian.app/buycar.yuandian";
+			};
+			name = Debug;
+		};
+		EA1754191E7FDB490020F407 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 645B63707035126B924D2ABA /* Pods-buycar.yuandianTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4V22RC6WNA;
+				INFOPLIST_FILE = buycar.yuandianTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "tymaker.buycar-yuandianTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/buycar.yuandian.app/buycar.yuandian";
+			};
+			name = Release;
+		};
+		EA17541B1E7FDB490020F407 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B34B2273739884483DCB2893 /* Pods-buycar.yuandianUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 4V22RC6WNA;
+				INFOPLIST_FILE = buycar.yuandianUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "tymaker.buycar-yuandianUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = buycar.yuandian;
+			};
+			name = Debug;
+		};
+		EA17541C1E7FDB490020F407 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC3566D9CEABFF0C3A13ED14 /* Pods-buycar.yuandianUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 4V22RC6WNA;
+				INFOPLIST_FILE = buycar.yuandianUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "tymaker.buycar-yuandianUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = buycar.yuandian;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EA1753E71E7FDB480020F407 /* Build configuration list for PBXProject "buycar.yuandian" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA1754121E7FDB490020F407 /* Debug */,
+				EA1754131E7FDB490020F407 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA1754141E7FDB490020F407 /* Build configuration list for PBXNativeTarget "buycar.yuandian" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA1754151E7FDB490020F407 /* Debug */,
+				EA1754161E7FDB490020F407 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA1754171E7FDB490020F407 /* Build configuration list for PBXNativeTarget "buycar.yuandianTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA1754181E7FDB490020F407 /* Debug */,
+				EA1754191E7FDB490020F407 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA17541A1E7FDB490020F407 /* Build configuration list for PBXNativeTarget "buycar.yuandianUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA17541B1E7FDB490020F407 /* Debug */,
+				EA17541C1E7FDB490020F407 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EA1753E41E7FDB480020F407 /* Project object */;
+}

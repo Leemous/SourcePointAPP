@@ -1,0 +1,6 @@
+framework module Pods_buycar_yuandianTests {
+  umbrella header "Pods-buycar.yuandianTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

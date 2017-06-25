@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login-->
+        <scene sceneID="Riv-bG-oGx">
+            <objects>
+                <navigationController storyboardIdentifier="ncLogin" id="B5E-E8-XhD" customClass="NCLogin" customModule="buycar_yuandian" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Zy0-x5-pKa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.69411764705882351" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Hsn-VO-ayU" kind="relationship" relationship="rootViewController" id="MqP-p1-W8Q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HaX-H0-uwp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1174" y="-354"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="D7C-vH-FKF">
+            <objects>
+                <viewController storyboardIdentifier="vcLogin" id="Hsn-VO-ayU" customClass="VCLogin" customModule="buycar_yuandian" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="n1A-KZ-6zN"/>
+                        <viewControllerLayoutGuide type="bottom" id="wWD-QL-mcq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="U8M-n3-Upy" customClass="ViewForReleaseKeyboard" customModule="buycar_yuandian" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="RFh-Bo-GX3">
+                                <rect key="frame" x="80" y="159" width="212" height="20"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J63-dn-2Ds">
+                                <rect key="frame" x="28" y="220" width="264" height="36"/>
+                                <color key="backgroundColor" red="0.0" green="0.69411764705882351" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="KhH-pV-It5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
+                                <state key="normal" title="登录">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userImage" translatesAutoresizingMaskIntoConstraints="NO" id="oti-Ne-b8u">
+                                <rect key="frame" x="42" y="110" width="18" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="oti-Ne-b8u" secondAttribute="height" multiplier="1:1" id="2PH-cR-pLp"/>
+                                    <constraint firstAttribute="width" constant="18" id="mFX-aZ-INF"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pwdImage" translatesAutoresizingMaskIntoConstraints="NO" id="t1R-Um-ILs">
+                                <rect key="frame" x="42" y="160" width="18" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="K2r-SM-mnk"/>
+                                    <constraint firstAttribute="width" secondItem="t1R-Um-ILs" secondAttribute="height" multiplier="1:1" id="rVv-33-3zZ"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="ylg-YU-Te8">
+                                <rect key="frame" x="80" y="109" width="212" height="20"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="J63-dn-2Ds" firstAttribute="trailing" secondItem="U8M-n3-Upy" secondAttribute="trailing" constant="-28" id="41t-xo-hMD"/>
+                            <constraint firstItem="t1R-Um-ILs" firstAttribute="leading" secondItem="oti-Ne-b8u" secondAttribute="leading" id="72C-wy-9u0"/>
+                            <constraint firstItem="J63-dn-2Ds" firstAttribute="top" secondItem="n1A-KZ-6zN" secondAttribute="bottom" constant="156" id="Dt8-0A-jno"/>
+                            <constraint firstItem="ylg-YU-Te8" firstAttribute="leading" secondItem="oti-Ne-b8u" secondAttribute="trailing" constant="20" id="FpM-tb-IfW"/>
+                            <constraint firstItem="oti-Ne-b8u" firstAttribute="leading" secondItem="U8M-n3-Upy" secondAttribute="leading" constant="42" id="G3H-Dd-OHQ"/>
+                            <constraint firstItem="t1R-Um-ILs" firstAttribute="top" secondItem="oti-Ne-b8u" secondAttribute="bottom" constant="32" id="NHS-eV-ofc"/>
+                            <constraint firstItem="ylg-YU-Te8" firstAttribute="trailing" secondItem="U8M-n3-Upy" secondAttribute="trailing" constant="-28" id="Ndo-5R-q9C"/>
+                            <constraint firstItem="J63-dn-2Ds" firstAttribute="leading" secondItem="U8M-n3-Upy" secondAttribute="leading" constant="28" id="P3W-C9-Uwe"/>
+                            <constraint firstItem="RFh-Bo-GX3" firstAttribute="trailing" secondItem="U8M-n3-Upy" secondAttribute="trailing" constant="-28" id="a7N-Ce-uBm"/>
+                            <constraint firstItem="ylg-YU-Te8" firstAttribute="centerY" secondItem="oti-Ne-b8u" secondAttribute="centerY" id="gEJ-lB-ix9"/>
+                            <constraint firstItem="J63-dn-2Ds" firstAttribute="centerX" secondItem="U8M-n3-Upy" secondAttribute="centerX" id="ovN-i0-f5A"/>
+                            <constraint firstItem="oti-Ne-b8u" firstAttribute="top" secondItem="n1A-KZ-6zN" secondAttribute="bottom" constant="46" id="yUU-An-ML7"/>
+                            <constraint firstItem="RFh-Bo-GX3" firstAttribute="leading" secondItem="t1R-Um-ILs" secondAttribute="trailing" constant="20" id="z4C-cL-pas"/>
+                            <constraint firstItem="RFh-Bo-GX3" firstAttribute="centerY" secondItem="t1R-Um-ILs" secondAttribute="centerY" id="zfP-d4-brf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="IVs-J5-Uxy"/>
+                    <connections>
+                        <outlet property="loginButton" destination="J63-dn-2Ds" id="11r-1F-Ube"/>
+                        <outlet property="nameText" destination="ylg-YU-Te8" id="kE8-cV-bZq"/>
+                        <outlet property="pwdImage" destination="t1R-Um-ILs" id="pce-IP-ok9"/>
+                        <outlet property="pwdText" destination="RFh-Bo-GX3" id="OvU-ch-nmR"/>
+                        <outlet property="userImage" destination="oti-Ne-b8u" id="Xab-bI-P5T"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KTP-bd-uRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-338" y="-355"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="pwdImage" width="18" height="18"/>
+        <image name="userImage" width="18" height="18"/>
+    </resources>
+</document>
