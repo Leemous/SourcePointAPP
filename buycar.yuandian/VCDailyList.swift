@@ -15,14 +15,21 @@ class VCDailyList: UIViewController {
     
     let dlTable = UITableView()
     var ds = [Daily]()
+    var refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.automaticallyAdjustsScrollViewInsets = false
 
         self.configTitleLabelByText(title: "日报")
         
         initView()
         launchData()
+        
+        refreshControl.addTarget(self, action: #selector(VCDailyList.refreshData), for: .valueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新数据")
+        self.dlTable.addSubview(refreshControl)
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,6 +93,13 @@ class VCDailyList: UIViewController {
         }
     }
     
+    func refreshData() {
+        self.launchData(completion: {
+            self.dlTable.reloadData()
+            self.refreshControl.endRefreshing()
+        })
+    }
+    
     func addDaily(_ sender: AnyObject) {
         self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcAddDaily", animated: true, completion: nil)
         self.configNavigationBackItem(sourceViewController: self)
@@ -116,7 +130,6 @@ extension VCDailyList: UITableViewDataSource {
         cell.textLabel!.font = textFont
         cell.textLabel!.textColor = mainTextColor
         cell.textLabel!.text = self.ds[indexPath.row].dailyPerson + "于" + self.ds[indexPath.row].dailyTime + ":" + self.ds[indexPath.row].dailyDetail
-//        cell.textLabel!.text = convertDateToCNDateFormat(self.ds[indexPath.row].dailyDate)
 
         return cell
     }

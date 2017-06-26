@@ -59,9 +59,9 @@ class VCDatePicker: UIViewController {
         self.datePickerBar = UIToolbar(frame: CGRect(x: 0, y: screenHeight - datePickerHeight - 40, width: screenWidth, height: 40))
         self.datePickerBar.barStyle = .default
         
-        let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 30))
+        let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 30))
         cancelButton.setTitle("取消", for: .normal)
-        cancelButton.setTitleColor(systemTintColor, for: .normal)
+        cancelButton.setTitleColor(mainTextColor, for: .normal)
         cancelButton.addTarget(self, action: #selector(VCDatePicker.cancel(_:)), for: .touchUpInside)
         let barCancelItem = UIBarButtonItem(customView: cancelButton)
         
@@ -90,7 +90,7 @@ class VCDatePicker: UIViewController {
     
     /// 取消按钮，返回原视图
     ///
-    /// - Parameter sender: <#sender description#>
+    /// - Parameter sender: sender description
     func cancel(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -98,7 +98,7 @@ class VCDatePicker: UIViewController {
     
     /// 确定按钮，设置文本框的值，返回原视图
     ///
-    /// - Parameter sender: <#sender description#>
+    /// - Parameter sender: sender description
     func finish(_ sender: AnyObject) {
         self.dismiss(animated: true) {
             self.datePickerField.text = convertDateToString(self.datePicker.date, pattern: "yyyy-MM-dd")

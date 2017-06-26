@@ -51,7 +51,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     /// 控件加载完成后所作的处理
     ///
-    /// - Parameter animated: <#animated description#>
+    /// - Parameter animated:
     override func viewDidAppear(_ animated: Bool) {
         // 强制报废日期
         self.hv.forceScrappedDateText.delegate = self
@@ -67,7 +67,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.headerView.backgroundColor = heavyBackgroundColor
 
         // 初始化header view的第一段
-        self.hv = VCarInfoView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 368))
+        self.hv = VCarInfoView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 408))
         self.hv.backgroundColor = UIColor.white
         self.headerView.addSubview(self.hv)
 
@@ -78,7 +78,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 1
         layout.headerReferenceSize = CGSize(width: screenWidth, height: 30)
-        self.cpc = CVCarPhotoCollection(frame: CGRect(x: 0, y: 378, width: screenWidth, height: 146), collectionViewLayout: layout)
+        self.cpc = CVCarPhotoCollection(frame: CGRect(x: 0, y: 418, width: screenWidth, height: 146), collectionViewLayout: layout)
         self.cpc.backgroundColor = UIColor.white
         self.cpc.isScrollEnabled = false
         self.cpc.delegate = self
@@ -89,7 +89,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         
         // 添加一个显示“车况检查”的label
         
-        self.lv = UIView(frame: CGRect(x: 0, y: 368 + self.cpc.frame.size.height + 20 , width: screenWidth, height: 45))
+        self.lv = UIView(frame: CGRect(x: 0, y: 408 + self.cpc.frame.size.height + 20 , width: screenWidth, height: 45))
         self.lv.backgroundColor = UIColor.white
         self.headerView.addSubview(self.lv)
         
@@ -435,7 +435,7 @@ extension VCCarPurchase: UITextFieldDelegate {
             self.hv.scrapValueText.resignFirstResponder()
             self.hv.memoText.resignFirstResponder()
             
-            self.showDatePicker(dateField: textField as! DatePickerField, minimumDate: Date.init(timeIntervalSinceNow: 24 * 60 * 60), maximumDate: nil)
+            self.showDatePicker(dateField: textField as! DatePickerField, minimumDate: Date.init(timeIntervalSinceNow: 0), maximumDate: nil)
             return false
         }
         return true

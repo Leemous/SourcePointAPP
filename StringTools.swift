@@ -31,8 +31,10 @@ func getAttributedString(_ string: String, fontFamily font: UIFont, fontColor co
     return c
 }
 
-// 将指定特定时间的整型数字转换成“yyyy/MM/dd”格式
-@available(*, deprecated)
+/// 将指定特定时间的整型数字转换成“yyyy/MM/dd”格式
+/// deprecated
+/// - Parameter date: 日期
+/// - Returns: 格式化后的字符串
 func convertDateToCNDateFormat(_ date: Date) -> String {
     let formatter = DateFormatter()
     formatter.dateStyle = .medium

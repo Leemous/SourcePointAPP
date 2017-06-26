@@ -21,6 +21,7 @@ class VCHome: UIViewController {
     @IBOutlet weak var carTable: UITableView!
 
     var cps = [CarPurchase]()
+    var refreshCarTableControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,10 @@ class VCHome: UIViewController {
 
         initView()
         launchData()
+        
+        refreshCarTableControl.addTarget(self, action: #selector(VCHome.refreshData), for: .valueChanged)
+        refreshCarTableControl.attributedTitle = NSAttributedString(string: "下拉刷新数据")
+        self.carTable.addSubview(refreshCarTableControl)
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,6 +105,14 @@ class VCHome: UIViewController {
                 break
             }
         }
+    }
+    
+    /// 刷新收车列表
+    func refreshData() {
+        self.launchData(completion: {
+            self.carTable.reloadData()
+            self.refreshCarTableControl.endRefreshing()
+        })
     }
     
     func goMyAccount(_ sender: AnyObject) {

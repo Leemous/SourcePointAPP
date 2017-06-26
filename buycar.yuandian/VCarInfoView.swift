@@ -13,12 +13,14 @@ class VCarInfoView: UIView {
     var lisenceLabel: UILabel!
     var frameLabel: UILabel!
     var scrapValueLabel: UILabel!
+    var forceScrappedDateSwitchLabel: UILabel!
     var forceScrappedDateLabel: UILabel!
     var memoLabel: UILabel!
 
     var lisenceText: TextFieldWithFinishButton!
     var frameText: TextFieldWithFinishButton!
     var scrapValueText: TextFieldWithFinishButton!
+    var forceScrappedDateSwitch: UISwitch!
     var forceScrappedDateText: DatePickerField!
     var memoText: TextViewWithFinishButton!
     
@@ -31,6 +33,7 @@ class VCarInfoView: UIView {
         self.lisenceText.text = carInfoViewDelegate.lisenceNo
         self.frameText.text = carInfoViewDelegate.frameNo
         self.scrapValueText.text = carInfoViewDelegate.scrapValue
+        self.forceScrappedDateSwitch.isOn = carInfoViewDelegate.forceScrappedOn == true
         self.forceScrappedDateText.text = carInfoViewDelegate.forceScrappedDate
         self.memoText.text = carInfoViewDelegate.memo
     }
@@ -67,6 +70,16 @@ class VCarInfoView: UIView {
         self.addConstraint(NSLayoutConstraint(item: self.scrapValueLabel, attribute: .leading, relatedBy: .equal, toItem: self.frameLabel, attribute: .leading, multiplier: 1, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: self.scrapValueLabel, attribute: .top, relatedBy: .equal, toItem: self.frameLabel, attribute: .bottom, multiplier: 1, constant: 20))
         
+        // 强制报废提醒标签
+        self.forceScrappedDateSwitchLabel = UILabel()
+        self.addSubview(self.forceScrappedDateSwitchLabel)
+        self.forceScrappedDateSwitchLabel.font = systemFont
+        self.forceScrappedDateSwitchLabel.textColor = mainTextColor
+        self.forceScrappedDateSwitchLabel.text = "强制报废提醒"
+        self.forceScrappedDateSwitchLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateSwitchLabel, attribute: .leading, relatedBy: .equal, toItem: self.scrapValueLabel, attribute: .leading, multiplier:1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateSwitchLabel, attribute: .top, relatedBy: .equal, toItem: self.scrapValueLabel, attribute: .bottom, multiplier:1, constant: 20))
+        
         // 强制报废日期标签
         self.forceScrappedDateLabel = UILabel()
         self.addSubview(self.forceScrappedDateLabel)
@@ -74,8 +87,8 @@ class VCarInfoView: UIView {
         self.forceScrappedDateLabel.textColor = mainTextColor
         self.forceScrappedDateLabel.text = "强制报废日期"
         self.forceScrappedDateLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateLabel, attribute: .leading, relatedBy: .equal, toItem: self.scrapValueLabel, attribute: .leading, multiplier:1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateLabel, attribute: .top, relatedBy: .equal, toItem: self.scrapValueLabel, attribute: .bottom, multiplier:1, constant: 20))
+        self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateLabel, attribute: .leading, relatedBy: .equal, toItem: self.forceScrappedDateSwitchLabel, attribute: .leading, multiplier:1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateLabel, attribute: .top, relatedBy: .equal, toItem: self.forceScrappedDateSwitchLabel, attribute: .bottom, multiplier:1, constant: 20))
 
         // 备注标签
         self.memoLabel = UILabel()
@@ -120,6 +133,15 @@ class VCarInfoView: UIView {
         self.addConstraint(NSLayoutConstraint(item: self.scrapValueText, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 84))
         self.addConstraint(NSLayoutConstraint(item: self.scrapValueText, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -18))
         self.addConstraint(NSLayoutConstraint(item: self.scrapValueText, attribute: .centerY, relatedBy: .equal, toItem: self.scrapValueLabel, attribute: .centerY, multiplier: 1, constant: 0))
+        
+        // 强制报废开关
+        self.forceScrappedDateSwitch = UISwitch()
+        self.addSubview(self.forceScrappedDateSwitch)
+        self.forceScrappedDateSwitch.translatesAutoresizingMaskIntoConstraints = false
+        self.forceScrappedDateSwitch.addTarget(self, action: #selector(switchDidChange), for: .valueChanged)
+        self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateSwitch, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 124))
+        self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateSwitch, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -18))
+        self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateSwitch, attribute: .centerY, relatedBy: .equal, toItem: self.forceScrappedDateSwitchLabel, attribute: .centerY, multiplier: 1, constant: 0))
         
         // 强制报废日期文本框
         self.forceScrappedDateText = DatePickerField()
@@ -191,6 +213,18 @@ class VCarInfoView: UIView {
         // 设置备注文本框的圆角边框
         let _ = drawRoundBorderForView(memoText, borderRadius: 6, borderWidth: 1, borderColor: systemTintColor)
     }
+    
+    func switchDidChange() {
+        if (self.forceScrappedDateSwitch.isOn) {
+            // 强制报废开关：开
+            self.forceScrappedDateText.text = convertDateToString(Date.init(timeIntervalSinceNow: 0), pattern: "yyyy-MM-dd")
+            self.forceScrappedDateText.isEnabled = true
+        } else {
+            // 强制报废开关：关
+            self.forceScrappedDateText.text = ""
+            self.forceScrappedDateText.isEnabled = false
+        }
+    }
 }
 
 
@@ -259,6 +293,7 @@ class CarInfoViewDelegate {
     var lisenceNo: String?
     var frameNo: String?
     var scrapValue: String?
+    var forceScrappedOn: Bool?
     var forceScrappedDate: String?
     var memo: String?
 }
