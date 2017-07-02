@@ -21,6 +21,7 @@ class TVCCarPurchaseCell: UITableViewCell {
         self.lisenceLabel.text = carPurchaseCellDelegate.carLisenceNo
         self.frameLabel.text = carPurchaseCellDelegate.carFrameNo
         self.idLabel.text = "收车编号：" + carPurchaseCellDelegate.id
+        self.tag = 1000
     }
 }
 

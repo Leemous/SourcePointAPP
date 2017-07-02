@@ -280,7 +280,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCHome.swift"
-            timestampString = "520152655.419999"
+            timestampString = "520421713.185576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "95"
@@ -568,7 +568,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCHome.swift"
-            timestampString = "520152719.813129"
+            timestampString = "520421713.185576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "122"
@@ -584,7 +584,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCHome.swift"
-            timestampString = "520152719.813129"
+            timestampString = "520421713.185576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "121"
@@ -648,12 +648,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCCarPurchase.swift"
-            timestampString = "520092648.190742"
+            timestampString = "520170579.597853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
-            landmarkName = "saveData()"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
+            landmarkName = "numberOfSections(in:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -664,12 +664,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCCarPurchase.swift"
-            timestampString = "520092648.190742"
+            timestampString = "520170579.597853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
-            landmarkName = "saveData()"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -712,12 +712,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCCarPurchase.swift"
-            timestampString = "520092648.190742"
+            timestampString = "520170579.597853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
-            landmarkName = "saveData()"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
+            landmarkName = "VCCarPurchase"
+            landmarkType = "4">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "buycar.yuandian/VCCarPurchase.swift"
+            timestampString = "520170579.597853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "saveCarPurchase(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -728,12 +744,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCCarPurchase.swift"
-            timestampString = "520092098.991271"
+            timestampString = "520170579.597853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "launchData()"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "saveCarPurchase(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -744,28 +760,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCCarPurchase.swift"
-            timestampString = "520092098.991271"
+            timestampString = "520170579.597853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "launchData()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "buycar.yuandian/VCCarPurchase.swift"
-            timestampString = "520092098.991271"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "launchData()"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "saveCarPurchase(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -792,12 +792,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCCarPurchase.swift"
-            timestampString = "520092098.991271"
+            timestampString = "520170579.597853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
-            landmarkName = "uploadPhoto()"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -808,13 +808,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCCarPurchase.swift"
-            timestampString = "520092098.991271"
+            timestampString = "520170579.597853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
-            landmarkName = "uploadPhoto()"
-            landmarkType = "7">
+            startingLineNumber = "236"
+            endingLineNumber = "236"
+            landmarkName = "VCCarPurchase"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -872,7 +872,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCHome.swift"
-            timestampString = "520152655.419999"
+            timestampString = "520654938.096448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
@@ -920,7 +920,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCHome.swift"
-            timestampString = "520152655.419999"
+            timestampString = "520654938.096448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
@@ -1000,7 +1000,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCHome.swift"
-            timestampString = "520152655.419999"
+            timestampString = "520654938.096448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "78"
@@ -1016,13 +1016,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCHome.swift"
-            timestampString = "520152655.419999"
+            timestampString = "520421713.185576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
             endingLineNumber = "90"
             landmarkName = "launchData(completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "buycar_yuandian.VCHome.(launchData (completion : Swift.Optional&lt;() -&gt; ()&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "buycar.yuandian"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/limeng/Work/TYMaker/project/buycar.yuandian/buycar.yuandian/VCHome.swift"
+                  timestampString = "520421386.440425"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "1416">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "buycar_yuandian.VCHome.(launchData (completion : Swift.Optional&lt;() -&gt; ()&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "buycar.yuandian"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/limeng/Work/TYMaker/project/buycar.yuandian/buycar.yuandian/VCHome.swift"
+                  timestampString = "520421386.441721"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "1456">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1048,12 +1080,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCCarPurchase.swift"
-            timestampString = "520092098.991271"
+            timestampString = "520170579.597853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
-            landmarkName = "checkUpload(isSuccess:fileKey:)"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
+            landmarkName = "saveData()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1064,11 +1096,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCCarPurchase.swift"
-            timestampString = "520092098.991271"
+            timestampString = "520170579.597853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "saveCarPurchase(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1080,12 +1112,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCCarPurchase.swift"
-            timestampString = "520092098.991271"
+            timestampString = "520170579.597853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "launchData()"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "saveCarPurchase(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1096,7 +1128,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCHome.swift"
-            timestampString = "520152655.419999"
+            timestampString = "520421713.185576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
@@ -1144,7 +1176,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCHome.swift"
-            timestampString = "520152655.419999"
+            timestampString = "520421713.185576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
@@ -1160,11 +1192,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCarInfoView.swift"
-            timestampString = "520151014.473369"
+            timestampString = "520162681.377847"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "draw(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1176,12 +1208,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCCarPurchase.swift"
-            timestampString = "520092098.991271"
+            timestampString = "520170579.597853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
-            landmarkName = "checkUpload(isSuccess:fileKey:)"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
+            landmarkName = "saveData()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1192,13 +1224,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCarInfoView.swift"
-            timestampString = "520151589.894598"
+            timestampString = "520162681.377847"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
-            landmarkName = "CarInfoViewDelegate"
-            landmarkType = "3">
+            startingLineNumber = "264"
+            endingLineNumber = "264"
+            landmarkName = "draw(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1208,12 +1240,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCCarPurchase.swift"
-            timestampString = "520092648.190742"
+            timestampString = "520170579.597853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
+            landmarkName = "tableView(_:heightForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1224,11 +1256,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCDatePicker.swift"
-            timestampString = "520089134.561082"
+            timestampString = "520167612.278306"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
             landmarkName = "VCDatePicker"
             landmarkType = "3">
          </BreakpointContent>
@@ -1240,11 +1272,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCDatePicker.swift"
-            timestampString = "520092311.529076"
+            timestampString = "520167612.278306"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "initView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1256,11 +1288,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCDatePicker.swift"
-            timestampString = "520092311.529076"
+            timestampString = "520167612.278306"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "initWithDateField(datePickerField:minimumDate:maximumDate:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1272,7 +1304,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCHome.swift"
-            timestampString = "520152719.813129"
+            timestampString = "520421713.185576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "150"
@@ -1288,7 +1320,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "buycar.yuandian/VCHome.swift"
-            timestampString = "520152719.813129"
+            timestampString = "520421713.185576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "149"
@@ -1342,6 +1374,118 @@
             startingLineNumber = "110"
             endingLineNumber = "110"
             landmarkName = "backToDailyList(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "buycar.yuandian/VCarInfoView.swift"
+            timestampString = "520162681.377847"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "initView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "buycar.yuandian/VCCarPurchase.swift"
+            timestampString = "520170592.100585"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "didReceiveMemoryWarning()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "buycar.yuandian/VCHome.swift"
+            timestampString = "520659683.807729"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "buycar.yuandian/VCHome.swift"
+            timestampString = "520422792.778682"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "buycar.yuandian/VCHome.swift"
+            timestampString = "520422793.760296"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "buycar.yuandian/VCHome.swift"
+            timestampString = "520422794.814412"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "buycar.yuandian/VCHome.swift"
+            timestampString = "520659410.371729"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
