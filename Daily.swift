@@ -9,6 +9,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class Daily: CommonModel {
     var id: String!

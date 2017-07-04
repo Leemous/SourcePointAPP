@@ -9,6 +9,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class VCCarPhoto: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var carInfoView: UIView!

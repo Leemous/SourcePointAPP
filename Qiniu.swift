@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class Qiniu: CommonModel {
     var uptoken: String!

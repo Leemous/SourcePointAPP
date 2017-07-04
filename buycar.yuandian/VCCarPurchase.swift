@@ -10,6 +10,7 @@
 import UIKit
 import MobileCoreServices
 import Alamofire
+import SwiftyJSON
 
 private let checkItemCell = "checkItemCell"
 private let checkItemHeanderCell = "checkItemHeaderCell"

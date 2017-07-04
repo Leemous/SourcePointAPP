@@ -10,6 +10,7 @@
 import Foundation
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class CarPurchase: CommonModel {
     var carLicenseNo: String!

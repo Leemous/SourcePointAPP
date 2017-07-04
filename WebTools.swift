@@ -8,8 +8,9 @@
 //
 
 import Foundation
-import Alamofire
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 // 用于获取数据时，为回调闭包标识状态的枚举
 public enum ReturnedStatus: Int {

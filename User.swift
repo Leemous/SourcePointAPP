@@ -10,6 +10,7 @@
 import Foundation
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class User: CommonModel {
     var userName: String!

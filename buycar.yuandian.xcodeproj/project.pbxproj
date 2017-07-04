@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4F0AE4DE392D99216CE0BDB1 /* Pods_buycar_yuandianTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89528B727E3DCA439FBE9255 /* Pods_buycar_yuandianTests.framework */; };
 		73C1C5A2D8E437396A63F1B8 /* Pods_buycar_yuandianUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE270EA97796B68EBC795D3 /* Pods_buycar_yuandianUITests.framework */; };
-		E41D4E681EE10B440063A644 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41D4E671EE10B440063A644 /* SwiftyJSON.swift */; };
 		E41D4E761EE10D730063A644 /* QNUploadUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E41D4E751EE10D730063A644 /* QNUploadUtil.m */; };
 		E4378A481EE57DCC00284E23 /* Qiniu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4378A471EE57DCC00284E23 /* Qiniu.swift */; };
 		E44F8C6B1EDAA60100540FA7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44F8C551EDAA57F00540FA7 /* Alamofire.framework */; };
@@ -160,7 +159,6 @@
 		B34B2273739884483DCB2893 /* Pods-buycar.yuandianUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buycar.yuandianUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-buycar.yuandianUITests/Pods-buycar.yuandianUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B3DA87025EE57CF222C67F7E /* Pods-buycar.yuandianTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buycar.yuandianTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-buycar.yuandianTests/Pods-buycar.yuandianTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BC3566D9CEABFF0C3A13ED14 /* Pods-buycar.yuandianUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buycar.yuandianUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-buycar.yuandianUITests/Pods-buycar.yuandianUITests.release.xcconfig"; sourceTree = "<group>"; };
-		E41D4E671EE10B440063A644 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = "../../../../Learning/swift/SwiftyJSON-master/Source/SwiftyJSON.swift"; sourceTree = "<group>"; };
 		E41D4E731EE10D720063A644 /* buycar.yuandian-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "buycar.yuandian-Bridging-Header.h"; sourceTree = "<group>"; };
 		E41D4E741EE10D730063A644 /* QNUploadUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUploadUtil.h; sourceTree = "<group>"; };
 		E41D4E751EE10D730063A644 /* QNUploadUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNUploadUtil.m; sourceTree = "<group>"; };
@@ -378,7 +376,6 @@
 		EA1754201E7FDCDD0020F407 /* tools */ = {
 			isa = PBXGroup;
 			children = (
-				E41D4E671EE10B440063A644 /* SwiftyJSON.swift */,
 				EA1754231E7FDD880020F407 /* SystemConsts.swift */,
 				EA17542E1E7FE2370020F407 /* StringTools.swift */,
 				EAACCD351E80D2DD00AA8DB9 /* DrawingTools.swift */,
@@ -830,7 +827,6 @@
 				EA17542F1E7FE2370020F407 /* StringTools.swift in Sources */,
 				EAACCD461E80FE3000AA8DB9 /* VNoDataView.swift in Sources */,
 				EA105F761E838AA000705ECD /* CVCCarPhotoCell.swift in Sources */,
-				E41D4E681EE10B440063A644 /* SwiftyJSON.swift in Sources */,
 				EA1754281E7FDED60020F407 /* NCHome.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

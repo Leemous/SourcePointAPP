@@ -9,6 +9,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class VCSeekForPhoto: UIViewController {
 
