@@ -37,7 +37,7 @@ public let userKey = "userNameKey"
 public let deviceIdKey = "deviceIdKey"
 
 // HTTP请求地址
-//public let baseUrl = "http://192.168.1.34/api"
+//public let baseUrl = "http://192.168.1.34:8180/api"
 //public let baseUrl = "https://ios.tymaker.cn/api"
 public let baseUrl = "http://59.110.112.15:8100/api"
 

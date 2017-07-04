@@ -222,11 +222,19 @@ extension VCHome: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: carPurchaseCell, for: indexPath) as! TVCCarPurchaseCell
         
-        cell.selectionStyle = .none
-        
         cell.carPurchaseCellDelegate.carLisenceNo = self.cps[indexPath.row].carLicenseNo
         cell.carPurchaseCellDelegate.carFrameNo = self.cps[indexPath.row].carFrameNo
         cell.carPurchaseCellDelegate.id = self.cps[indexPath.row].id
+        
+        if cell.tag != 1000 {
+            // 首次绘制单元格
+            cell.selectionStyle = .none
+        } else {
+            // 重用单元格，手动设置label值
+            cell.lisenceLabel.text = self.cps[indexPath.row].carLicenseNo
+            cell.frameLabel.text = self.cps[indexPath.row].carFrameNo
+            cell.idLabel.text = "收车编号：" + self.cps[indexPath.row].id
+        }
     
         return cell
     }
