@@ -139,7 +139,6 @@ class VCarInfoView: UIView {
         self.addSubview(self.forceScrappedDateSwitch)
         self.forceScrappedDateSwitch.translatesAutoresizingMaskIntoConstraints = false
         self.forceScrappedDateSwitch.addTarget(self, action: #selector(switchDidChange), for: .valueChanged)
-        self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateSwitch, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 124))
         self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateSwitch, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -18))
         self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateSwitch, attribute: .centerY, relatedBy: .equal, toItem: self.forceScrappedDateSwitchLabel, attribute: .centerY, multiplier: 1, constant: 0))
         

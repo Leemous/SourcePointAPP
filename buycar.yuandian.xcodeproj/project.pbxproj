@@ -13,6 +13,7 @@
 		E4378A481EE57DCC00284E23 /* Qiniu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4378A471EE57DCC00284E23 /* Qiniu.swift */; };
 		E44F8C6B1EDAA60100540FA7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44F8C551EDAA57F00540FA7 /* Alamofire.framework */; };
 		E44F8C6C1EDAA60100540FA7 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E44F8C551EDAA57F00540FA7 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E456F2001F0BF2990097C79D /* VLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E456F1FF1F0BF2990097C79D /* VLayerView.swift */; };
 		E469B6511EFFCD0900C264B4 /* CarPurchaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E469B6501EFFCD0900C264B4 /* CarPurchaseCell.xib */; };
 		E469B65B1EFFCD5300C264B4 /* VCDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E469B65A1EFFCD5300C264B4 /* VCDatePicker.swift */; };
 		E6288CBF8C458BCE87438A56 /* Pods_buycar_yuandian.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15DE131EE952E0EFA857EFF1 /* Pods_buycar_yuandian.framework */; };
@@ -164,6 +165,7 @@
 		E41D4E751EE10D730063A644 /* QNUploadUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNUploadUtil.m; sourceTree = "<group>"; };
 		E4378A471EE57DCC00284E23 /* Qiniu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Qiniu.swift; sourceTree = "<group>"; };
 		E44F8C491EDAA57F00540FA7 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
+		E456F1FF1F0BF2990097C79D /* VLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLayerView.swift; sourceTree = "<group>"; };
 		E469B6501EFFCD0900C264B4 /* CarPurchaseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarPurchaseCell.xib; sourceTree = "<group>"; };
 		E469B65A1EFFCD5300C264B4 /* VCDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCDatePicker.swift; sourceTree = "<group>"; };
 		E80F8C096789E80DF9466CCA /* Pods-buycar.yuandian.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buycar.yuandian.release.xcconfig"; path = "Pods/Target Support Files/Pods-buycar.yuandian/Pods-buycar.yuandian.release.xcconfig"; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 				EAACCD431E80FE2100AA8DB9 /* VNoConnectionView.swift */,
 				EAACCD451E80FE3000AA8DB9 /* VNoDataView.swift */,
 				EAEC5DB81E88F2B0006C8CD9 /* TVCCheckItemCell.swift */,
+				E456F1FF1F0BF2990097C79D /* VLayerView.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -808,6 +811,7 @@
 				EA13B3E31E8221920020F1FF /* TVCCarPurchaseCell.swift in Sources */,
 				EAACCD541E8189BA00AA8DB9 /* CarPurchase.swift in Sources */,
 				EA13B3E91E82795E0020F1FF /* Daily.swift in Sources */,
+				E456F2001F0BF2990097C79D /* VLayerView.swift in Sources */,
 				EAACCD4A1E8135FC00AA8DB9 /* SystemTools.swift in Sources */,
 				EAACCD341E80D29F00AA8DB9 /* VCLogin.swift in Sources */,
 				EAACCD581E818CDA00AA8DB9 /* CheckItemOption.swift in Sources */,

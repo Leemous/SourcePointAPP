@@ -45,7 +45,7 @@ class VAlertView: UIView {
     
     override func didMoveToSuperview() {
         self.isOpaque = false
-        self.backgroundColor = alertbackgroundColor
+        self.backgroundColor = alertBackgroundColor
         self.alpha = 0.75
     }
     

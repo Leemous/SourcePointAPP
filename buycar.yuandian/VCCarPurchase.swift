@@ -35,6 +35,8 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
     var pickedPhoto: UIImage!
     var pickedIndex: Int!
     
+    var layer: VLayerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -119,6 +121,9 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.cpc.carPhotoCollectionDelegate.failedCount = 0
         // 保存的url数组为空
         self.cpc.carPhotoCollectionDelegate.uploadedFileUrls = []
+        
+        // 遮罩层
+        self.layer = VLayerView(layerMessage: "正在保存数据...")
     }
     
     private func launchData() {
@@ -148,8 +153,9 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
             case .needLogin:
                 self.needsLogout()
                 break
-            case .noData: break
+            case .noData:
                 // XXXX
+                break
             case .noConnection:
                 self.alert(viewToBlock: nil, msg: msgNoConnection)
                 break
@@ -174,6 +180,10 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
             self.alert(viewToBlock: nil, msg: "残值只能输入数字")
             return
         }
+        
+        // 显示遮罩层
+        self.view.addSubview(self.layer)
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
         
         // 上传图片到七牛
         if self.cpc.carPhotoCollectionDelegate.carPhotos.count > 0 {
@@ -263,6 +273,10 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         paramDict["urls"] = JSON(cpc.carPhotoCollectionDelegate.uploadedFileUrls)
         // 保存到服务器
         Alamofire.request(Router.addPurchase(paramDict)).responseJSON { response in
+            if self.layer.superview != nil {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                self.layer.removeFromSuperview()
+            }
             if (response.result.isSuccess) {
                 // 请求成功
                 if let jsonValue = response.result.value {
