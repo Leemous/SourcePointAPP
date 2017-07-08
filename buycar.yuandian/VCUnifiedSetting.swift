@@ -159,14 +159,14 @@ extension UIViewController {
     /// 验证输入框内容是否为数字
     ///
     /// - Parameter textfield: 输入框view
-    /// - Returns: 若为数字则返回true，否则返回false
+    /// - Returns: 若为数字则返回true，否则返回false，空字符串返回false
     func checkNumber(textfield: UITextField) -> Bool {
         // 先检查是否为空
         let isEmpty = checkEmpty(textfield: textfield, escapeWhitespace: true)
         var isNumber = false
         if !isEmpty {
             let scan: Scanner = Scanner(string: textfield.text!)
-            var val:Float = 0
+            var val: Float = 0
             isNumber = scan.scanFloat(&val) && scan.isAtEnd
         }
         // 内容不为数字时变成第一响应

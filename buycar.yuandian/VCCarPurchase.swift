@@ -176,7 +176,10 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
             return
         }
         
-        if !checkEmpty(textfield: self.hv.scrapValueText as UITextField, escapeWhitespace: true) && !checkNumber(textfield: self.hv.scrapValueText as UITextField) {
+        if checkEmpty(textfield: self.hv.scrapValueText as UITextField) {
+            self.alert(viewToBlock: nil, msg: "请输入残值")
+            return
+        } else if !checkNumber(textfield: self.hv.scrapValueText as UITextField) {
             self.alert(viewToBlock: nil, msg: "残值只能输入数字")
             return
         }
