@@ -26,6 +26,8 @@ class VCCarPhoto: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     var cameraPicker: UIImagePickerController!
     var photoPicker: UIImagePickerController!
     
+    var layer: VLayerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,36 +77,41 @@ class VCCarPhoto: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         // 设置右上角的barButtonItem
         let saveButton = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(VCCarPhoto.saveCarPhoto(_:)))
         self.navigationItem.rightBarButtonItem = saveButton
+        // 遮罩层
+        self.layer = VLayerView(layerMessage: "正在上传图片...")
     }
 
     func saveCarPhoto(_ sender: UIViewController) {
-        // 请求七牛云
-        let qiniu = Qiniu()
-        qiniu.getConfig { (status: ReturnedStatus, msg: String?, qn: Qiniu?) in
-            switch status {
-            case .normal:
-                // 上传并保存图片
-                let currentDate = Date()
-                let datePrefix = convertDateToCNDateFormat(currentDate)
-                let filePrefix = "_" + self.carPhotoDelegate.lisenceNo + "_"
-                let util = QNUploadUtil()
-                util.setToken(qn!.uptoken)
-                self.cpc.carPhotoCollectionDelegate.uploadCount = self.cpc.carPhotoCollectionDelegate.carPhotos.count - self.cpc.carPhotoCollectionDelegate.originPhotoCount
-                
-                for i in 0..<self.cpc.carPhotoCollectionDelegate.uploadCount {
-                    let uploadImgIndex = i + self.cpc.carPhotoCollectionDelegate.originPhotoCount
-                    let imgData = UIImageJPEGRepresentation(self.cpc.carPhotoCollectionDelegate.carPhotos[uploadImgIndex], 0.8)
-                    util.upload(imgData, fileName: datePrefix + "/" + filePrefix + "\(self.getTimeStamp())" + "_" + "\(self.getRandomSuffix(length: 5))", uploadFinish: {
-                        (isSuccess: String!, fileKey: String!) -> Void in
-                        self.checkUpload(isSuccess: isSuccess == "1", fileKey: qn!.urlPrefix + fileKey)
-                    })
+        // 需要上传的图片
+        var toUploadImages = [Data]()
+        for i in 0..<self.cpc.carPhotoCollectionDelegate.uploadCount {
+            let uploadImgIndex = i + self.cpc.carPhotoCollectionDelegate.originPhotoCount
+            if let data = UIImageJPEGRepresentation(self.cpc.carPhotoCollectionDelegate.carPhotos[uploadImgIndex], 0.8) {
+                toUploadImages.append(data)
+            }
+        }
+        
+        if toUploadImages.count == 0 {
+            self.alert(viewToBlock: nil, msg: "未选中任何图片")
+        } else {
+            // 显示遮罩层
+            self.view.addSubview(self.layer)
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+            // 上传文件并保存url到服务器
+            let qiniu = Qiniu()
+            qiniu.uploadFiles(sender, fileIdentifier: self.carPhotoDelegate.lisenceNo, files: toUploadImages) { (isSuccess: Bool, fileKey: String) in
+                let success = isSuccess
+                if success {
+                    self.cpc.carPhotoCollectionDelegate.successCount! += 1
+                    self.cpc.carPhotoCollectionDelegate.originPhotoCount! += 1
+                    self.cpc.carPhotoCollectionDelegate.uploadedFileUrls.append(fileKey)
+                } else {
+                    self.cpc.carPhotoCollectionDelegate.failedCount! += 1
                 }
-            case .noData:
-                sender.alert(viewToBlock: nil, msg: msg!)
-            case .noConnection:
-                sender.alert(viewToBlock: nil, msg: msg!)
-            default:
-                break
+                
+                if (self.cpc.carPhotoCollectionDelegate.successCount + self.cpc.carPhotoCollectionDelegate.failedCount == self.cpc.carPhotoCollectionDelegate.uploadCount) {
+                    self.savePhotoUrls()
+                }
             }
         }
     }
@@ -114,23 +121,10 @@ class VCCarPhoto: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
         //获得照片
         self.pickedPhoto = info[UIImagePickerControllerOriginalImage] as! UIImage
+        self.cpc.carPhotoCollectionDelegate.uploadCount! += 1
         self.cpc.carPhotoCollectionDelegate.carPhotos.append(pickedPhoto)
 
         self.cpc.reloadData()
-    }
-    
-    func checkUpload(isSuccess: Bool!, fileKey: String!) {
-        if (isSuccess) {
-            self.cpc.carPhotoCollectionDelegate.successCount! += 1
-            self.cpc.carPhotoCollectionDelegate.uploadedFileUrls.append(fileKey)
-        } else {
-            self.cpc.carPhotoCollectionDelegate.failedCount! += 1
-        }
-        
-        if (self.cpc.carPhotoCollectionDelegate.successCount + self.cpc.carPhotoCollectionDelegate.failedCount == self.cpc.carPhotoCollectionDelegate.uploadCount) {
-            // TODO 全部上传完毕，清空待上传的文件
-            savePhotoUrls()
-        }
     }
     
     func savePhotoUrls() {
@@ -142,6 +136,10 @@ class VCCarPhoto: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             router = Router.addSupervisedPhoto(self.carPhotoDelegate.carId, self.cpc.carPhotoCollectionDelegate.uploadedFileUrls)
         }
         Alamofire.request(router).responseJSON { response in
+            if self.layer.superview != nil {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                self.layer.removeFromSuperview()
+            }
             if (response.result.isSuccess) {
                 // 请求成功
                 if let jsonValue = response.result.value {
@@ -179,6 +177,7 @@ extension VCCarPhoto: UICollectionViewDelegate {
             cell.setItem(UIImage(named: "defaultCatchImage")!, setted: false)
 
             // 更新照片数组
+            self.cpc.carPhotoCollectionDelegate.uploadCount! -= 1
             self.cpc.carPhotoCollectionDelegate.carPhotos.remove(at: pickedIndex)
             collectionView.reloadData()
             

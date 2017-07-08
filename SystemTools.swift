@@ -14,3 +14,22 @@ func delay(_ delay: Double, closure: @escaping () -> ()) {
     DispatchQueue.main.asyncAfter(
         deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
 }
+
+// 获取时间戳
+func getTimeStamp() -> Int {
+    let now = Date()
+    let timeStamp = now.timeIntervalSince1970
+    return Int(timeStamp)
+}
+
+// 取得随机数
+func getRandomSuffix(length: UInt?) -> UInt32 {
+    if let len = length {
+        var maxVal:UInt32 = 10
+        for _ in 0..<len {
+            maxVal *= 10
+        }
+        return arc4random_uniform(maxVal)
+    }
+    return arc4random_uniform(1000)
+}

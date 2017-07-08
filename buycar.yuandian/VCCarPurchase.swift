@@ -189,7 +189,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         
         // 上传图片到七牛
-        if self.cpc.carPhotoCollectionDelegate.carPhotos.count > 0 {
+        if self.cpc.carPhotoCollectionDelegate.uploadCount > 0 {
             uploadPhoto()
         } else {
             saveData()
@@ -199,33 +199,28 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     /// TODO 需要将此方法和VCCarPhoto.swift中的savePhoto抽象成一个方法
     func uploadPhoto() {
-        // 请求七牛云
+        // 需要上传的图片
+        var toUploadImages = [Data]()
+        for i in 0..<self.cpc.carPhotoCollectionDelegate.uploadCount {
+            let uploadImgIndex = i + self.cpc.carPhotoCollectionDelegate.originPhotoCount
+            if let data = UIImageJPEGRepresentation(self.cpc.carPhotoCollectionDelegate.carPhotos[uploadImgIndex], 0.8) {
+                toUploadImages.append(data)
+            }
+        }
+        // 上传文件并保存url到服务器
         let qiniu = Qiniu()
-        qiniu.getConfig { (status: ReturnedStatus, msg: String?, qn: Qiniu?) in
-            switch status {
-            case .normal:
-                // 上传并保存图片
-                let currentDate = Date()
-                let datePrefix = convertDateToCNDateFormat(currentDate)
-                let filePrefix = "_" + self.hv.lisenceText.text! + "_"
-                let util = QNUploadUtil()
-                util.setToken(qn!.uptoken)
-                self.cpc.carPhotoCollectionDelegate.uploadCount = self.cpc.carPhotoCollectionDelegate.carPhotos.count - self.cpc.carPhotoCollectionDelegate.originPhotoCount
-                
-                for i in 0..<self.cpc.carPhotoCollectionDelegate.uploadCount {
-                    let uploadImgIndex = i + self.cpc.carPhotoCollectionDelegate.originPhotoCount
-                    let imgData = UIImageJPEGRepresentation(self.cpc.carPhotoCollectionDelegate.carPhotos[uploadImgIndex], 0.8)
-                    util.upload(imgData, fileName: datePrefix + "/" + filePrefix + "\(self.getTimeStamp())" + "_" + "\(self.getRandomSuffix(length: 5))", uploadFinish: {
-                        (isSuccess: String!, fileKey: String!) -> Void in
-                        self.checkUpload(isSuccess: isSuccess == "1", fileKey: qn!.urlPrefix + fileKey)
-                    })
-                }
-            case .noData:
-                self.alert(viewToBlock: nil, msg: msg!)
-            case .noConnection:
-                self.alert(viewToBlock: nil, msg: msg!)
-            default:
-                break
+        qiniu.uploadFiles(self, fileIdentifier: self.hv.lisenceText.text!, files: toUploadImages) { (isSuccess: Bool, fileKey: String) in
+            let success = isSuccess
+            if success {
+                self.cpc.carPhotoCollectionDelegate.successCount! += 1
+                self.cpc.carPhotoCollectionDelegate.originPhotoCount! += 1
+                self.cpc.carPhotoCollectionDelegate.uploadedFileUrls.append(fileKey)
+            } else {
+                self.cpc.carPhotoCollectionDelegate.failedCount! += 1
+            }
+            
+            if (self.cpc.carPhotoCollectionDelegate.successCount + self.cpc.carPhotoCollectionDelegate.failedCount == self.cpc.carPhotoCollectionDelegate.uploadCount) {
+                self.saveData()
             }
         }
     }
@@ -236,6 +231,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         
         //获得照片
         self.pickedPhoto = info[UIImagePickerControllerOriginalImage] as! UIImage
+        self.cpc.carPhotoCollectionDelegate.uploadCount! += 1
         self.cpc.carPhotoCollectionDelegate.carPhotos.append(pickedPhoto)
 
         // 重新计算table header view的高度
@@ -246,20 +242,6 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.carInfoTable.tableHeaderView = self.headerView
         
         self.cpc.reloadData()
-    }
-    
-    func checkUpload(isSuccess: Bool!, fileKey: String!) {
-        if (isSuccess) {
-            self.cpc.carPhotoCollectionDelegate.successCount! += 1
-            self.cpc.carPhotoCollectionDelegate.uploadedFileUrls.append(fileKey)
-        } else {
-            self.cpc.carPhotoCollectionDelegate.failedCount! += 1
-        }
-        
-        if (self.cpc.carPhotoCollectionDelegate.successCount + self.cpc.carPhotoCollectionDelegate.failedCount == self.cpc.carPhotoCollectionDelegate.uploadCount) {
-            // TODO 全部上传完毕，清空待上传的文件
-            saveData()
-        }
     }
     
     func saveData() {
@@ -399,6 +381,7 @@ extension VCCarPurchase: UICollectionViewDelegate {
             cell.setItem(UIImage(named: "defaultCatchImage")!, setted: false)
             
             // 更新照片数组
+            self.cpc.carPhotoCollectionDelegate.uploadCount! -= 1
             self.cpc.carPhotoCollectionDelegate.carPhotos.remove(at: pickedIndex)
             // 重新计算table header view的高度
             let removedH = self.cpc.getNeedRemovedHeight(availableImageNumber: self.cpc.carPhotoCollectionDelegate.carPhotos.count)

@@ -51,6 +51,34 @@ class Qiniu: CommonModel {
             }
         }
     }
+    
+    func uploadFiles(_ sender: UIViewController, fileIdentifier: String, files: [Data], completion: @escaping ((Bool, String) -> Void)) {
+        // 请求七牛云
+        self.getConfig { (status: ReturnedStatus, msg: String?, qn: Qiniu?) in
+            switch status {
+            case .normal:
+                // 上传并保存图片
+                let currentDate = Date()
+                let datePrefix = convertDateToCNDateFormat(currentDate)
+                let fileName = "_" + fileIdentifier + "_"
+                let util = QNUploadUtil()
+                util.setToken(qn!.uptoken)
+                
+                for i in 0..<files.count {
+                    util.upload(files[i], fileName: datePrefix + "/" + fileName + "\(getTimeStamp())" + "_" + "\(getRandomSuffix(length: 5))", uploadFinish: {
+                        (isSuccess: String!, fileKey: String!) -> Void in
+                        completion(isSuccess == "1", qn!.urlPrefix + fileKey)
+                    })
+                }
+            case .noData:
+                sender.alert(viewToBlock: nil, msg: msg!)
+            case .noConnection:
+                sender.alert(viewToBlock: nil, msg: msg!)
+            default:
+                break
+            }
+        }
+    }
 }
 
 
