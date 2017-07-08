@@ -110,6 +110,8 @@ class VCCarPhoto: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                 }
                 
                 if (self.cpc.carPhotoCollectionDelegate.successCount + self.cpc.carPhotoCollectionDelegate.failedCount == self.cpc.carPhotoCollectionDelegate.uploadCount) {
+                    // 避免再次上传
+                    self.cpc.carPhotoCollectionDelegate.uploadCount = 0
                     self.savePhotoUrls()
                 }
             }

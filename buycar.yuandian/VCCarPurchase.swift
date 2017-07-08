@@ -171,10 +171,10 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
             return
         }
         
-        if checkEmpty(textfield: self.hv.frameText as UITextField) {
-            self.alert(viewToBlock: nil, msg: "请输入车架号")
-            return
-        }
+//        if checkEmpty(textfield: self.hv.frameText as UITextField) {
+//            self.alert(viewToBlock: nil, msg: "请输入车架号")
+//            return
+//        }
         
         if checkEmpty(textfield: self.hv.scrapValueText as UITextField) {
             self.alert(viewToBlock: nil, msg: "请输入残值")
@@ -220,6 +220,8 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
             }
             
             if (self.cpc.carPhotoCollectionDelegate.successCount + self.cpc.carPhotoCollectionDelegate.failedCount == self.cpc.carPhotoCollectionDelegate.uploadCount) {
+                // 避免再次上传
+                self.cpc.carPhotoCollectionDelegate.uploadCount = 0
                 self.saveData()
             }
         }
