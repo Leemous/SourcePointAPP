@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>HappyDNS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,22 +47,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>3C259568BD9BA1ABDD0A5927E3050CEE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>492A7938EF8B359788395051D47566C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5EEFBE6B0C28DD3715FB1F08972CFD00</key>
+		<key>703A93435BF6F684DDE121154BE04FA8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9DD9D78346D7331232D0805C1DCC8D22</key>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A0531EE645B6BC6F77550BA5B4FB711C</key>
+		<key>89B8DB0B201AB3CC472A896F89DCB5BD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

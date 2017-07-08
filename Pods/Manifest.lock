@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - Alamofire (4.4.0)
   - HappyDNS (0.3.10)
   - Qiniu (7.1.5):
     - AFNetworking (~> 3)
@@ -21,6 +22,7 @@ PODS:
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.4.0)
   - Qiniu (~> 7.1)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
@@ -35,10 +37,11 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   HappyDNS: 06a9fed2796663fd87626dbf02552933265bf059
   Qiniu: 77a3dba411556a383d72d17e842345a9d4c83252
   SwiftyJSON: 05cf0e98a950e2ba343735264f5a96b81e755d00
 
-PODFILE CHECKSUM: 09808e43b8033a7fa5272c497ecbaaf20df8a3d1
+PODFILE CHECKSUM: 50ee7ac1f8a9f41df9311d1030ea65242a4a1ec8
 
 COCOAPODS: 1.2.1
