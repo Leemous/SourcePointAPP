@@ -171,10 +171,10 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
             return
         }
         
-//        if checkEmpty(textfield: self.hv.frameText as UITextField) {
-//            self.alert(viewToBlock: nil, msg: "请输入车架号")
-//            return
-//        }
+        if checkEmpty(textfield: self.hv.frameText as UITextField) {
+            self.alert(viewToBlock: nil, msg: "请输入车架号")
+            return
+        }
         
         if checkEmpty(textfield: self.hv.scrapValueText as UITextField) {
             self.alert(viewToBlock: nil, msg: "请输入残值")
