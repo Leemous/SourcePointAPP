@@ -49,7 +49,7 @@ class VCHome: UIViewController {
         // 设置collection view的layout属性
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
-        layout.itemSize = CGSize(width: (screenWidth - 4)/4, height: 124)
+        layout.itemSize = CGSize(width: (screenWidth - 5)/5, height: 124)
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 1
         self.featureCollection.collectionViewLayout = layout
@@ -158,7 +158,7 @@ extension VCHome: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -172,6 +172,8 @@ extension VCHome: UICollectionViewDataSource {
         case 2:
             (cell as! CVCFeatureCell).setItem(UIImage(named: "checkPhotoImage")!, title: "监销拍照")
         case 3:
+            (cell as! CVCFeatureCell).setItem(UIImage(named: "consignImage")!, title: "托运")
+        case 4:
             (cell as! CVCFeatureCell).setItem(UIImage(named: "dailyImage")!, title: "日报")
         default:
             break
@@ -202,6 +204,9 @@ extension VCHome: UICollectionViewDelegate {
             }
             self.configNavigationBackItem(sourceViewController: self)
         case 3:
+            self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcConsignHistoryList", animated: true, completion: nil)
+            self.configNavigationBackItem(sourceViewController: self)
+        case 4:
             self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcDailyList", animated: true, completion: nil)
             self.configNavigationBackItem(sourceViewController: self)
         default:
