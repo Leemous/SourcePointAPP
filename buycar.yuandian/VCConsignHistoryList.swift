@@ -13,7 +13,6 @@ class VCConsignHistoryList: UIViewController {
     
     let chlTable = UITableView()
     var cps = [Consign]()
-    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +22,6 @@ class VCConsignHistoryList: UIViewController {
         self.configTitleLabelByText(title: "已托运")
         
         launchData()
-        
-        refreshControl.addTarget(self, action: #selector(VCConsignHistoryList.refreshData), for: .valueChanged)
-        refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新数据")
-        self.chlTable.addSubview(refreshControl)
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,9 +30,9 @@ class VCConsignHistoryList: UIViewController {
     }
     
     private func launchData(completion: (() -> Swift.Void)? = nil) {
-        // 设置日报数据
+        // 设置已托运数据
         let cps = Consign()
-        cps.getConsignHistoryList { (status: ReturnedStatus, msg: String?, cps: [Consign]?) in
+        cps.getConsignHistoryList(pageNo: 1, pageSize: 99) { (status: ReturnedStatus, msg: String?, cps: [Consign]?) in
             switch status {
             case .normal:
                 self.view.addSubview(self.chlTable)
@@ -82,13 +77,6 @@ class VCConsignHistoryList: UIViewController {
         }
     }
     
-    func refreshData() {
-        self.launchData(completion: {
-            self.chlTable.reloadData()
-            self.refreshControl.endRefreshing()
-        })
-    }
-    
     /// 用于从托运单详情返回
     ///
     /// - Parameter seg: <#seg description#>
@@ -112,6 +100,7 @@ extension VCConsignHistoryList: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: historyCell, for: indexPath) as! TVCConsignHistoryCell
         
         cell.consignHistoryCellDelegate.id = self.cps[indexPath.row].id
+        cell.consignHistoryCellDelegate.consignBySelf = self.cps[indexPath.row].consignBySelf
         cell.consignHistoryCellDelegate.carLisenceNo = self.cps[indexPath.row].carLicenseNo
         cell.consignHistoryCellDelegate.carFrameNo = self.cps[indexPath.row].carFrameNo
         

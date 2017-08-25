@@ -24,6 +24,7 @@ class TVCConsignHistoryCell: UITableViewCell {
 
 class ConsignHistoryCellDelegate {
     var id: String!
+    var consignBySelf: Bool!
     var carLisenceNo: String!
     var carFrameNo: String!
 }

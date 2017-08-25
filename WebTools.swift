@@ -38,9 +38,14 @@ enum Router: URLRequestConvertible {
     case seekSupervisedPhoto(String, String)
     case addCollectPhoto(String, [String])
     case addSupervisedPhoto(String, [String])
+    case consignPlaceOfOrigins()
+    case consignDestinations()
+    case consignors()
+    case consignChargers()
     case saveConsign([String : Any])
     case consignPendingList(Int, Int)
     case consignHistoryList(Int, Int)
+    case getConsign(String)
     
     func asURLRequest() throws -> URLRequest {
         var method = "GET"
@@ -88,6 +93,14 @@ enum Router: URLRequestConvertible {
                 let urlsJSON = JSON(urls)
                 let params = ["carId" : "\(carId)", "urls" : urlsJSON] as [String : Any]
                 return ("/car/inspectDestoryPhoto/add", params)
+            case .consignPlaceOfOrigins():
+                 return ("/car/consign/listPlaceOfOrigin", nil)
+            case .consignDestinations():
+                 return ("/car/consign/listDestinations", nil)
+            case .consignors():
+                 return ("/car/consign/listConsignors", nil)
+            case .consignChargers():
+                 return ("/car/consign/listConsignChargers", nil)
             case .saveConsign(let paramDic):
                 method = "POST"
                 return ("/car/consign/save", paramDic)
@@ -97,6 +110,9 @@ enum Router: URLRequestConvertible {
             case .consignHistoryList(let pageNo, let pageSize):
                 let params = ["pageNo" : pageNo, "pageSize" : pageSize] as [String : Any]
                 return ("/car/consign/listHistory", params)
+            case .getConsign(let id):
+                let params = ["id" : id]
+                return ("/car/consign/get", params)
             }
         }()
         let url = try baseUrl.asURL()

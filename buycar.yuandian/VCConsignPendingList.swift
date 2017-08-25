@@ -14,7 +14,6 @@ class VCConsignPendingList: UIViewController {
     
     let cplTable = UITableView()
     var cps = [Consign]()
-    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +23,6 @@ class VCConsignPendingList: UIViewController {
         self.configTitleLabelByText(title: "待托运")
         
         launchData()
-        
-        refreshControl.addTarget(self, action: #selector(VCConsignPendingList.refreshData), for: .valueChanged)
-        refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新数据")
-        self.cplTable.addSubview(refreshControl)
     }
     
     override func didReceiveMemoryWarning() {
@@ -36,9 +31,9 @@ class VCConsignPendingList: UIViewController {
     }
     
     private func launchData(completion: (() -> Swift.Void)? = nil) {
-        // 设置日报数据
+        // 设置待托运数据
         let cps = Consign()
-        cps.getConsignPendingList { (status: ReturnedStatus, msg: String?, cps: [Consign]?) in
+        cps.getConsignPendingList(pageNo: 1, pageSize: 99) { (status: ReturnedStatus, msg: String?, cps: [Consign]?) in
             switch status {
             case .normal:
                 self.view.addSubview(self.cplTable)
@@ -81,13 +76,6 @@ class VCConsignPendingList: UIViewController {
                 break
             }
         }
-    }
-    
-    func refreshData() {
-        self.launchData(completion: {
-            self.cplTable.reloadData()
-            self.refreshControl.endRefreshing()
-        })
     }
     
     /// 弹出托运方式选择框

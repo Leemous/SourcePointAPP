@@ -15,6 +15,11 @@
 		E418739F1F4D2E1D006D61E1 /* ConsignHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E418739E1F4D2E1D006D61E1 /* ConsignHistoryCell.xib */; };
 		E41873A11F4E7F3C006D61E1 /* VCConsignHistoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41873A01F4E7F3C006D61E1 /* VCConsignHistoryList.swift */; };
 		E41873A31F4E8261006D61E1 /* ViewTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41873A21F4E8261006D61E1 /* ViewTools.swift */; };
+		E41873A51F4E9A6B006D61E1 /* VCConsign.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41873A41F4E9A6B006D61E1 /* VCConsign.swift */; };
+		E41873A71F4EA258006D61E1 /* VCConsignDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41873A61F4EA258006D61E1 /* VCConsignDetail.swift */; };
+		E41873AB1F4EC081006D61E1 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41873AA1F4EC081006D61E1 /* Option.swift */; };
+		E41873AD1F4EC687006D61E1 /* HorizontalGroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E41873AC1F4EC687006D61E1 /* HorizontalGroupCell.xib */; };
+		E41873AF1F4ECB4C006D61E1 /* TVCHorizontalGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41873AE1F4ECB4C006D61E1 /* TVCHorizontalGroupCell.swift */; };
 		E41D4E761EE10D730063A644 /* QNUploadUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E41D4E751EE10D730063A644 /* QNUploadUtil.m */; };
 		E4264E831F4BCF4E00709831 /* VCConsignPendingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4264E821F4BCF4E00709831 /* VCConsignPendingList.swift */; };
 		E4378A481EE57DCC00284E23 /* Qiniu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4378A471EE57DCC00284E23 /* Qiniu.swift */; };
@@ -115,6 +120,11 @@
 		E418739E1F4D2E1D006D61E1 /* ConsignHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsignHistoryCell.xib; sourceTree = "<group>"; };
 		E41873A01F4E7F3C006D61E1 /* VCConsignHistoryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCConsignHistoryList.swift; sourceTree = "<group>"; };
 		E41873A21F4E8261006D61E1 /* ViewTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTools.swift; sourceTree = "<group>"; };
+		E41873A41F4E9A6B006D61E1 /* VCConsign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCConsign.swift; sourceTree = "<group>"; };
+		E41873A61F4EA258006D61E1 /* VCConsignDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCConsignDetail.swift; sourceTree = "<group>"; };
+		E41873AA1F4EC081006D61E1 /* Option.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
+		E41873AC1F4EC687006D61E1 /* HorizontalGroupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalGroupCell.xib; sourceTree = "<group>"; };
+		E41873AE1F4ECB4C006D61E1 /* TVCHorizontalGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVCHorizontalGroupCell.swift; sourceTree = "<group>"; };
 		E41D4E731EE10D720063A644 /* buycar.yuandian-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "buycar.yuandian-Bridging-Header.h"; sourceTree = "<group>"; };
 		E41D4E741EE10D730063A644 /* QNUploadUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUploadUtil.h; sourceTree = "<group>"; };
 		E41D4E751EE10D730063A644 /* QNUploadUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNUploadUtil.m; sourceTree = "<group>"; };
@@ -312,6 +322,7 @@
 				EA1753F31E7FDB490020F407 /* Main.storyboard */,
 				E418739C1F4D22DE006D61E1 /* ConsignPendingCell.xib */,
 				E418739E1F4D2E1D006D61E1 /* ConsignHistoryCell.xib */,
+				E41873AC1F4EC687006D61E1 /* HorizontalGroupCell.xib */,
 			);
 			name = interfaces;
 			path = ..;
@@ -342,6 +353,7 @@
 				EA13B3E81E82795E0020F1FF /* Daily.swift */,
 				E4378A471EE57DCC00284E23 /* Qiniu.swift */,
 				E41873961F4D1566006D61E1 /* Consign.swift */,
+				E41873AA1F4EC081006D61E1 /* Option.swift */,
 			);
 			name = models;
 			path = ..;
@@ -365,6 +377,8 @@
 				E469B65A1EFFCD5300C264B4 /* VCDatePicker.swift */,
 				E4264E821F4BCF4E00709831 /* VCConsignPendingList.swift */,
 				E41873A01F4E7F3C006D61E1 /* VCConsignHistoryList.swift */,
+				E41873A41F4E9A6B006D61E1 /* VCConsign.swift */,
+				E41873A61F4EA258006D61E1 /* VCConsignDetail.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -385,6 +399,7 @@
 				E456F1FF1F0BF2990097C79D /* VLayerView.swift */,
 				E4A435011F4AB13300C9221E /* TVCConsignPendingCell.swift */,
 				E41873981F4D1E9A006D61E1 /* TVCConsignHistoryCell.swift */,
+				E41873AE1F4ECB4C006D61E1 /* TVCHorizontalGroupCell.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -523,6 +538,7 @@
 				EAACCD2B1E80C85600AA8DB9 /* Login.storyboard in Resources */,
 				EAACCD401E80FCF400AA8DB9 /* NoDataView.xib in Resources */,
 				EA105F741E83893500705ECD /* CarPhotoCell.xib in Resources */,
+				E41873AD1F4EC687006D61E1 /* HorizontalGroupCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,10 +702,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E41873991F4D1E9A006D61E1 /* TVCConsignHistoryCell.swift in Sources */,
+				E41873AF1F4ECB4C006D61E1 /* TVCHorizontalGroupCell.swift in Sources */,
 				EA1913F91E84C260007AE9C3 /* VCCarPhoto.swift in Sources */,
 				E41873A31F4E8261006D61E1 /* ViewTools.swift in Sources */,
 				EA13B3ED1E82B9C60020F1FF /* VCAddDaily.swift in Sources */,
 				EA17542D1E7FE1E90020F407 /* VCUnifiedSetting.swift in Sources */,
+				E41873A51F4E9A6B006D61E1 /* VCConsign.swift in Sources */,
 				EA13B3E51E8268E50020F1FF /* VCSeekForPhoto.swift in Sources */,
 				E469B65B1EFFCD5300C264B4 /* VCDatePicker.swift in Sources */,
 				EA13B3EB1E82A88F0020F1FF /* VCMyAccount.swift in Sources */,
@@ -703,6 +721,7 @@
 				EAACCD381E80DF7500AA8DB9 /* NCLogin.swift in Sources */,
 				EAACCD2D1E80C8E000AA8DB9 /* ViewForReleaseKeyboard.swift in Sources */,
 				EA13B3E31E8221920020F1FF /* TVCCarPurchaseCell.swift in Sources */,
+				E41873A71F4EA258006D61E1 /* VCConsignDetail.swift in Sources */,
 				EAACCD541E8189BA00AA8DB9 /* CarPurchase.swift in Sources */,
 				EA13B3E91E82795E0020F1FF /* Daily.swift in Sources */,
 				E456F2001F0BF2990097C79D /* VLayerView.swift in Sources */,
@@ -725,6 +744,7 @@
 				E4A435021F4AB13300C9221E /* TVCConsignPendingCell.swift in Sources */,
 				EA105F781E83D90500705ECD /* CVCarPhotoCollection.swift in Sources */,
 				EAACCD321E80D13100AA8DB9 /* VCSharedBusiness.swift in Sources */,
+				E41873AB1F4EC081006D61E1 /* Option.swift in Sources */,
 				EA17542F1E7FE2370020F407 /* StringTools.swift in Sources */,
 				EAACCD461E80FE3000AA8DB9 /* VNoDataView.swift in Sources */,
 				EA105F761E838AA000705ECD /* CVCCarPhotoCell.swift in Sources */,

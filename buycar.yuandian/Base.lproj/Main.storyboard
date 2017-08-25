@@ -395,6 +395,24 @@
             </objects>
             <point key="canvasLocation" x="1052" y="1490"/>
         </scene>
+        <!--Consign-->
+        <scene sceneID="VHo-jo-b2s">
+            <objects>
+                <viewController storyboardIdentifier="vcDoConsign" id="O9t-sh-8Bz" customClass="VCConsign" customModule="buycar_yuandian" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Nk8-M2-kbD"/>
+                        <viewControllerLayoutGuide type="bottom" id="qAw-rl-Lzl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="D6z-iG-kdj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oXX-Xl-IoH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1809" y="1489"/>
+        </scene>
         <!--Consign History List-->
         <scene sceneID="Wkf-AG-ACl">
             <objects>
@@ -411,7 +429,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0wj-1J-da9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1786" y="1489"/>
+            <point key="canvasLocation" x="1052" y="2179"/>
+        </scene>
+        <!--Consign Detail-->
+        <scene sceneID="Fyf-V0-iyk">
+            <objects>
+                <viewController storyboardIdentifier="vcConsignDetail" id="a87-Tg-p0d" customClass="VCConsignDetail" customModule="buycar_yuandian" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="r53-RK-gUT"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wpd-Aa-Zrj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8GT-8k-jnW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CoX-tI-zGm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1810" y="2178"/>
         </scene>
         <!--Car Photo-->
         <scene sceneID="M4F-cZ-QpW">
