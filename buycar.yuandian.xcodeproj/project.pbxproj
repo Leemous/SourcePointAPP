@@ -20,6 +20,9 @@
 		E41873AB1F4EC081006D61E1 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41873AA1F4EC081006D61E1 /* Option.swift */; };
 		E41873AD1F4EC687006D61E1 /* HorizontalGroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E41873AC1F4EC687006D61E1 /* HorizontalGroupCell.xib */; };
 		E41873AF1F4ECB4C006D61E1 /* TVCHorizontalGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41873AE1F4ECB4C006D61E1 /* TVCHorizontalGroupCell.swift */; };
+		E41873B51F500CC2006D61E1 /* VCSimplePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41873B41F500CC2006D61E1 /* VCSimplePicker.swift */; };
+		E41873B71F500E5D006D61E1 /* TVCSimplePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41873B61F500E5D006D61E1 /* TVCSimplePickerCell.swift */; };
+		E41873B91F500F19006D61E1 /* SimplePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E41873B81F500F19006D61E1 /* SimplePickerCell.xib */; };
 		E41D4E761EE10D730063A644 /* QNUploadUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E41D4E751EE10D730063A644 /* QNUploadUtil.m */; };
 		E4264E831F4BCF4E00709831 /* VCConsignPendingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4264E821F4BCF4E00709831 /* VCConsignPendingList.swift */; };
 		E4378A481EE57DCC00284E23 /* Qiniu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4378A471EE57DCC00284E23 /* Qiniu.swift */; };
@@ -125,6 +128,9 @@
 		E41873AA1F4EC081006D61E1 /* Option.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		E41873AC1F4EC687006D61E1 /* HorizontalGroupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalGroupCell.xib; sourceTree = "<group>"; };
 		E41873AE1F4ECB4C006D61E1 /* TVCHorizontalGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVCHorizontalGroupCell.swift; sourceTree = "<group>"; };
+		E41873B41F500CC2006D61E1 /* VCSimplePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCSimplePicker.swift; sourceTree = "<group>"; };
+		E41873B61F500E5D006D61E1 /* TVCSimplePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVCSimplePickerCell.swift; sourceTree = "<group>"; };
+		E41873B81F500F19006D61E1 /* SimplePickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimplePickerCell.xib; sourceTree = "<group>"; };
 		E41D4E731EE10D720063A644 /* buycar.yuandian-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "buycar.yuandian-Bridging-Header.h"; sourceTree = "<group>"; };
 		E41D4E741EE10D730063A644 /* QNUploadUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUploadUtil.h; sourceTree = "<group>"; };
 		E41D4E751EE10D730063A644 /* QNUploadUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNUploadUtil.m; sourceTree = "<group>"; };
@@ -323,6 +329,7 @@
 				E418739C1F4D22DE006D61E1 /* ConsignPendingCell.xib */,
 				E418739E1F4D2E1D006D61E1 /* ConsignHistoryCell.xib */,
 				E41873AC1F4EC687006D61E1 /* HorizontalGroupCell.xib */,
+				E41873B81F500F19006D61E1 /* SimplePickerCell.xib */,
 			);
 			name = interfaces;
 			path = ..;
@@ -379,6 +386,7 @@
 				E41873A01F4E7F3C006D61E1 /* VCConsignHistoryList.swift */,
 				E41873A41F4E9A6B006D61E1 /* VCConsign.swift */,
 				E41873A61F4EA258006D61E1 /* VCConsignDetail.swift */,
+				E41873B41F500CC2006D61E1 /* VCSimplePicker.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -400,6 +408,7 @@
 				E4A435011F4AB13300C9221E /* TVCConsignPendingCell.swift */,
 				E41873981F4D1E9A006D61E1 /* TVCConsignHistoryCell.swift */,
 				E41873AE1F4ECB4C006D61E1 /* TVCHorizontalGroupCell.swift */,
+				E41873B61F500E5D006D61E1 /* TVCSimplePickerCell.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -527,6 +536,7 @@
 			files = (
 				EA1753F71E7FDB490020F407 /* Assets.xcassets in Resources */,
 				E418739F1F4D2E1D006D61E1 /* ConsignHistoryCell.xib in Resources */,
+				E41873B91F500F19006D61E1 /* SimplePickerCell.xib in Resources */,
 				E469B6511EFFCD0900C264B4 /* CarPurchaseCell.xib in Resources */,
 				EA13B43D1E82EA410020F1FF /* LaunchScreen.storyboard in Resources */,
 				EAACCD3E1E80FCDE00AA8DB9 /* NoConnectionView.xib in Resources */,
@@ -705,6 +715,7 @@
 				E41873AF1F4ECB4C006D61E1 /* TVCHorizontalGroupCell.swift in Sources */,
 				EA1913F91E84C260007AE9C3 /* VCCarPhoto.swift in Sources */,
 				E41873A31F4E8261006D61E1 /* ViewTools.swift in Sources */,
+				E41873B51F500CC2006D61E1 /* VCSimplePicker.swift in Sources */,
 				EA13B3ED1E82B9C60020F1FF /* VCAddDaily.swift in Sources */,
 				EA17542D1E7FE1E90020F407 /* VCUnifiedSetting.swift in Sources */,
 				E41873A51F4E9A6B006D61E1 /* VCConsign.swift in Sources */,
@@ -719,6 +730,7 @@
 				EAEC5DB91E88F2B0006C8CD9 /* TVCCheckItemCell.swift in Sources */,
 				EAACCD481E80FE4000AA8DB9 /* VAlertView.swift in Sources */,
 				EAACCD381E80DF7500AA8DB9 /* NCLogin.swift in Sources */,
+				E41873B71F500E5D006D61E1 /* TVCSimplePickerCell.swift in Sources */,
 				EAACCD2D1E80C8E000AA8DB9 /* ViewForReleaseKeyboard.swift in Sources */,
 				EA13B3E31E8221920020F1FF /* TVCCarPurchaseCell.swift in Sources */,
 				E41873A71F4EA258006D61E1 /* VCConsignDetail.swift in Sources */,

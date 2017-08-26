@@ -1,12 +1,13 @@
 //
 //  VCConsignDetail.swift
-//  buycar.yuandian
+//  托运详情页面
 //
 //  Created by 李萌 on 2017/8/24.
 //  Copyright © 2017年 tymaker. All rights reserved.
 //
 
 import UIKit
+
 private let horizontalGroupCell = "horizontalGroupCell"
 
 class VCConsignDetail: UIViewController {
@@ -23,9 +24,14 @@ class VCConsignDetail: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        consignDetailDelegate.title = "呵呵哒"
+        consignDetailDelegate.title = "44"
         consignDetailDelegate.consignBySelf = false
         consignDetailDelegate.id = "bd08ba855e095518015e0a503ed200a9"
+        // 守卫代码，保证页面正常绘制不闪退
+        guard consignDetailDelegate.title != nil && consignDetailDelegate.consignBySelf != nil && consignDetailDelegate.id != nil else {
+            return
+        }
+        
         self.configTitleLabelByText(title: consignDetailDelegate.title)
         
         if consignDetailDelegate.consignBySelf {
@@ -38,7 +44,7 @@ class VCConsignDetail: UIViewController {
         launchData()
     }
     
-    func initView() {
+    private func initView() {
         // 初始化视图
         self.detailTable = UITableView()
         self.detailTable.tableFooterView = UIView()
@@ -87,9 +93,6 @@ class VCConsignDetail: UIViewController {
         self.remarkView.addConstraint(NSLayoutConstraint(item: remarkText, attribute: .trailing, relatedBy: .equal, toItem: self.remarkView, attribute: .trailing, multiplier: 1, constant: -12))
         self.remarkView.addConstraint(NSLayoutConstraint(item: remarkText, attribute: .top, relatedBy: .equal, toItem: self.remarkLabel, attribute: .bottom, multiplier: 1, constant: 8))
         self.remarkView.addConstraint(NSLayoutConstraint(item: remarkText, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 118))
-        
-        // 设置备注文本框的圆角边框
-        let _ = drawRoundBorderForView(remarkText, borderRadius: 6, borderWidth: 1, borderColor: systemTintColor)
     }
     
     func launchData(completion: (() -> Swift.Void)? = nil) {
@@ -108,9 +111,6 @@ class VCConsignDetail: UIViewController {
                 
                 // 如果之前存在无数据、无网络连接等问题，则先移除这些view
                 self.removeNoConnectView(containerView: self.view)
-                self.removeNoDataView(containerView: self.view)
-            case .noData:
-                self.showNoDataView(containerView: self.view)
             case .needLogin:
                 self.needsLogout()
             case .noConnection:
@@ -142,7 +142,7 @@ extension VCConsignDetail: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var groupText:String!
         var contentText:String!
-        if consignDetailDelegate.consignBySelf {
+        if self.consignDetailDelegate.consignBySelf {
             // 自运，只有负责人和托运日期
             switch indexPath.row {
             case 0:
@@ -194,10 +194,10 @@ extension VCConsignDetail: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: horizontalGroupCell, for: indexPath) as! TVCHorizontalGroupCell
         cell.horizontalGroupCellDelegate.groupText = groupText
-        cell.horizontalGroupCellDelegate.editable = false
         cell.selectionStyle = .none
         
         if cell.tag == 4000 {
+            cell.groupLabel.text = groupText
             cell.changeContentText(contentText)
         }
         return cell

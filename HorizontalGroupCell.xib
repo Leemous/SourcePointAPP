@@ -32,31 +32,21 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FJ1-rj-NXB">
-                        <rect key="frame" x="346" y="13.5" width="16" height="22"/>
-                        <state key="normal" image="arrowBottomImage"/>
-                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="jMb-Nm-oBf" firstAttribute="leading" secondItem="Nm2-cP-cEe" secondAttribute="leading" constant="18" id="L7q-bH-22o"/>
                     <constraint firstItem="Ley-vz-Jhk" firstAttribute="top" secondItem="Nm2-cP-cEe" secondAttribute="top" id="OcR-l3-RGi"/>
                     <constraint firstAttribute="trailing" secondItem="Ley-vz-Jhk" secondAttribute="trailing" id="YTN-WB-ZTT"/>
-                    <constraint firstItem="FJ1-rj-NXB" firstAttribute="top" secondItem="Ley-vz-Jhk" secondAttribute="bottom" constant="-36" id="jeF-Js-cN5"/>
                     <constraint firstItem="Ley-vz-Jhk" firstAttribute="leading" secondItem="jMb-Nm-oBf" secondAttribute="trailing" constant="15" id="o6p-OM-YcF"/>
-                    <constraint firstAttribute="trailing" secondItem="FJ1-rj-NXB" secondAttribute="trailing" constant="18" id="pXV-Vb-oin"/>
                     <constraint firstItem="jMb-Nm-oBf" firstAttribute="centerY" secondItem="Nm2-cP-cEe" secondAttribute="centerY" id="qW7-4W-d8n"/>
                     <constraint firstAttribute="bottom" secondItem="Ley-vz-Jhk" secondAttribute="bottom" id="ybm-Yo-uUv"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="contentButton" destination="FJ1-rj-NXB" id="N7B-Ae-Poy"/>
                 <outlet property="contentLabel" destination="Ley-vz-Jhk" id="RAT-i6-FVo"/>
                 <outlet property="groupLabel" destination="jMb-Nm-oBf" id="nzp-oX-ZGG"/>
             </connections>
             <point key="canvasLocation" x="36" y="57"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="arrowBottomImage" width="16" height="10"/>
-    </resources>
 </document>

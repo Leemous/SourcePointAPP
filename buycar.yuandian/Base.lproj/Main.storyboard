@@ -398,7 +398,7 @@
         <!--Consign-->
         <scene sceneID="VHo-jo-b2s">
             <objects>
-                <viewController storyboardIdentifier="vcDoConsign" id="O9t-sh-8Bz" customClass="VCConsign" customModule="buycar_yuandian" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="vcConsign" id="O9t-sh-8Bz" customClass="VCConsign" customModule="buycar_yuandian" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nk8-M2-kbD"/>
                         <viewControllerLayoutGuide type="bottom" id="qAw-rl-Lzl"/>

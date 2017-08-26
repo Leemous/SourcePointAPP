@@ -204,7 +204,7 @@ extension VCHome: UICollectionViewDelegate {
             }
             self.configNavigationBackItem(sourceViewController: self)
         case 3:
-            self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcConsignDetail", animated: true, completion: nil)
+            self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcConsign", animated: true, completion: nil)
             self.configNavigationBackItem(sourceViewController: self)
         case 4:
             self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcDailyList", animated: true, completion: nil)

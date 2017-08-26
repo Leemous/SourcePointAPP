@@ -91,6 +91,19 @@ extension UIViewController {
         datePicker.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         self.present(datePicker, animated: true, completion: nil)
     }
+    
+    /// 显示表格选择器
+    ///
+    /// - Parameters:
+    ///   - options: 选项集合
+    ///   - completion: 选择完成的事件
+    func showTablePickerView(options: [Option], completion: @escaping ((String, String) -> Void)) {
+        let pickerView = VCSimplePicker()
+        pickerView.opts = options
+        pickerView.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        pickerView.pickCompletion = completion
+        self.present(pickerView, animated: true, completion: nil)
+    }
 }
 
 
