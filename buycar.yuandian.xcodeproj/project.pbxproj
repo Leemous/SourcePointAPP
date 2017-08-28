@@ -23,6 +23,7 @@
 		E41873B51F500CC2006D61E1 /* VCSimplePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41873B41F500CC2006D61E1 /* VCSimplePicker.swift */; };
 		E41873B71F500E5D006D61E1 /* TVCSimplePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41873B61F500E5D006D61E1 /* TVCSimplePickerCell.swift */; };
 		E41873B91F500F19006D61E1 /* SimplePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E41873B81F500F19006D61E1 /* SimplePickerCell.xib */; };
+		E41873BD1F53AC4A006D61E1 /* VCConsignListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41873BC1F53AC4A006D61E1 /* VCConsignListPage.swift */; };
 		E41D4E761EE10D730063A644 /* QNUploadUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E41D4E751EE10D730063A644 /* QNUploadUtil.m */; };
 		E4264E831F4BCF4E00709831 /* VCConsignPendingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4264E821F4BCF4E00709831 /* VCConsignPendingList.swift */; };
 		E4378A481EE57DCC00284E23 /* Qiniu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4378A471EE57DCC00284E23 /* Qiniu.swift */; };
@@ -131,6 +132,7 @@
 		E41873B41F500CC2006D61E1 /* VCSimplePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCSimplePicker.swift; sourceTree = "<group>"; };
 		E41873B61F500E5D006D61E1 /* TVCSimplePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVCSimplePickerCell.swift; sourceTree = "<group>"; };
 		E41873B81F500F19006D61E1 /* SimplePickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimplePickerCell.xib; sourceTree = "<group>"; };
+		E41873BC1F53AC4A006D61E1 /* VCConsignListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCConsignListPage.swift; sourceTree = "<group>"; };
 		E41D4E731EE10D720063A644 /* buycar.yuandian-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "buycar.yuandian-Bridging-Header.h"; sourceTree = "<group>"; };
 		E41D4E741EE10D730063A644 /* QNUploadUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUploadUtil.h; sourceTree = "<group>"; };
 		E41D4E751EE10D730063A644 /* QNUploadUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNUploadUtil.m; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 				E41873A41F4E9A6B006D61E1 /* VCConsign.swift */,
 				E41873A61F4EA258006D61E1 /* VCConsignDetail.swift */,
 				E41873B41F500CC2006D61E1 /* VCSimplePicker.swift */,
+				E41873BC1F53AC4A006D61E1 /* VCConsignListPage.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -720,6 +723,7 @@
 				EA17542D1E7FE1E90020F407 /* VCUnifiedSetting.swift in Sources */,
 				E41873A51F4E9A6B006D61E1 /* VCConsign.swift in Sources */,
 				EA13B3E51E8268E50020F1FF /* VCSeekForPhoto.swift in Sources */,
+				E41873BD1F53AC4A006D61E1 /* VCConsignListPage.swift in Sources */,
 				E469B65B1EFFCD5300C264B4 /* VCDatePicker.swift in Sources */,
 				EA13B3EB1E82A88F0020F1FF /* VCMyAccount.swift in Sources */,
 				EAACCD3C1E80E69400AA8DB9 /* CommonModel.swift in Sources */,

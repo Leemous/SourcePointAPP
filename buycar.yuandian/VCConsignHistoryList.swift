@@ -19,9 +19,10 @@ class VCConsignHistoryList: UIViewController {
         
         self.automaticallyAdjustsScrollViewInsets = false
         
-        self.configTitleLabelByText(title: "已托运")
-        
         launchData()
+        
+        //发送一个名字为currentPageChanged，附带object的值代表当前页面的索引
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentPageChanged"), object: 1)
     }
     
     override func didReceiveMemoryWarning() {
@@ -76,15 +77,6 @@ class VCConsignHistoryList: UIViewController {
             }
         }
     }
-    
-    /// 用于从托运单详情返回
-    ///
-    /// - Parameter seg: <#seg description#>
-    @IBAction func backToConsignHistoryList(_ seg: UIStoryboardSegue!) {
-        self.launchData(completion: {
-            self.chlTable.reloadData()
-        })
-    }
 }
 
 extension VCConsignHistoryList: UITableViewDataSource {
@@ -121,7 +113,14 @@ extension VCConsignHistoryList: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! TVCConsignHistoryCell
-        alert(viewToBlock: nil, msg: cell.consignHistoryCellDelegate.id)
+        self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcConsignDetail", animated: true, completion: {(vc: UIViewController) -> Void in
+            let consignDetail = vc as! VCConsignDetail
+            
+            consignDetail.consignDetailDelegate.title = cell.consignHistoryCellDelegate.carLisenceNo
+            consignDetail.consignDetailDelegate.consignBySelf = cell.consignHistoryCellDelegate.consignBySelf
+            consignDetail.consignDetailDelegate.id = cell.consignHistoryCellDelegate.id
+        })
+        self.configNavigationBackItem(sourceViewController: self)
     }
 }
 

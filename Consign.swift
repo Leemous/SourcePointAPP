@@ -83,6 +83,7 @@ extension Consign {
                             cp.id = obj[i]["id"].string!
                             cp.carLicenseNo = obj[i]["carNumber"].string!
                             cp.carFrameNo = obj[i]["carShelfNumber"].string!
+                            cp.consignBySelf = obj[i]["consignBySelf"].bool!
                             cpl.append(cp)
                         }
                         completion(.normal, nil, cpl)

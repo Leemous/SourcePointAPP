@@ -34,10 +34,6 @@ class VCConsign: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        consignDelegate.title = "自运"
-        consignDelegate.consignBySelf = false
-        consignDelegate.carId = ""
-        
         // 守卫代码，保证页面正常绘制不闪退
         guard consignDelegate.title != nil && consignDelegate.consignBySelf != nil && consignDelegate.carId != nil else {
             return
@@ -120,7 +116,7 @@ class VCConsign: UIViewController {
         // 构造数据
         var paramDict: [String : Any] = [:]
         paramDict["carId"] = self.consignDelegate.carId
-        paramDict["consignBySelf"] = self.consignDelegate.consignBySelf
+        paramDict["consignBySelf"] = self.consignDelegate.consignBySelf! ? "true" : "false"
         paramDict["remark"] = self.remarkText.text
         
         if !self.consignDelegate.consignBySelf {
@@ -176,7 +172,7 @@ class VCConsign: UIViewController {
                     let msg = json["msg"].string!
                     if (code == 1) {
                         // 保存成功，返回托运页面
-                        self.performSegue(withIdentifier: "backFromConsign", sender: self)
+                        self.performSegue(withIdentifier: "backToConsignPendingList", sender: self)
                     } else {
                         self.alert(viewToBlock: nil, msg: msg)
                     }

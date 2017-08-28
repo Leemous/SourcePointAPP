@@ -20,9 +20,10 @@ class VCConsignPendingList: UIViewController {
         
         self.automaticallyAdjustsScrollViewInsets = false
         
-        self.configTitleLabelByText(title: "待托运")
-        
         launchData()
+        
+        //发送一个名字为currentPageChanged，附带object的值代表当前页面的索引
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentPageChanged"), object: 0)
     }
     
     override func didReceiveMemoryWarning() {
@@ -85,13 +86,25 @@ class VCConsignPendingList: UIViewController {
         let action = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         action.addAction(UIAlertAction(title: "托运", style: .default) {_ in
             // 托运处理
-            self.alert(viewToBlock: nil, msg: carId)
+            self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcConsign", animated: true, completion: {(vc: UIViewController) -> Void in
+                let consign = vc as! VCConsign
+                consign.consignDelegate.carId = carId
+                consign.consignDelegate.consignBySelf = false
+                consign.consignDelegate.title = "托运"
+            })
+            self.configNavigationBackItem(sourceViewController: self)
         })
         action.addAction(UIAlertAction(title: "自运", style: .default) {_ in
             // 自运处理
-            self.alert(viewToBlock: nil, msg: carId)
+            self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcConsign", animated: true, completion: {(vc: UIViewController) -> Void in
+                let consign = vc as! VCConsign
+                consign.consignDelegate.carId = carId
+                consign.consignDelegate.consignBySelf = true
+                consign.consignDelegate.title = "自运"
+            })
+            self.configNavigationBackItem(sourceViewController: self)
         })
-        action.addAction(UIAlertAction(title: "取消", style: .destructive, handler: nil))
+        action.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         self.present(action, animated: true, completion: nil)
     }
     

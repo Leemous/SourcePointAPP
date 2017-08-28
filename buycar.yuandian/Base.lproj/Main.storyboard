@@ -7,6 +7,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -377,6 +378,95 @@
             </objects>
             <point key="canvasLocation" x="316" y="771"/>
         </scene>
+        <!--Consign List Page-->
+        <scene sceneID="LQE-WE-Dce">
+            <objects>
+                <viewController storyboardIdentifier="vcConsignListPage" id="XjL-bG-0i6" customClass="VCConsignListPage" customModule="buycar_yuandian" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fNw-Pv-udl"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lov-YY-0Pg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Rev-kf-3GV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5n-Tp-QHO" userLabel="TabView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jz-Qj-2lo" userLabel="PendingList">
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="40"/>
+                                        <state key="normal" title="待托运"/>
+                                        <connections>
+                                            <action selector="changePage:" destination="XjL-bG-0i6" eventType="touchUpInside" id="Pkl-Uz-1r2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36z-bt-KLN" userLabel="HistoryList">
+                                        <rect key="frame" x="188" y="0.0" width="187" height="40"/>
+                                        <state key="normal" title="已托运">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="changePage:" destination="XjL-bG-0i6" eventType="touchUpInside" id="W4S-ui-G14"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="0jz-Qj-2lo" firstAttribute="width" secondItem="l5n-Tp-QHO" secondAttribute="width" multiplier="1/2" id="EmO-Ur-DhB"/>
+                                    <constraint firstItem="0jz-Qj-2lo" firstAttribute="top" secondItem="l5n-Tp-QHO" secondAttribute="top" id="NJd-v6-Q6d"/>
+                                    <constraint firstAttribute="height" constant="40" id="TTG-yw-Lbu"/>
+                                    <constraint firstItem="36z-bt-KLN" firstAttribute="top" secondItem="0jz-Qj-2lo" secondAttribute="top" id="XA4-dQ-qe5"/>
+                                    <constraint firstItem="36z-bt-KLN" firstAttribute="leading" secondItem="0jz-Qj-2lo" secondAttribute="trailing" id="ilQ-lf-xbc"/>
+                                    <constraint firstItem="0jz-Qj-2lo" firstAttribute="height" secondItem="l5n-Tp-QHO" secondAttribute="height" id="lPk-id-GEh"/>
+                                    <constraint firstItem="36z-bt-KLN" firstAttribute="width" secondItem="0jz-Qj-2lo" secondAttribute="width" id="twv-H3-tYn"/>
+                                    <constraint firstItem="0jz-Qj-2lo" firstAttribute="leading" secondItem="l5n-Tp-QHO" secondAttribute="leading" id="zMm-wQ-auP"/>
+                                    <constraint firstItem="36z-bt-KLN" firstAttribute="height" secondItem="0jz-Qj-2lo" secondAttribute="height" id="zPv-Fd-MsA"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PK4-8d-0lg">
+                                <rect key="frame" x="0.0" y="60" width="375" height="1"/>
+                                <color key="backgroundColor" red="0.87201976960000005" green="0.87201976960000005" blue="0.87201976960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="KcQ-AV-yYk"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C8F-ed-EyN">
+                                <rect key="frame" x="0.0" y="61" width="375" height="606"/>
+                                <connections>
+                                    <segue destination="w24-hq-mFS" kind="embed" id="bye-ba-sIU"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PK4-8d-0lg" secondAttribute="trailing" id="7Fp-Gq-ngJ"/>
+                            <constraint firstAttribute="trailing" secondItem="C8F-ed-EyN" secondAttribute="trailing" id="7hF-aC-Nwf"/>
+                            <constraint firstItem="PK4-8d-0lg" firstAttribute="leading" secondItem="Rev-kf-3GV" secondAttribute="leading" id="AXi-7Y-lqy"/>
+                            <constraint firstAttribute="trailing" secondItem="l5n-Tp-QHO" secondAttribute="trailing" id="Aza-l3-NEZ"/>
+                            <constraint firstItem="C8F-ed-EyN" firstAttribute="leading" secondItem="Rev-kf-3GV" secondAttribute="leading" id="STu-pX-3mF"/>
+                            <constraint firstItem="l5n-Tp-QHO" firstAttribute="leading" secondItem="Rev-kf-3GV" secondAttribute="leading" id="XaU-kk-pgD"/>
+                            <constraint firstItem="C8F-ed-EyN" firstAttribute="top" secondItem="PK4-8d-0lg" secondAttribute="bottom" id="cDM-ea-Fif"/>
+                            <constraint firstItem="Lov-YY-0Pg" firstAttribute="top" secondItem="C8F-ed-EyN" secondAttribute="bottom" id="prS-RQ-hbl"/>
+                            <constraint firstItem="PK4-8d-0lg" firstAttribute="top" secondItem="l5n-Tp-QHO" secondAttribute="bottom" id="rfd-uU-30C"/>
+                            <constraint firstItem="l5n-Tp-QHO" firstAttribute="top" secondItem="fNw-Pv-udl" secondAttribute="bottom" id="vxM-Nz-OQ5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tabbarView" destination="PK4-8d-0lg" id="Emp-Ru-fMq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fpN-gi-jll" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="316" y="1487.4062968515743"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="m6T-kU-aob">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="w24-hq-mFS" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yvm-Vz-qHw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="316" y="2151"/>
+        </scene>
         <!--Consign Pending List-->
         <scene sceneID="nCt-KQ-aaF">
             <objects>
@@ -408,10 +498,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="w5Z-zX-Ec4" kind="unwind" identifier="backToConsignPendingList" unwindAction="backToConsignPendingList:" id="YfC-Xg-8nm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oXX-Xl-IoH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="w5Z-zX-Ec4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1809" y="1489"/>
+            <point key="canvasLocation" x="1785" y="1489"/>
         </scene>
         <!--Consign History List-->
         <scene sceneID="Wkf-AG-ACl">

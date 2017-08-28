@@ -24,9 +24,6 @@ class VCConsignDetail: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        consignDetailDelegate.title = "44"
-        consignDetailDelegate.consignBySelf = false
-        consignDetailDelegate.id = "bd08ba855e095518015e0a503ed200a9"
         // 守卫代码，保证页面正常绘制不闪退
         guard consignDetailDelegate.title != nil && consignDetailDelegate.consignBySelf != nil && consignDetailDelegate.id != nil else {
             return
