@@ -43,6 +43,17 @@ class VCDailyList: UIViewController {
         
         self.navigationItem.rightBarButtonItem = addDailyButton
         self.navigationItem.rightBarButtonItem!.imageInsets = UIEdgeInsetsMake(3, 0, 0, 0)
+        
+        // 取消所有多余分隔线
+        self.dlTable.tableFooterView = UIView()
+        self.view.addSubview(self.dlTable)
+        
+        self.dlTable.delegate = self
+        self.dlTable.register(UITableViewCell.self, forCellReuseIdentifier: dailyCell)
+        self.dlTable.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tv]|", options: [], metrics: nil, views: ["tv": self.dlTable]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tv]|", options: [], metrics: nil, views: ["tv": self.dlTable]))
+        
     }
 
     private func launchData(completion: (() -> Swift.Void)? = nil) {
@@ -51,24 +62,11 @@ class VCDailyList: UIViewController {
         d.getDailyList { (status: ReturnedStatus, msg: String?, ds: [Daily]?) in
             switch status {
             case .normal:
-                self.view.addSubview(self.dlTable)
-
-                self.dlTable.translatesAutoresizingMaskIntoConstraints = false
-                self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tv]|", options: [], metrics: nil, views: ["tv": self.dlTable]))
-                self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tv]|", options: [], metrics: nil, views: ["tv": self.dlTable]))
-                
                 self.dlTable.dataSource = self
-                self.dlTable.delegate = self
-
-                // 取消所有多余分隔线
-                self.dlTable.tableFooterView = UIView()
-
                 // 设置cell的分隔线，以便其可以顶头开始
                 self.dlTable.layoutMargins = UIEdgeInsets.zero
                 self.dlTable.separatorInset = UIEdgeInsets.zero
                 self.dlTable.separatorColor = separatorLineColor
-                
-                self.dlTable.register(UITableViewCell.self, forCellReuseIdentifier: dailyCell)
                 
                 self.ds = ds!
                 
