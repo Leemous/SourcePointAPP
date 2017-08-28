@@ -6,12 +6,16 @@
 //  Copyright © 2017年 tymaker. All rights reserved.
 //
 import UIKit
+import MJRefresh
 
 private let historyCell = "pendingCell"
 
 class VCConsignHistoryList: UIViewController {
     
     let chlTable = UITableView()
+    var total = 0
+    var pageNo = 1
+    let pageSize = 15
     var cps = [Consign]()
     
     override func viewDidLoad() {
@@ -19,6 +23,7 @@ class VCConsignHistoryList: UIViewController {
         
         self.automaticallyAdjustsScrollViewInsets = false
         
+        initView()
         launchData()
         
         //发送一个名字为currentPageChanged，附带object的值代表当前页面的索引
@@ -30,32 +35,48 @@ class VCConsignHistoryList: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private func initView() {
+        // 为TableView添加刷新控件
+        let refreshHeader = MJRefreshNormalHeader()
+        let refreshFooter = MJRefreshAutoNormalFooter()
+        refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(VCConsignPendingList.headerRefresh))
+        refreshHeader.setTitle("下拉刷新数据", for: .idle)
+        refreshHeader.setTitle("松开刷新数据", for: .pulling)
+        refreshHeader.setTitle("正在刷新数据...", for: .refreshing)
+        refreshHeader.lastUpdatedTimeLabel.isHidden = true
+        self.chlTable.mj_header = refreshHeader
+        refreshFooter.setRefreshingTarget(self, refreshingAction: #selector(VCConsignPendingList.footerRefresh))
+        refreshFooter.setTitle("上拉加载更多", for: .idle)
+        refreshFooter.setTitle("加载中...", for: .refreshing)
+        refreshFooter.setTitle("没有更多数据了", for: .noMoreData)
+        self.chlTable.mj_footer = refreshFooter
+        
+        // 取消所有多余分隔线
+        self.chlTable.tableFooterView = UIView()
+        self.view.addSubview(self.chlTable)
+        
+        self.chlTable.delegate = self
+        self.chlTable.register(UINib(nibName: "ConsignHistoryCell", bundle: nil), forCellReuseIdentifier: historyCell)
+        
+        self.chlTable.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tv]|", options: [], metrics: nil, views: ["tv": self.chlTable]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tv]|", options: [], metrics: nil, views: ["tv": self.chlTable]))
+    }
+    
     private func launchData(completion: (() -> Swift.Void)? = nil) {
         // 设置已托运数据
         let cps = Consign()
-        cps.getConsignHistoryList(pageNo: 1, pageSize: 99) { (status: ReturnedStatus, msg: String?, cps: [Consign]?) in
+        cps.getConsignHistoryList(pageNo: self.pageNo, pageSize: self.pageSize) { (status: ReturnedStatus, msg: String?, total: Int?, cps: [Consign]?) in
             switch status {
             case .normal:
-                self.view.addSubview(self.chlTable)
-                
-                self.chlTable.translatesAutoresizingMaskIntoConstraints = false
-                self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tv]|", options: [], metrics: nil, views: ["tv": self.chlTable]))
-                self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tv]|", options: [], metrics: nil, views: ["tv": self.chlTable]))
-                
                 self.chlTable.dataSource = self
-                self.chlTable.delegate = self
-                
-                // 取消所有多余分隔线
-                self.chlTable.tableFooterView = UIView()
-                
                 // 设置cell的分隔线，以便其可以顶头开始
                 self.chlTable.layoutMargins = UIEdgeInsets.zero
                 self.chlTable.separatorInset = UIEdgeInsets.zero
                 self.chlTable.separatorColor = separatorLineColor
                 
-                self.chlTable.register(UINib(nibName: "ConsignHistoryCell", bundle: nil), forCellReuseIdentifier: historyCell)
-                
-                self.cps = cps!
+                self.total = total!
+                self.cps.append(contentsOf: cps!)
                 
                 if let c = completion {
                     c()
@@ -76,6 +97,29 @@ class VCConsignHistoryList: UIViewController {
                 break
             }
         }
+    }
+    
+    /// 下拉刷新数据
+    func headerRefresh() {
+        self.pageNo = 1
+        self.cps.removeAll()
+        self.launchData(completion: {
+            self.chlTable.reloadData()
+            self.chlTable.mj_header.endRefreshing()
+        })
+    }
+    
+    /// 上拉加载更多数据
+    func footerRefresh() {
+        self.pageNo += 1
+        self.launchData(completion: {
+            self.chlTable.reloadData()
+            if self.total > self.pageNo * self.pageSize {
+                self.chlTable.mj_footer.endRefreshing()
+            } else {
+                self.chlTable.mj_footer.endRefreshingWithNoMoreData()
+            }
+        })
     }
 }
 

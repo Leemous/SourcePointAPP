@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-buycar.yuandian.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,7 +52,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3C259568BD9BA1ABDD0A5927E3050CEE</key>
+		<key>0967738E7DAFB4E323F37FFFC5AAEA8C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>16D331B92A3DA851D9772BF90D99FADF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,22 +67,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>703A93435BF6F684DDE121154BE04FA8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>89B8DB0B201AB3CC472A896F89DCB5BD</key>
+		<key>C1A54FC0100DFA5394FE6BCAC6C721A6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C1A54FC0100DFA5394FE6BCAC6C721A6</key>
+		<key>C66351D0F38B0266129C1ABC6C028599</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -83,6 +88,11 @@
 			<true/>
 		</dict>
 		<key>DB0B6BCF8685FE4944A76EBB2AE82D08</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E14A62900910444707A5504D25EC98DC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

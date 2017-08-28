@@ -16,13 +16,15 @@ PODS:
     - AFNetworking/NSURLSession
   - Alamofire (4.4.0)
   - HappyDNS (0.3.10)
-  - Qiniu (7.1.5):
+  - MJRefresh (3.1.12)
+  - Qiniu (7.1.6):
     - AFNetworking (~> 3)
     - HappyDNS (~> 0.3)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4.0)
+  - MJRefresh
   - Qiniu (~> 7.1)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
@@ -32,16 +34,17 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftyJSON:
-    :commit: ebc305b69ecca005b636f20e0db4d07d19d333fa
+    :commit: e4b2644167341faf9622062307b5b2e18f8a506f
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   HappyDNS: 06a9fed2796663fd87626dbf02552933265bf059
-  Qiniu: 77a3dba411556a383d72d17e842345a9d4c83252
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  Qiniu: 8af94ce9b1611ed5f4350883e41d4a62cabad491
   SwiftyJSON: 05cf0e98a950e2ba343735264f5a96b81e755d00
 
-PODFILE CHECKSUM: 50ee7ac1f8a9f41df9311d1030ea65242a4a1ec8
+PODFILE CHECKSUM: 116d2b31e4fbab4903a9300baa156797d48bfef2
 
 COCOAPODS: 1.2.1

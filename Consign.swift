@@ -33,7 +33,7 @@ extension Consign {
     /// 获取待托运列表
     ///
     /// - Parameter completion: 获取数据成功后的回调
-    func getConsignPendingList(pageNo: Int!, pageSize: Int!, completion: @escaping ((ReturnedStatus, String?, [Consign]?) -> Void)) {
+    func getConsignPendingList(pageNo: Int!, pageSize: Int!, completion: @escaping ((ReturnedStatus, String?, Int?, [Consign]?) -> Void)) {
         Alamofire.request(Router.consignPendingList(pageNo, pageSize)).responseJSON { response in
             if (response.result.isSuccess) {
                 // 请求成功
@@ -43,6 +43,7 @@ extension Consign {
                     let msg = json["msg"].string!
                     if (code == 1) {
                         var cpl = [Consign]()
+                        let total = json["obj"]["total"].int!
                         let obj = json["obj"]["list"]
                         for i in 0..<obj.count {
                             let cp = Consign()
@@ -51,15 +52,15 @@ extension Consign {
                             cp.carFrameNo = obj[i]["carShelfNumber"].string!
                             cpl.append(cp)
                         }
-                        completion(.normal, nil, cpl)
+                        completion(.normal, nil, total, cpl)
                     } else {
-                        completion(.noData, msg, nil)
+                        completion(.noData, msg, nil, nil)
                     }
                 } else {
-                    completion(.noData, "获取待托运车辆信息失败", nil)
+                    completion(.noData, "获取待托运车辆信息失败", nil, nil)
                 }
             } else {
-                completion(.noConnection, nil, nil)
+                completion(.noConnection, nil, nil, nil)
             }
         }
     }
@@ -67,7 +68,7 @@ extension Consign {
     /// 获取已托运列表
     ///
     /// - Parameter completion: 获取数据成功后的回调
-    func getConsignHistoryList(pageNo: Int!, pageSize: Int!, completion: @escaping ((ReturnedStatus, String?, [Consign]?) -> Void)) {
+    func getConsignHistoryList(pageNo: Int!, pageSize: Int!, completion: @escaping ((ReturnedStatus, String?, Int?, [Consign]?) -> Void)) {
         Alamofire.request(Router.consignHistoryList(pageNo, pageSize)).responseJSON { response in
             if (response.result.isSuccess) {
                 // 请求成功
@@ -77,6 +78,7 @@ extension Consign {
                     let msg = json["msg"].string!
                     if (code == 1) {
                         var cpl = [Consign]()
+                        let total = json["obj"]["total"].int!
                         let obj = json["obj"]["list"]
                         for i in 0..<obj.count {
                             let cp = Consign()
@@ -86,15 +88,15 @@ extension Consign {
                             cp.consignBySelf = obj[i]["consignBySelf"].bool!
                             cpl.append(cp)
                         }
-                        completion(.normal, nil, cpl)
+                        completion(.normal, nil, total, cpl)
                     } else {
-                        completion(.noData, msg, nil)
+                        completion(.noData, msg, nil, nil)
                     }
                 } else {
-                    completion(.noData, "获取已托运车辆信息失败", nil)
+                    completion(.noData, "获取已托运车辆信息失败", nil, nil)
                 }
             } else {
-                completion(.noConnection, nil, nil)
+                completion(.noConnection, nil, nil, nil)
             }
         }
     }

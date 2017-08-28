@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import MJRefresh
 
 private let pendingCell = "pendingCell"
 
 class VCConsignPendingList: UIViewController {
     
     let cplTable = UITableView()
+    var total = 0
+    var pageNo = 1
+    let pageSize = 15
     var cps = [Consign]()
     
     override func viewDidLoad() {
@@ -20,6 +24,7 @@ class VCConsignPendingList: UIViewController {
         
         self.automaticallyAdjustsScrollViewInsets = false
         
+        initView()
         launchData()
         
         //发送一个名字为currentPageChanged，附带object的值代表当前页面的索引
@@ -31,32 +36,48 @@ class VCConsignPendingList: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private func initView() {
+        // 为TableView添加刷新控件
+        let refreshHeader = MJRefreshNormalHeader()
+        let refreshFooter = MJRefreshAutoNormalFooter()
+        refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(VCConsignPendingList.headerRefresh))
+        refreshHeader.setTitle("下拉刷新数据", for: .idle)
+        refreshHeader.setTitle("松开刷新数据", for: .pulling)
+        refreshHeader.setTitle("正在刷新数据...", for: .refreshing)
+        refreshHeader.lastUpdatedTimeLabel.isHidden = true
+        self.cplTable.mj_header = refreshHeader
+        refreshFooter.setRefreshingTarget(self, refreshingAction: #selector(VCConsignPendingList.footerRefresh))
+        refreshFooter.setTitle("上拉加载更多", for: .idle)
+        refreshFooter.setTitle("加载中...", for: .refreshing)
+        refreshFooter.setTitle("没有更多数据了", for: .noMoreData)
+        self.cplTable.mj_footer = refreshFooter
+        
+        // 取消所有多余分隔线
+        self.cplTable.tableFooterView = UIView()
+        self.view.addSubview(self.cplTable)
+        
+        self.cplTable.delegate = self
+        self.cplTable.register(UINib(nibName: "ConsignPendingCell", bundle: nil), forCellReuseIdentifier: pendingCell)
+        
+        self.cplTable.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tv]|", options: [], metrics: nil, views: ["tv": self.cplTable]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tv]|", options: [], metrics: nil, views: ["tv": self.cplTable]))
+    }
+    
     private func launchData(completion: (() -> Swift.Void)? = nil) {
         // 设置待托运数据
         let cps = Consign()
-        cps.getConsignPendingList(pageNo: 1, pageSize: 99) { (status: ReturnedStatus, msg: String?, cps: [Consign]?) in
+        cps.getConsignPendingList(pageNo: self.pageNo, pageSize: self.pageSize) { (status: ReturnedStatus, msg: String?, total: Int?, cps: [Consign]?) in
             switch status {
             case .normal:
-                self.view.addSubview(self.cplTable)
-                
-                self.cplTable.translatesAutoresizingMaskIntoConstraints = false
-                self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tv]|", options: [], metrics: nil, views: ["tv": self.cplTable]))
-                self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tv]|", options: [], metrics: nil, views: ["tv": self.cplTable]))
-                
                 self.cplTable.dataSource = self
-                self.cplTable.delegate = self
-                
-                // 取消所有多余分隔线
-                self.cplTable.tableFooterView = UIView()
-                
                 // 设置cell的分隔线，以便其可以顶头开始
                 self.cplTable.layoutMargins = UIEdgeInsets.zero
                 self.cplTable.separatorInset = UIEdgeInsets.zero
                 self.cplTable.separatorColor = separatorLineColor
                 
-                self.cplTable.register(UINib(nibName: "ConsignPendingCell", bundle: nil), forCellReuseIdentifier: pendingCell)
-                
-                self.cps = cps!
+                self.total = total!
+                self.cps.append(contentsOf: cps!)
                 
                 if let c = completion {
                     c()
@@ -77,6 +98,37 @@ class VCConsignPendingList: UIViewController {
                 break
             }
         }
+    }
+    
+    /// 下拉刷新数据
+    func headerRefresh() {
+        self.pageNo = 1
+        self.cps.removeAll()
+        self.launchData(completion: {
+            self.cplTable.reloadData()
+            self.cplTable.mj_header.endRefreshing()
+        })
+    }
+    
+    /// 上拉加载更多数据
+    func footerRefresh() {
+        self.pageNo += 1
+        self.launchData(completion: {
+            self.cplTable.reloadData()
+            if self.total > self.pageNo * self.pageSize {
+                self.cplTable.mj_footer.endRefreshing()
+            } else {
+                self.cplTable.mj_footer.endRefreshingWithNoMoreData()
+            }
+        })
+    }
+    
+    /// 托运按钮点击事件
+    ///
+    /// - Parameter carId: <#carId description#>
+    func doConsign(sender : UIButton) {
+        let tvc = sender.superView(of: TVCConsignPendingCell.self)!
+        self.presentConsignWayAction(tvc.consignPendingCellDelegate.carId)
     }
     
     /// 弹出托运方式选择框
@@ -108,14 +160,6 @@ class VCConsignPendingList: UIViewController {
         self.present(action, animated: true, completion: nil)
     }
     
-    /// 托运按钮点击事件
-    ///
-    /// - Parameter carId: <#carId description#>
-    func doConsign(sender : UIButton) {
-        let tvc = sender.superView(of: TVCConsignPendingCell.self)!
-        self.presentConsignWayAction(tvc.consignPendingCellDelegate.carId)
-    }
-    
     /// 用于从托运界面返回
     ///
     /// - Parameter seg: <#seg description#>
@@ -139,7 +183,7 @@ extension VCConsignPendingList: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: pendingCell, for: indexPath) as! TVCConsignPendingCell
         
         cell.consignPendingCellDelegate.carId = self.cps[indexPath.row].carId
-        cell.consignPendingCellDelegate.carLisenceNo = self.cps[indexPath.row].carLicenseNo
+        cell.consignPendingCellDelegate.carLisenceNo = self.cps[indexPath.row].carLicenseNo + "\(indexPath.row)"
         cell.consignPendingCellDelegate.carFrameNo = self.cps[indexPath.row].carFrameNo
         
         if cell.tag != 2000 {
