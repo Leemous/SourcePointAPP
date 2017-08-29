@@ -43,8 +43,8 @@ enum Router: URLRequestConvertible {
     case consignors()
     case consignChargers()
     case saveConsign([String : Any])
-    case consignPendingList(Int, Int)
-    case consignHistoryList(Int, Int)
+    case consignPendingList(Int, Int, Int64)
+    case consignHistoryList(Int, Int, Int64)
     case getConsign(String)
     
     func asURLRequest() throws -> URLRequest {
@@ -104,11 +104,11 @@ enum Router: URLRequestConvertible {
             case .saveConsign(let paramDic):
                 method = "POST"
                 return ("/car/consign/save", paramDic)
-            case .consignPendingList(let pageNo, let pageSize):
-                let params = ["pageNo" : pageNo, "pageSize" : pageSize] as [String : Any]
+            case .consignPendingList(let pageNo, let pageSize, let lastRefreshStamp):
+                let params = ["pageNo" : pageNo, "pageSize" : pageSize, "lastRefreshStamp" : lastRefreshStamp] as [String : Any]
                 return ("/car/consign/listTodo", params)
-            case .consignHistoryList(let pageNo, let pageSize):
-                let params = ["pageNo" : pageNo, "pageSize" : pageSize] as [String : Any]
+            case .consignHistoryList(let pageNo, let pageSize, let lastRefreshStamp):
+                let params = ["pageNo" : pageNo, "pageSize" : pageSize, "lastRefreshStamp" : lastRefreshStamp] as [String : Any]
                 return ("/car/consign/listHistory", params)
             case .getConsign(let id):
                 let params = ["id" : id]

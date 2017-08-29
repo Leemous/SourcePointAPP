@@ -33,8 +33,8 @@ extension Consign {
     /// 获取待托运列表
     ///
     /// - Parameter completion: 获取数据成功后的回调
-    func getConsignPendingList(pageNo: Int!, pageSize: Int!, completion: @escaping ((ReturnedStatus, String?, Int?, [Consign]?) -> Void)) {
-        Alamofire.request(Router.consignPendingList(pageNo, pageSize)).responseJSON { response in
+    func getConsignPendingList(pageNo: Int!, pageSize: Int!, lastRefreshDate: Date!, completion: @escaping ((ReturnedStatus, String?, Int?, [Consign]?) -> Void)) {
+        Alamofire.request(Router.consignPendingList(pageNo, pageSize, Int64(lastRefreshDate.timeIntervalSince1970 * 1000))).responseJSON { response in
             if (response.result.isSuccess) {
                 // 请求成功
                 if let jsonValue = response.result.value {
@@ -68,8 +68,8 @@ extension Consign {
     /// 获取已托运列表
     ///
     /// - Parameter completion: 获取数据成功后的回调
-    func getConsignHistoryList(pageNo: Int!, pageSize: Int!, completion: @escaping ((ReturnedStatus, String?, Int?, [Consign]?) -> Void)) {
-        Alamofire.request(Router.consignHistoryList(pageNo, pageSize)).responseJSON { response in
+    func getConsignHistoryList(pageNo: Int!, pageSize: Int!, lastRefreshDate: Date!, completion: @escaping ((ReturnedStatus, String?, Int?, [Consign]?) -> Void)) {
+        Alamofire.request(Router.consignHistoryList(pageNo, pageSize, Int64(lastRefreshDate.timeIntervalSince1970 * 1000))).responseJSON { response in
             if (response.result.isSuccess) {
                 // 请求成功
                 if let jsonValue = response.result.value {

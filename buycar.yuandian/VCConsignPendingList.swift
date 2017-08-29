@@ -14,6 +14,7 @@ private let pendingCell = "pendingCell"
 class VCConsignPendingList: UIViewController {
     
     let cplTable = UITableView()
+    var lastRefreshTime = Date()
     var total = 0
     var pageNo = 1
     let pageSize = 15
@@ -29,11 +30,6 @@ class VCConsignPendingList: UIViewController {
         
         //发送一个名字为currentPageChanged，附带object的值代表当前页面的索引
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentPageChanged"), object: 0)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     private func initView() {
@@ -67,7 +63,7 @@ class VCConsignPendingList: UIViewController {
     private func launchData(completion: (() -> Swift.Void)? = nil) {
         // 设置待托运数据
         let cps = Consign()
-        cps.getConsignPendingList(pageNo: self.pageNo, pageSize: self.pageSize) { (status: ReturnedStatus, msg: String?, total: Int?, cps: [Consign]?) in
+        cps.getConsignPendingList(pageNo: self.pageNo, pageSize: self.pageSize, lastRefreshDate: self.lastRefreshTime) { (status: ReturnedStatus, msg: String?, total: Int?, cps: [Consign]?) in
             switch status {
             case .normal:
                 self.cplTable.dataSource = self
@@ -104,9 +100,11 @@ class VCConsignPendingList: UIViewController {
     func headerRefresh() {
         self.pageNo = 1
         self.cps.removeAll()
+        self.lastRefreshTime = Date()
         self.launchData(completion: {
             self.cplTable.reloadData()
             self.cplTable.mj_header.endRefreshing()
+            self.cplTable.mj_footer.endRefreshing()
         })
     }
     

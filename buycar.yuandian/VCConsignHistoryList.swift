@@ -13,6 +13,7 @@ private let historyCell = "pendingCell"
 class VCConsignHistoryList: UIViewController {
     
     let chlTable = UITableView()
+    var lastRefreshTime = Date()
     var total = 0
     var pageNo = 1
     let pageSize = 15
@@ -28,11 +29,6 @@ class VCConsignHistoryList: UIViewController {
         
         //发送一个名字为currentPageChanged，附带object的值代表当前页面的索引
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentPageChanged"), object: 1)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     private func initView() {
@@ -66,7 +62,7 @@ class VCConsignHistoryList: UIViewController {
     private func launchData(completion: (() -> Swift.Void)? = nil) {
         // 设置已托运数据
         let cps = Consign()
-        cps.getConsignHistoryList(pageNo: self.pageNo, pageSize: self.pageSize) { (status: ReturnedStatus, msg: String?, total: Int?, cps: [Consign]?) in
+        cps.getConsignHistoryList(pageNo: self.pageNo, pageSize: self.pageSize, lastRefreshDate: self.lastRefreshTime) { (status: ReturnedStatus, msg: String?, total: Int?, cps: [Consign]?) in
             switch status {
             case .normal:
                 self.chlTable.dataSource = self
@@ -103,9 +99,11 @@ class VCConsignHistoryList: UIViewController {
     func headerRefresh() {
         self.pageNo = 1
         self.cps.removeAll()
+        self.lastRefreshTime = Date()
         self.launchData(completion: {
             self.chlTable.reloadData()
             self.chlTable.mj_header.endRefreshing()
+            self.chlTable.mj_footer.endRefreshing()
         })
     }
     
