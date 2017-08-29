@@ -14,9 +14,11 @@ private let pendingCell = "pendingCell"
 class VCConsignPendingList: UIViewController {
     
     let cplTable = UITableView()
+    let refreshHeader = MJRefreshNormalHeader()
+    let refreshFooter = MJRefreshAutoNormalFooter()
     var lastRefreshTime = Date()
     var total = 0
-    var pageNo = 1
+    var pageNo = 0
     let pageSize = 15
     var cps = [Consign]()
     
@@ -26,7 +28,7 @@ class VCConsignPendingList: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         
         initView()
-        launchData()
+        self.cplTable.mj_header.beginRefreshing()
         
         //发送一个名字为currentPageChanged，附带object的值代表当前页面的索引
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentPageChanged"), object: 0)
@@ -34,18 +36,17 @@ class VCConsignPendingList: UIViewController {
     
     private func initView() {
         // 为TableView添加刷新控件
-        let refreshHeader = MJRefreshNormalHeader()
-        let refreshFooter = MJRefreshAutoNormalFooter()
-        refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(VCConsignPendingList.headerRefresh))
-        refreshHeader.setTitle("下拉刷新数据", for: .idle)
-        refreshHeader.setTitle("松开刷新数据", for: .pulling)
-        refreshHeader.setTitle("正在刷新数据...", for: .refreshing)
-        refreshHeader.lastUpdatedTimeLabel.isHidden = true
+        self.refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(VCConsignPendingList.headerRefresh))
+        self.refreshHeader.setTitle("下拉刷新数据", for: .idle)
+        self.refreshHeader.setTitle("松开刷新数据", for: .pulling)
+        self.refreshHeader.setTitle("正在刷新数据...", for: .refreshing)
+        self.refreshHeader.lastUpdatedTimeLabel.isHidden = true
         self.cplTable.mj_header = refreshHeader
-        refreshFooter.setRefreshingTarget(self, refreshingAction: #selector(VCConsignPendingList.footerRefresh))
-        refreshFooter.setTitle("上拉加载更多", for: .idle)
-        refreshFooter.setTitle("加载中...", for: .refreshing)
-        refreshFooter.setTitle("没有更多数据了", for: .noMoreData)
+        self.refreshFooter.setRefreshingTarget(self, refreshingAction: #selector(VCConsignPendingList.footerRefresh))
+        self.refreshFooter.setTitle("上拉加载更多", for: .idle)
+        self.refreshFooter.setTitle("加载中...", for: .refreshing)
+        self.refreshFooter.setTitle("没有更多数据了", for: .noMoreData)
+        self.refreshFooter.stateLabel.isHidden = true
         self.cplTable.mj_footer = refreshFooter
         
         // 取消所有多余分隔线
@@ -104,7 +105,10 @@ class VCConsignPendingList: UIViewController {
         self.launchData(completion: {
             self.cplTable.reloadData()
             self.cplTable.mj_header.endRefreshing()
-            self.cplTable.mj_footer.endRefreshing()
+            if self.total > self.pageNo * self.pageSize {
+                self.refreshFooter.stateLabel.isHidden = false
+                self.cplTable.mj_footer.endRefreshing()
+            }
         })
     }
     
