@@ -20,7 +20,7 @@ class VCConsignPendingList: UIViewController {
     var total = 0
     var pageNo = 0
     let pageSize = 15
-    var cps = [Consign]()
+    var cs = [Consign]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,13 +41,13 @@ class VCConsignPendingList: UIViewController {
         self.refreshHeader.setTitle("松开刷新数据", for: .pulling)
         self.refreshHeader.setTitle("正在刷新数据...", for: .refreshing)
         self.refreshHeader.lastUpdatedTimeLabel.isHidden = true
-        self.cplTable.mj_header = refreshHeader
+        self.cplTable.mj_header = self.refreshHeader
         self.refreshFooter.setRefreshingTarget(self, refreshingAction: #selector(VCConsignPendingList.footerRefresh))
         self.refreshFooter.setTitle("上拉加载更多", for: .idle)
         self.refreshFooter.setTitle("加载中...", for: .refreshing)
         self.refreshFooter.setTitle("没有更多数据了", for: .noMoreData)
         self.refreshFooter.stateLabel.isHidden = true
-        self.cplTable.mj_footer = refreshFooter
+        self.cplTable.mj_footer = self.refreshFooter
         
         // 取消所有多余分隔线
         self.cplTable.tableFooterView = UIView()
@@ -64,7 +64,7 @@ class VCConsignPendingList: UIViewController {
     private func launchData(completion: (() -> Swift.Void)? = nil) {
         // 设置待托运数据
         let cps = Consign()
-        cps.getConsignPendingList(pageNo: self.pageNo, pageSize: self.pageSize, lastRefreshDate: self.lastRefreshTime) { (status: ReturnedStatus, msg: String?, total: Int?, cps: [Consign]?) in
+        cps.getConsignPendingList(pageNo: self.pageNo, pageSize: self.pageSize, lastRefreshDate: self.lastRefreshTime) { (status: ReturnedStatus, msg: String?, total: Int?, cs: [Consign]?) in
             switch status {
             case .normal:
                 self.cplTable.dataSource = self
@@ -74,7 +74,7 @@ class VCConsignPendingList: UIViewController {
                 self.cplTable.separatorColor = separatorLineColor
                 
                 self.total = total!
-                self.cps.append(contentsOf: cps!)
+                self.cs.append(contentsOf: cs!)
                 
                 if let c = completion {
                     c()
@@ -100,7 +100,7 @@ class VCConsignPendingList: UIViewController {
     /// 下拉刷新数据
     func headerRefresh() {
         self.pageNo = 1
-        self.cps.removeAll()
+        self.cs.removeAll()
         self.lastRefreshTime = Date()
         self.launchData(completion: {
             self.cplTable.reloadData()
@@ -180,23 +180,23 @@ extension VCConsignPendingList: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.cps.count
+        return self.cs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: pendingCell, for: indexPath) as! TVCConsignPendingCell
         
-        cell.consignPendingCellDelegate.carId = self.cps[indexPath.row].carId
-        cell.consignPendingCellDelegate.carLisenceNo = self.cps[indexPath.row].carLicenseNo + "\(indexPath.row)"
-        cell.consignPendingCellDelegate.carFrameNo = self.cps[indexPath.row].carFrameNo
+        cell.consignPendingCellDelegate.carId = self.cs[indexPath.row].carId
+        cell.consignPendingCellDelegate.carLisenceNo = self.cs[indexPath.row].carLicenseNo + "\(indexPath.row)"
+        cell.consignPendingCellDelegate.carFrameNo = self.cs[indexPath.row].carFrameNo
         
         if cell.tag != 2000 {
             // 首次绘制单元格
             cell.selectionStyle = .none
         } else {
             // 重用单元格，手动设置label值
-            cell.licenseLabel.text = self.cps[indexPath.row].carLicenseNo
-            cell.frameLabel.text = self.cps[indexPath.row].carFrameNo
+            cell.licenseLabel.text = self.cs[indexPath.row].carLicenseNo
+            cell.frameLabel.text = self.cs[indexPath.row].carFrameNo
         }
         
         // 托运按钮点击，同一类型事件只能存在一个，重用cell指定事件时会覆盖原有事件

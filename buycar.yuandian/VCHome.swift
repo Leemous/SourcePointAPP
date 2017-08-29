@@ -8,6 +8,7 @@
 //
 
 import UIKit
+import MJRefresh
 
 private let featureCell = "featureCell"
 private let carPurchaseCell = "carPurchaseCell"
@@ -21,7 +22,6 @@ class VCHome: UIViewController {
     @IBOutlet weak var carTable: UITableView!
 
     var cps = [CarPurchase]()
-    var refreshCarTableControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +30,6 @@ class VCHome: UIViewController {
 
         initView()
         launchData()
-        
-        refreshCarTableControl.addTarget(self, action: #selector(VCHome.refreshData), for: .valueChanged)
-        refreshCarTableControl.attributedTitle = NSAttributedString(string: "下拉刷新数据")
-        self.carTable.addSubview(refreshCarTableControl)
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,6 +62,14 @@ class VCHome: UIViewController {
         
         self.navigationItem.rightBarButtonItem = myAccountButton
         self.navigationItem.rightBarButtonItem!.imageInsets = UIEdgeInsetsMake(3, 0, 0, 0)
+        
+        let refreshHeader = MJRefreshNormalHeader()
+        refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(headerRefresh))
+        refreshHeader.setTitle("下拉刷新数据", for: .idle)
+        refreshHeader.setTitle("松开刷新数据", for: .pulling)
+        refreshHeader.setTitle("正在刷新数据...", for: .refreshing)
+        refreshHeader.lastUpdatedTimeLabel.isHidden = true
+        self.carTable.mj_header = refreshHeader
     }
     
     func launchData(completion: (() -> Swift.Void)? = nil) {
@@ -107,14 +111,18 @@ class VCHome: UIViewController {
         }
     }
     
-    /// 刷新收车列表
-    func refreshData() {
+    /// 下拉刷新数据
+    func headerRefresh() {
+        self.cps.removeAll()
         self.launchData(completion: {
             self.carTable.reloadData()
-            self.refreshCarTableControl.endRefreshing()
+            self.carTable.mj_header.endRefreshing()
         })
     }
     
+    /// 跳转到我的账户界面
+    ///
+    /// - Parameter sender: <#sender description#>
     func goMyAccount(_ sender: AnyObject) {
         var userInfo: User!
         User().getUserInfo { (status: ReturnedStatus, msg: String?, user: User?) in

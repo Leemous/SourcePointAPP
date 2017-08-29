@@ -19,7 +19,7 @@ class VCConsignHistoryList: UIViewController {
     var total = 0
     var pageNo = 1
     let pageSize = 15
-    var cps = [Consign]()
+    var cs = [Consign]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,18 +35,18 @@ class VCConsignHistoryList: UIViewController {
     
     private func initView() {
         // 为TableView添加刷新控件
-        self.refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(VCConsignPendingList.headerRefresh))
+        self.refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(headerRefresh))
         self.refreshHeader.setTitle("下拉刷新数据", for: .idle)
         self.refreshHeader.setTitle("松开刷新数据", for: .pulling)
         self.refreshHeader.setTitle("正在刷新数据...", for: .refreshing)
         self.refreshHeader.lastUpdatedTimeLabel.isHidden = true
-        self.chlTable.mj_header = refreshHeader
-        self.refreshFooter.setRefreshingTarget(self, refreshingAction: #selector(VCConsignPendingList.footerRefresh))
+        self.chlTable.mj_header = self.refreshHeader
+        self.refreshFooter.setRefreshingTarget(self, refreshingAction: #selector(footerRefresh))
         self.refreshFooter.setTitle("上拉加载更多", for: .idle)
         self.refreshFooter.setTitle("加载中...", for: .refreshing)
         self.refreshFooter.setTitle("没有更多数据了", for: .noMoreData)
         self.refreshFooter.stateLabel.isHidden = true
-        self.chlTable.mj_footer = refreshFooter
+        self.chlTable.mj_footer = self.refreshFooter
         
         // 取消所有多余分隔线
         self.chlTable.tableFooterView = UIView()
@@ -63,7 +63,7 @@ class VCConsignHistoryList: UIViewController {
     private func launchData(completion: (() -> Swift.Void)? = nil) {
         // 设置已托运数据
         let cps = Consign()
-        cps.getConsignHistoryList(pageNo: self.pageNo, pageSize: self.pageSize, lastRefreshDate: self.lastRefreshTime) { (status: ReturnedStatus, msg: String?, total: Int?, cps: [Consign]?) in
+        cps.getConsignHistoryList(pageNo: self.pageNo, pageSize: self.pageSize, lastRefreshDate: self.lastRefreshTime) { (status: ReturnedStatus, msg: String?, total: Int?, cs: [Consign]?) in
             switch status {
             case .normal:
                 self.chlTable.dataSource = self
@@ -73,7 +73,7 @@ class VCConsignHistoryList: UIViewController {
                 self.chlTable.separatorColor = separatorLineColor
                 
                 self.total = total!
-                self.cps.append(contentsOf: cps!)
+                self.cs.append(contentsOf: cs!)
                 
                 if let c = completion {
                     c()
@@ -99,7 +99,7 @@ class VCConsignHistoryList: UIViewController {
     /// 下拉刷新数据
     func headerRefresh() {
         self.pageNo = 1
-        self.cps.removeAll()
+        self.cs.removeAll()
         self.lastRefreshTime = Date()
         self.launchData(completion: {
             self.chlTable.reloadData()
@@ -134,21 +134,21 @@ extension VCConsignHistoryList: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.cps.count
+        return self.cs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: historyCell, for: indexPath) as! TVCConsignHistoryCell
         
-        cell.consignHistoryCellDelegate.id = self.cps[indexPath.row].id
-        cell.consignHistoryCellDelegate.consignBySelf = self.cps[indexPath.row].consignBySelf
-        cell.consignHistoryCellDelegate.carLisenceNo = self.cps[indexPath.row].carLicenseNo
-        cell.consignHistoryCellDelegate.carFrameNo = self.cps[indexPath.row].carFrameNo
+        cell.consignHistoryCellDelegate.id = self.cs[indexPath.row].id
+        cell.consignHistoryCellDelegate.consignBySelf = self.cs[indexPath.row].consignBySelf
+        cell.consignHistoryCellDelegate.carLisenceNo = self.cs[indexPath.row].carLicenseNo
+        cell.consignHistoryCellDelegate.carFrameNo = self.cs[indexPath.row].carFrameNo
         
         if cell.tag == 3000 {
             // 重用单元格，手动设置label值
-            cell.licenseLabel.text = self.cps[indexPath.row].carLicenseNo
-            cell.frameLabel.text = self.cps[indexPath.row].carFrameNo
+            cell.licenseLabel.text = self.cs[indexPath.row].carLicenseNo
+            cell.frameLabel.text = self.cs[indexPath.row].carFrameNo
         }
         
         return cell

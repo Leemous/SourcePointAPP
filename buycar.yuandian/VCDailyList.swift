@@ -42,18 +42,18 @@ class VCDailyList: UIViewController {
         self.navigationItem.rightBarButtonItem!.imageInsets = UIEdgeInsetsMake(3, 0, 0, 0)
         
         // 为TableView添加刷新控件
-        self.refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(VCConsignPendingList.headerRefresh))
+        self.refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(headerRefresh))
         self.refreshHeader.setTitle("下拉刷新数据", for: .idle)
         self.refreshHeader.setTitle("松开刷新数据", for: .pulling)
         self.refreshHeader.setTitle("正在刷新数据...", for: .refreshing)
         self.refreshHeader.lastUpdatedTimeLabel.isHidden = true
-        self.dlTable.mj_header = refreshHeader
-        self.refreshFooter.setRefreshingTarget(self, refreshingAction: #selector(VCConsignPendingList.footerRefresh))
+        self.dlTable.mj_header = self.refreshHeader
+        self.refreshFooter.setRefreshingTarget(self, refreshingAction: #selector(footerRefresh))
         self.refreshFooter.setTitle("上拉加载更多", for: .idle)
         self.refreshFooter.setTitle("加载中...", for: .refreshing)
         self.refreshFooter.setTitle("没有更多数据了", for: .noMoreData)
         self.refreshFooter.stateLabel.isHidden = true
-        self.dlTable.mj_footer = refreshFooter
+        self.dlTable.mj_footer = self.refreshFooter
         
         // 取消所有多余分隔线
         self.dlTable.tableFooterView = UIView()
