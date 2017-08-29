@@ -44,12 +44,12 @@ extension Consign {
                     if (code == 1) {
                         var cpl = [Consign]()
                         let total = json["obj"]["total"].int!
-                        let obj = json["obj"]["list"]
-                        for i in 0..<obj.count {
+                        let list = json["obj"]["list"]
+                        for i in 0..<list.count {
                             let cp = Consign()
-                            cp.carId = obj[i]["carId"].string!
-                            cp.carLicenseNo = obj[i]["carNumber"].string!
-                            cp.carFrameNo = obj[i]["carShelfNumber"].string!
+                            cp.carId = list[i]["carId"].string!
+                            cp.carLicenseNo = list[i]["carNumber"].string!
+                            cp.carFrameNo = list[i]["carShelfNumber"].string!
                             cpl.append(cp)
                         }
                         completion(.normal, nil, total, cpl)
@@ -79,13 +79,13 @@ extension Consign {
                     if (code == 1) {
                         var cpl = [Consign]()
                         let total = json["obj"]["total"].int!
-                        let obj = json["obj"]["list"]
-                        for i in 0..<obj.count {
+                        let list = json["obj"]["list"]
+                        for i in 0..<list.count {
                             let cp = Consign()
-                            cp.id = obj[i]["id"].string!
-                            cp.carLicenseNo = obj[i]["carNumber"].string!
-                            cp.carFrameNo = obj[i]["carShelfNumber"].string!
-                            cp.consignBySelf = obj[i]["consignBySelf"].bool!
+                            cp.id = list[i]["id"].string!
+                            cp.carLicenseNo = list[i]["carNumber"].string!
+                            cp.carFrameNo = list[i]["carShelfNumber"].string!
+                            cp.consignBySelf = list[i]["consignBySelf"].bool!
                             cpl.append(cp)
                         }
                         completion(.normal, nil, total, cpl)
