@@ -452,6 +452,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="consignHistoryButton" destination="36z-bt-KLN" id="xxJ-y8-qGw"/>
+                        <outlet property="consignPendingButton" destination="0jz-Qj-2lo" id="6LO-wG-0Lu"/>
                         <outlet property="tabbarView" destination="PK4-8d-0lg" id="Emp-Ru-fMq"/>
                     </connections>
                 </viewController>

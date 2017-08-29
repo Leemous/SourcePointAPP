@@ -15,6 +15,8 @@ class VCConsignListPage: UIViewController {
     var historyList: VCConsignHistoryList!
     var controllers = [UIViewController]()
     
+    @IBOutlet weak var consignPendingButton: UIButton!
+    @IBOutlet weak var consignHistoryButton: UIButton!
     @IBOutlet weak var tabbarView: UIView!
     var sliderImageView: UIImageView!
     
@@ -36,6 +38,14 @@ class VCConsignListPage: UIViewController {
             }
             
             lastPage = currentPage
+            
+            if currentPage == self.consignPendingButton.tag - 100 {
+                self.consignPendingButton.setTitleColor(systemTintColor, for: .normal)
+                self.consignHistoryButton.setTitleColor(UIColor.darkGray, for: .normal)
+            } else {
+                self.consignPendingButton.setTitleColor(UIColor.darkGray, for: .normal)
+                self.consignHistoryButton.setTitleColor(systemTintColor, for: .normal)
+            }
         }
     }
     
