@@ -8,14 +8,20 @@
 //
 
 import UIKit
+import MJRefresh
 
 private let dailyCell = "dailyCell"
 
 class VCDailyList: UIViewController {
     
     let dlTable = UITableView()
+    let refreshHeader = MJRefreshNormalHeader()
+    let refreshFooter = MJRefreshAutoNormalFooter()
+    var lastRefreshTime = Date()
+    var total = 0
+    var pageNo = 0
+    let pageSize = 15
     var ds = [Daily]()
-    var refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,16 +31,7 @@ class VCDailyList: UIViewController {
         self.configTitleLabelByText(title: "日报")
         
         initView()
-        launchData()
-        
-        refreshControl.addTarget(self, action: #selector(VCDailyList.refreshData), for: .valueChanged)
-        refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新数据")
-        self.dlTable.addSubview(refreshControl)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.dlTable.mj_header.beginRefreshing()
     }
     
     private func initView() {
@@ -44,22 +41,36 @@ class VCDailyList: UIViewController {
         self.navigationItem.rightBarButtonItem = addDailyButton
         self.navigationItem.rightBarButtonItem!.imageInsets = UIEdgeInsetsMake(3, 0, 0, 0)
         
+        // 为TableView添加刷新控件
+        self.refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(VCConsignPendingList.headerRefresh))
+        self.refreshHeader.setTitle("下拉刷新数据", for: .idle)
+        self.refreshHeader.setTitle("松开刷新数据", for: .pulling)
+        self.refreshHeader.setTitle("正在刷新数据...", for: .refreshing)
+        self.refreshHeader.lastUpdatedTimeLabel.isHidden = true
+        self.dlTable.mj_header = refreshHeader
+        self.refreshFooter.setRefreshingTarget(self, refreshingAction: #selector(VCConsignPendingList.footerRefresh))
+        self.refreshFooter.setTitle("上拉加载更多", for: .idle)
+        self.refreshFooter.setTitle("加载中...", for: .refreshing)
+        self.refreshFooter.setTitle("没有更多数据了", for: .noMoreData)
+        self.refreshFooter.stateLabel.isHidden = true
+        self.dlTable.mj_footer = refreshFooter
+        
         // 取消所有多余分隔线
         self.dlTable.tableFooterView = UIView()
         self.view.addSubview(self.dlTable)
         
         self.dlTable.delegate = self
         self.dlTable.register(UITableViewCell.self, forCellReuseIdentifier: dailyCell)
+        
         self.dlTable.translatesAutoresizingMaskIntoConstraints = false
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tv]|", options: [], metrics: nil, views: ["tv": self.dlTable]))
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tv]|", options: [], metrics: nil, views: ["tv": self.dlTable]))
-        
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tv]|", options: [], metrics: nil, views: ["tv": self.dlTable]))        
     }
 
     private func launchData(completion: (() -> Swift.Void)? = nil) {
         // 设置日报数据
         let d = Daily()
-        d.getDailyList { (status: ReturnedStatus, msg: String?, ds: [Daily]?) in
+        d.getDailyList(pageNo: self.pageNo, pageSize: self.pageSize, lastRefreshDate: self.lastRefreshTime) { (status: ReturnedStatus, msg: String?, ds: [Daily]?) in
             switch status {
             case .normal:
                 self.dlTable.dataSource = self
@@ -91,13 +102,39 @@ class VCDailyList: UIViewController {
         }
     }
     
-    func refreshData() {
+    /// 下拉刷新数据
+    func headerRefresh() {
+        self.pageNo = 1
+        self.ds.removeAll()
+        self.lastRefreshTime = Date()
         self.launchData(completion: {
             self.dlTable.reloadData()
-            self.refreshControl.endRefreshing()
+            self.dlTable.mj_header.endRefreshing()
+            if self.total > self.pageNo * self.pageSize {
+                self.refreshFooter.stateLabel.isHidden = false
+                self.dlTable.mj_footer.endRefreshing()
+            } else {
+                self.dlTable.mj_footer.endRefreshingWithNoMoreData()
+            }
         })
     }
     
+    /// 上拉加载更多数据
+    func footerRefresh() {
+        self.pageNo += 1
+        self.launchData(completion: {
+            self.dlTable.reloadData()
+            if self.total > self.pageNo * self.pageSize {
+                self.dlTable.mj_footer.endRefreshing()
+            } else {
+                self.dlTable.mj_footer.endRefreshingWithNoMoreData()
+            }
+        })
+    }
+    
+    /// 添加日报
+    ///
+    /// - Parameter sender: <#sender description#>
     func addDaily(_ sender: AnyObject) {
         self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcAddDaily", animated: true, completion: nil)
         self.configNavigationBackItem(sourceViewController: self)

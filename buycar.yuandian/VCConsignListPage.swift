@@ -24,7 +24,7 @@ class VCConsignListPage: UIViewController {
             //一个微小的动画移动提示条
             let offset = self.view.bounds.width / 2.0 * CGFloat(currentPage)
             UIView.animate(withDuration: 0.3) { () -> Void in
-                self.sliderImageView.frame.origin = CGPoint(x: offset, y: 0)
+                self.sliderImageView.frame.origin = CGPoint(x: offset, y: -1)
             }
             
             //根据currentPage 和 lastPage的大小关系，控制页面的切换方向
@@ -59,7 +59,7 @@ class VCConsignListPage: UIViewController {
         controllers.append(historyList)
         
         //添加提示条到页面中
-        sliderImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width / 2.0, height: 1.0))
+        sliderImageView = UIImageView(frame: CGRect(x: 0, y: -1, width: self.view.frame.width / 2.0, height: 2.0))
         sliderImageView.backgroundColor = systemTintColor
         self.tabbarView.addSubview(sliderImageView)
         

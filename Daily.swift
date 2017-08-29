@@ -25,9 +25,9 @@ class Daily: CommonModel {
         self.id = id
     }
     
-    func getDailyList(completion: @escaping ((ReturnedStatus, String?, [Daily]?) -> Void)) {
+    func getDailyList(pageNo: Int!, pageSize: Int!, lastRefreshDate: Date!, completion: @escaping ((ReturnedStatus, String?, [Daily]?) -> Void)) {
         // 此处添加请求代码
-        Alamofire.request(Router.dailyList()).responseJSON { response in
+        Alamofire.request(Router.dailyList(pageNo, pageSize, Int64(lastRefreshDate.timeIntervalSince1970 * 1000))).responseJSON { response in
             if (response.result.isSuccess) {
                 // 请求成功
                 if let jsonValue = response.result.value {

@@ -108,6 +108,8 @@ class VCConsignPendingList: UIViewController {
             if self.total > self.pageNo * self.pageSize {
                 self.refreshFooter.stateLabel.isHidden = false
                 self.cplTable.mj_footer.endRefreshing()
+            } else {
+                self.cplTable.mj_footer.endRefreshingWithNoMoreData()
             }
         })
     }

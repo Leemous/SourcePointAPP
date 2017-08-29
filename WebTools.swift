@@ -28,7 +28,7 @@ enum Router: URLRequestConvertible {
     case login(String, String)
     case logout()
     case userinfo()
-    case dailyList()
+    case dailyList(Int, Int, Int64)
     case addDaily(String)
     case todayPurchase()
     case missingParts()
@@ -62,8 +62,9 @@ enum Router: URLRequestConvertible {
                 return ("/logout", nil)
             case .userinfo():
                 return ("/user/info", nil)
-            case .dailyList():
-                return ("/oa/dailylog", nil)
+            case .dailyList(let pageNo, let pageSize, let lastRefreshStamp):
+                let params = ["pageNo" : pageNo, "pageSize" : pageSize, "lastRefreshStamp" : lastRefreshStamp] as [String : Any]
+                return ("/oa/dailylog", params)
             case .addDaily(let content):
                 method = "POST"
                 let params = ["content" : "\(content)"]

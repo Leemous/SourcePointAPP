@@ -108,6 +108,8 @@ class VCConsignHistoryList: UIViewController {
                 // 下拉刷新数据时，如果总数大于一页的内容，则展示底部状态
                 self.refreshFooter.stateLabel.isHidden = false
                 self.chlTable.mj_footer.endRefreshing()
+            } else {
+                self.chlTable.mj_footer.endRefreshingWithNoMoreData()
             }
         })
     }
