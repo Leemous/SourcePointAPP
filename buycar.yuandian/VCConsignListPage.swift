@@ -23,28 +23,30 @@ class VCConsignListPage: UIViewController {
     var lastPage = 0
     var currentPage: Int = 0 {
         didSet {
-            //一个微小的动画移动提示条
-            let offset = self.view.bounds.width / 2.0 * CGFloat(currentPage)
-            UIView.animate(withDuration: 0.3) { () -> Void in
-                self.sliderImageView.frame.origin = CGPoint(x: offset, y: -1)
-            }
-            
-            //根据currentPage 和 lastPage的大小关系，控制页面的切换方向
-            if currentPage > lastPage {
-                self.pageViewController.setViewControllers([controllers[currentPage]], direction: .forward, animated: true, completion: nil)
-            }
-            else {
-                self.pageViewController.setViewControllers([controllers[currentPage]], direction: .reverse, animated: true, completion: nil)
-            }
-            
-            lastPage = currentPage
-            
-            if currentPage == self.consignPendingButton.tag - 100 {
-                self.consignPendingButton.setTitleColor(systemTintColor, for: .normal)
-                self.consignHistoryButton.setTitleColor(UIColor.darkGray, for: .normal)
-            } else {
-                self.consignPendingButton.setTitleColor(UIColor.darkGray, for: .normal)
-                self.consignHistoryButton.setTitleColor(systemTintColor, for: .normal)
+            if lastPage != currentPage {
+                //一个微小的动画移动提示条
+                let offset = self.view.bounds.width / 2.0 * CGFloat(currentPage)
+                UIView.animate(withDuration: 0.3) { () -> Void in
+                    self.sliderImageView.frame.origin = CGPoint(x: offset, y: -1)
+                }
+                
+                //根据currentPage 和 lastPage的大小关系，控制页面的切换方向
+                if currentPage > lastPage {
+                    self.pageViewController.setViewControllers([controllers[currentPage]], direction: .forward, animated: true, completion: nil)
+                }
+                else {
+                    self.pageViewController.setViewControllers([controllers[currentPage]], direction: .reverse, animated: true, completion: nil)
+                }
+                
+                lastPage = currentPage
+                
+                if currentPage == self.consignPendingButton.tag - 100 {
+                    self.consignPendingButton.setTitleColor(systemTintColor, for: .normal)
+                    self.consignHistoryButton.setTitleColor(UIColor.darkGray, for: .normal)
+                } else {
+                    self.consignPendingButton.setTitleColor(UIColor.darkGray, for: .normal)
+                    self.consignHistoryButton.setTitleColor(systemTintColor, for: .normal)
+                }
             }
         }
     }
