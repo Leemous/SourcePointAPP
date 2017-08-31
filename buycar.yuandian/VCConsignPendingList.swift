@@ -191,7 +191,7 @@ extension VCConsignPendingList: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: pendingCell, for: indexPath) as! TVCConsignPendingCell
         
         cell.consignPendingCellDelegate.carId = self.cs[indexPath.row].carId
-        cell.consignPendingCellDelegate.carLisenceNo = self.cs[indexPath.row].carLicenseNo + "\(indexPath.row)"
+        cell.consignPendingCellDelegate.carLisenceNo = self.cs[indexPath.row].carLicenseNo
         cell.consignPendingCellDelegate.carFrameNo = self.cs[indexPath.row].carFrameNo
         
         if cell.tag != 2000 {
