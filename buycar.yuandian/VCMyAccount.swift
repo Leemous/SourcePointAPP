@@ -16,6 +16,7 @@ class VCMyAccount: UIViewController {
     @IBOutlet weak var orgNameLabel: UILabel!
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var consignSettingView: UIView!
     
     let myAccountDelegate = MyAccountDelegate()
     
@@ -25,6 +26,10 @@ class VCMyAccount: UIViewController {
         self.configTitleLabelByText(title: "我的信息")
         
         self.logoutButton.addTarget(self, action: #selector(VCMyAccount.logout(_:)), for: .touchUpInside)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(VCMyAccount.clickConsignSetting))
+        self.consignSettingView.isUserInteractionEnabled = true
+        self.consignSettingView.addGestureRecognizer(tapGestureRecognizer)
         
         initView()
     }
@@ -41,6 +46,16 @@ class VCMyAccount: UIViewController {
     
     func logout(_ sender: AnyObject) {
         self.needsLogout()
+    }
+    
+    func clickConsignSetting() {
+        self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcConsignSetting", animated: true, completion: nil)
+        self.configNavigationBackItem(sourceViewController: self)
+    }
+    
+    // 用于从托运起点设置界面返回
+    @IBAction func backFromConsignSetting(_ seg: UIStoryboardSegue!) {
+        
     }
 }
 

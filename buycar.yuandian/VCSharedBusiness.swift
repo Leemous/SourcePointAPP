@@ -35,6 +35,9 @@ extension UIViewController {
         user.userLogoutCompletion = {
             let _ = self.removeStringFromUserDefaultsByKey(key: deviceIdKey)
             let _ = self.removeStringFromUserDefaultsByKey(key: userKey)
+            let _ = self.removeStringFromUserDefaultsByKey(key: defaultPlaceOfOriginIdKey)
+            let _ = self.removeStringFromUserDefaultsByKey(key: defaultPlaceOfOriginKey)
+            let _ = self.removeStringFromUserDefaultsByKey(key: defaultAddressKey)
             // 将首页设置成Login界面
             let w = (UIApplication.shared.delegate as! AppDelegate).window!
             let sb = UIStoryboard(name: "Login", bundle: nil)

@@ -109,7 +109,7 @@ extension Consign {
     func saveConsign(consign: Consign!, completion: @escaping ((ReturnedStatus, String?) -> Void)) {
         var paramDict: [String : Any] = [:]
         paramDict["carId"] = consign.carId
-        paramDict["consignBySelf"] = consign.consignBySelf
+        paramDict["consignBySelf"] = consign.consignBySelf! ? "true" : "false"
         if !consign.consignBySelf {
             // 非自运
             paramDict["placeOfOriginId"] = consign.placeOfOriginId

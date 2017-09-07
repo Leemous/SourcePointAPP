@@ -46,6 +46,8 @@ enum Router: URLRequestConvertible {
     case consignPendingList(Int, Int, Int64)
     case consignHistoryList(Int, Int, Int64)
     case getConsign(String)
+    case saveConsignSetting(String, String)
+    case getConsignSetting()
     
     func asURLRequest() throws -> URLRequest {
         var method = "GET"
@@ -114,6 +116,12 @@ enum Router: URLRequestConvertible {
             case .getConsign(let id):
                 let params = ["id" : id]
                 return ("/car/consign/get", params)
+            case .saveConsignSetting(let placeOfOriginId, let address):
+                method = "POST"
+                let params = ["placeOfOriginId" : placeOfOriginId, "address" : address]
+                return ("/car/consign/setting/update", params)
+            case .getConsignSetting:
+                return ("/car/consign/setting/get", nil)
             }
         }()
         let url = try baseUrl.asURL()

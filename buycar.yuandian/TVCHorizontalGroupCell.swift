@@ -61,6 +61,9 @@ class TVCHorizontalGroupCell: UITableViewCell {
             if horizontalGroupCellDelegate.placeholderText != nil {
                 self.textFieldView.placeholder = horizontalGroupCellDelegate.placeholderText
             }
+            if horizontalGroupCellDelegate.contentText != nil {
+                self.textFieldView.text = horizontalGroupCellDelegate.contentText
+            }
             break
         case .picker:
             guard clickToPick != nil else {
@@ -70,6 +73,10 @@ class TVCHorizontalGroupCell: UITableViewCell {
             if horizontalGroupCellDelegate.placeholderText != nil {
                 self.contentLabel.textColor = placeholderDefaultColor
                 self.contentLabel.text = horizontalGroupCellDelegate.placeholderText
+            }
+            if horizontalGroupCellDelegate.contentText != nil && horizontalGroupCellDelegate.contentText != "" {
+                self.contentLabel.text = horizontalGroupCellDelegate.contentText
+                self.contentLabel.textColor = UIColor.darkGray
             }
             // 添加一个下拉操作按钮
             self.contentButton = UIButton()
@@ -99,14 +106,26 @@ class TVCHorizontalGroupCell: UITableViewCell {
     /// 修改内容文本
     ///
     /// - Parameter contentText: 改变后的内容文本
-    func changeContentText(_ contentText: String!) {
+    func changeContentText(_ contentText: String?) {
         self.horizontalGroupCellDelegate.contentText = contentText
-        if contentText != nil {
-            self.contentLabel.text = contentText
-            self.contentLabel.textColor = UIColor.darkGray
-        } else {
-            self.contentLabel.text = self.horizontalGroupCellDelegate.placeholderText
-            self.contentLabel.textColor = placeholderDefaultColor
+        if self.contentLabel != nil {
+            if contentText != nil && contentText != "" {
+                self.contentLabel.text = contentText
+                self.contentLabel.textColor = UIColor.darkGray
+            } else {
+                self.contentLabel.text = self.horizontalGroupCellDelegate.placeholderText
+                self.contentLabel.textColor = placeholderDefaultColor
+            }
+        }
+    }
+    
+    /// 修改文本输入框内容
+    ///
+    /// - Parameter contentText: <#contentText description#>
+    func changeContentTextField(_ contentText: String?) {
+        self.horizontalGroupCellDelegate.contentText = contentText
+        if self.textFieldView != nil {
+            self.textFieldView.text = contentText
         }
     }
     
@@ -115,7 +134,7 @@ class TVCHorizontalGroupCell: UITableViewCell {
     /// - Parameters:
     ///   - contentKey: 内容值
     ///   - contentText: 内容文本
-    func changeContentKeyAndText(contentKey: String!, contentText: String!) {
+    func changeContentKeyAndText(contentKey: String?, contentText: String?) {
         self.horizontalGroupCellDelegate.contentKey = contentKey
         changeContentText(contentText)
     }

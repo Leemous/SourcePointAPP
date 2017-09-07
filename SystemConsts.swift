@@ -37,10 +37,13 @@ public let systemTinyFont = UIFont(name: "PingFang SC", size: 13)               
 // 用于在user default中使用的key
 public let userKey = "userNameKey"
 public let deviceIdKey = "deviceIdKey"
+public let defaultPlaceOfOriginIdKey = "defaultPlaceOfOriginIdKey"
+public let defaultPlaceOfOriginKey = "defaultPlaceOfOriginKey"
+public let defaultAddressKey = "defaultAddressKey"
 
 // HTTP请求地址
-//public let baseUrl = "http://192.168.1.110:8180/api"
-public let baseUrl = "https://ios.tymaker.cn/api"
+public let baseUrl = "http://192.168.1.102:8180/api"
+//public let baseUrl = "https://ios.tymaker.cn/api"
 //public let baseUrl = "http://59.110.112.15:8100/api"
 
 // 网络未连接的提示信息

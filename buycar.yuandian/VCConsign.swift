@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 
 private let horizontalGroupCell = "horizontalGroupCell"
 
@@ -114,10 +112,10 @@ class VCConsign: UIViewController {
     /// 保存托运单
     func saveConsign() {
         // 构造数据
-        var paramDict: [String : Any] = [:]
-        paramDict["carId"] = self.consignDelegate.carId
-        paramDict["consignBySelf"] = self.consignDelegate.consignBySelf! ? "true" : "false"
-        paramDict["remark"] = self.remarkText.text
+        let consign = Consign()
+        consign.carId = self.consignDelegate.carId
+        consign.consignBySelf = self.consignDelegate.consignBySelf
+        consign.remark = self.remarkText.text
         
         if !self.consignDelegate.consignBySelf {
             // 托运
@@ -125,33 +123,33 @@ class VCConsign: UIViewController {
                 self.alert(viewToBlock: nil, msg: "请选择托运起点")
                 return
             } else {
-                paramDict["placeOfOriginId"] = self.consignDelegate.placeOfOriginId
+                consign.placeOfOriginId = self.consignDelegate.placeOfOriginId
             }
             if self.consignDelegate.address == nil {
                 self.addressText.becomeFirstResponder()
                 self.alert(viewToBlock: nil, msg: "请填写起运详细地址")
                 return
             } else {
-                paramDict["address"] = self.consignDelegate.address
+                consign.address = self.consignDelegate.address
             }
             if self.consignDelegate.destinationId == nil {
                 self.alert(viewToBlock: nil, msg: "请选择托运终点")
                 return
             } else {
-                paramDict["destinationId"] = self.consignDelegate.destinationId
+                consign.destinationId = self.consignDelegate.destinationId
             }
             if self.consignDelegate.consignorId == nil {
                 self.alert(viewToBlock: nil, msg: "请选择托运人")
                 return
             } else {
-                paramDict["consignorId"] = self.consignDelegate.consignorId
+                consign.consignorId = self.consignDelegate.consignorId
             }
         }
         if self.consignDelegate.chargerId == nil {
             self.alert(viewToBlock: nil, msg: "请选择负责人")
             return
         } else {
-            paramDict["chargerId"] = self.consignDelegate.chargerId
+            consign.chargerId = self.consignDelegate.chargerId
         }
         
         // 显示遮罩层
@@ -159,28 +157,21 @@ class VCConsign: UIViewController {
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         
         // 保存到服务器
-        Alamofire.request(Router.saveConsign(paramDict)).responseJSON { response in
+        consign.saveConsign(consign: consign) { (status: ReturnedStatus, msg: String?) in
             if self.layer.superview != nil {
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
                 self.layer.removeFromSuperview()
             }
-            if (response.result.isSuccess) {
-                // 请求成功
-                if let jsonValue = response.result.value {
-                    let json = JSON(jsonValue)
-                    let code = json["code"].int
-                    let msg = json["msg"].string!
-                    if (code == 1) {
-                        // 保存成功，返回托运页面
-                        self.performSegue(withIdentifier: "backToConsignPendingList", sender: self)
-                    } else {
-                        self.alert(viewToBlock: nil, msg: msg)
-                    }
-                } else {
-                    self.alert(viewToBlock: nil, msg: "保存托运信息失败")
-                }
-            } else {
+            switch status {
+            case .normal:
+                // 保存成功，返回托运页面
+                self.performSegue(withIdentifier: "backToConsignPendingList", sender: self)
+            case .needLogin:
+                self.needsLogout()
+            case .noConnection:
                 self.alert(viewToBlock: nil, msg: msgNoConnection)
+            default:
+                break
             }
         }
     }
@@ -220,8 +211,6 @@ extension VCConsign: UITableViewDataSource {
             placeholderText = "请选择托运起点"
             horizontalGroupType = .picker
             let pickCompletion = { (key: String, text: String) in
-                cell.horizontalGroupCellDelegate.contentKey = key
-                cell.horizontalGroupCellDelegate.contentText = text
                 cell.changeContentKeyAndText(contentKey: key, contentText: text)
                 // 选中后修改委托中的记录值
                 self.consignDelegate.placeOfOriginId = key
@@ -243,6 +232,9 @@ extension VCConsign: UITableViewDataSource {
                     self.showTablePickerView(options: self.placeOfOrigins, completion: pickCompletion)
                 }
             }
+            // 设置默认值
+            self.consignDelegate.placeOfOriginId = self.getStringFromUserDefaultsByKey(key: defaultPlaceOfOriginIdKey)
+            cell.changeContentKeyAndText(contentKey: self.getStringFromUserDefaultsByKey(key: defaultPlaceOfOriginIdKey), contentText: self.getStringFromUserDefaultsByKey(key: defaultPlaceOfOriginKey))
         } else if !self.consignDelegate.consignBySelf && indexPath.row == 1 {
             // 非自运，起运详址
             groupText = "起运详址"
@@ -254,14 +246,15 @@ extension VCConsign: UITableViewDataSource {
             cell.afterTextChanged = { (newText: String) in
                 self.consignDelegate.address = newText
             }
+            // 设置默认值
+            self.consignDelegate.address = self.getStringFromUserDefaultsByKey(key: defaultAddressKey)
+            cell.horizontalGroupCellDelegate.contentText = self.getStringFromUserDefaultsByKey(key: defaultAddressKey)
         } else if !self.consignDelegate.consignBySelf && indexPath.row == 2 {
             // 非自运，托运终点
             groupText = "托运终点"
             placeholderText = "请选择托运终点"
             horizontalGroupType = .picker
             let pickCompletion = { (key: String, text: String) in
-                cell.horizontalGroupCellDelegate.contentKey = key
-                cell.horizontalGroupCellDelegate.contentText = text
                 cell.changeContentKeyAndText(contentKey: key, contentText: text)
                 // 选中后修改委托中的记录值
                 self.consignDelegate.destinationId = key
@@ -289,8 +282,6 @@ extension VCConsign: UITableViewDataSource {
             placeholderText = "请选择托运人"
             horizontalGroupType = .picker
             let pickCompletion = { (key: String, text: String) in
-                cell.horizontalGroupCellDelegate.contentKey = key
-                cell.horizontalGroupCellDelegate.contentText = text
                 cell.changeContentKeyAndText(contentKey: key, contentText: text)
                 // 选中后修改委托中的记录值
                 self.consignDelegate.consignorId = key
@@ -318,8 +309,6 @@ extension VCConsign: UITableViewDataSource {
             placeholderText = "请选择负责人"
             horizontalGroupType = .picker
             let pickCompletion = { (key: String, text: String) in
-                cell.horizontalGroupCellDelegate.contentKey = key
-                cell.horizontalGroupCellDelegate.contentText = text
                 cell.changeContentKeyAndText(contentKey: key, contentText: text)
                 // 选中后修改委托中的记录值
                 self.consignDelegate.chargerId = key

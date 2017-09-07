@@ -25,6 +25,8 @@
 		E41873B91F500F19006D61E1 /* SimplePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E41873B81F500F19006D61E1 /* SimplePickerCell.xib */; };
 		E41873BD1F53AC4A006D61E1 /* VCConsignListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41873BC1F53AC4A006D61E1 /* VCConsignListPage.swift */; };
 		E41D4E761EE10D730063A644 /* QNUploadUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E41D4E751EE10D730063A644 /* QNUploadUtil.m */; };
+		E424BA221F60DA97009C7337 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E424BA201F60DA97009C7337 /* Main.storyboard */; };
+		E424BA241F60F18C009C7337 /* VCConsignSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E424BA231F60F18C009C7337 /* VCConsignSetting.swift */; };
 		E4264E831F4BCF4E00709831 /* VCConsignPendingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4264E821F4BCF4E00709831 /* VCConsignPendingList.swift */; };
 		E4378A481EE57DCC00284E23 /* Qiniu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4378A471EE57DCC00284E23 /* Qiniu.swift */; };
 		E456F2001F0BF2990097C79D /* VLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E456F1FF1F0BF2990097C79D /* VLayerView.swift */; };
@@ -46,7 +48,6 @@
 		EA13B3ED1E82B9C60020F1FF /* VCAddDaily.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA13B3EC1E82B9C60020F1FF /* VCAddDaily.swift */; };
 		EA13B43D1E82EA410020F1FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA13B43B1E82EA410020F1FF /* LaunchScreen.storyboard */; };
 		EA1753F01E7FDB490020F407 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1753EF1E7FDB490020F407 /* AppDelegate.swift */; };
-		EA1753F51E7FDB490020F407 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA1753F31E7FDB490020F407 /* Main.storyboard */; };
 		EA1753F71E7FDB490020F407 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA1753F61E7FDB490020F407 /* Assets.xcassets */; };
 		EA1754051E7FDB490020F407 /* buycar_yuandianTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1754041E7FDB490020F407 /* buycar_yuandianTests.swift */; };
 		EA1754101E7FDB490020F407 /* buycar_yuandianUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA17540F1E7FDB490020F407 /* buycar_yuandianUITests.swift */; };
@@ -136,6 +137,8 @@
 		E41D4E731EE10D720063A644 /* buycar.yuandian-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "buycar.yuandian-Bridging-Header.h"; sourceTree = "<group>"; };
 		E41D4E741EE10D730063A644 /* QNUploadUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUploadUtil.h; sourceTree = "<group>"; };
 		E41D4E751EE10D730063A644 /* QNUploadUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNUploadUtil.m; sourceTree = "<group>"; };
+		E424BA211F60DA97009C7337 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = buycar.yuandian/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E424BA231F60F18C009C7337 /* VCConsignSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCConsignSetting.swift; sourceTree = "<group>"; };
 		E4264E821F4BCF4E00709831 /* VCConsignPendingList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCConsignPendingList.swift; sourceTree = "<group>"; };
 		E4378A471EE57DCC00284E23 /* Qiniu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Qiniu.swift; sourceTree = "<group>"; };
 		E456F1FF1F0BF2990097C79D /* VLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLayerView.swift; sourceTree = "<group>"; };
@@ -158,7 +161,6 @@
 		EA13B43C1E82EA410020F1FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = buycar.yuandian/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA1753EC1E7FDB490020F407 /* buycar.yuandian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = buycar.yuandian.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA1753EF1E7FDB490020F407 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EA1753F41E7FDB490020F407 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA1753F61E7FDB490020F407 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA1753FB1E7FDB490020F407 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA1754001E7FDB490020F407 /* buycar.yuandianTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = buycar.yuandianTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -323,11 +325,11 @@
 				EA105F7B1E84192900705ECD /* CarPhotoHeaderView.xib */,
 				E469B6501EFFCD0900C264B4 /* CarPurchaseCell.xib */,
 				EAEC5DB21E88D1C3006C8CD9 /* CheckItemCell.xib */,
+				E424BA201F60DA97009C7337 /* Main.storyboard */,
 				EAACCD4F1E817DD200AA8DB9 /* FeatureCell.xib */,
 				EAACCD3D1E80FCDE00AA8DB9 /* NoConnectionView.xib */,
 				EAACCD3F1E80FCF400AA8DB9 /* NoDataView.xib */,
 				EA13B43B1E82EA410020F1FF /* LaunchScreen.storyboard */,
-				EA1753F31E7FDB490020F407 /* Main.storyboard */,
 				E418739C1F4D22DE006D61E1 /* ConsignPendingCell.xib */,
 				E418739E1F4D2E1D006D61E1 /* ConsignHistoryCell.xib */,
 				E41873AC1F4EC687006D61E1 /* HorizontalGroupCell.xib */,
@@ -390,6 +392,7 @@
 				E41873A61F4EA258006D61E1 /* VCConsignDetail.swift */,
 				E41873B41F500CC2006D61E1 /* VCSimplePicker.swift */,
 				E41873BC1F53AC4A006D61E1 /* VCConsignListPage.swift */,
+				E424BA231F60F18C009C7337 /* VCConsignSetting.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -543,11 +546,11 @@
 				E469B6511EFFCD0900C264B4 /* CarPurchaseCell.xib in Resources */,
 				EA13B43D1E82EA410020F1FF /* LaunchScreen.storyboard in Resources */,
 				EAACCD3E1E80FCDE00AA8DB9 /* NoConnectionView.xib in Resources */,
+				E424BA221F60DA97009C7337 /* Main.storyboard in Resources */,
 				EAEC5DB31E88D1C3006C8CD9 /* CheckItemCell.xib in Resources */,
 				E418739D1F4D22DE006D61E1 /* ConsignPendingCell.xib in Resources */,
 				EA105F7C1E84192900705ECD /* CarPhotoHeaderView.xib in Resources */,
 				EAACCD501E817DD200AA8DB9 /* FeatureCell.xib in Resources */,
-				EA1753F51E7FDB490020F407 /* Main.storyboard in Resources */,
 				EAACCD2B1E80C85600AA8DB9 /* Login.storyboard in Resources */,
 				EAACCD401E80FCF400AA8DB9 /* NoDataView.xib in Resources */,
 				EA105F741E83893500705ECD /* CarPhotoCell.xib in Resources */,
@@ -727,6 +730,7 @@
 				E469B65B1EFFCD5300C264B4 /* VCDatePicker.swift in Sources */,
 				EA13B3EB1E82A88F0020F1FF /* VCMyAccount.swift in Sources */,
 				EAACCD3C1E80E69400AA8DB9 /* CommonModel.swift in Sources */,
+				E424BA241F60F18C009C7337 /* VCConsignSetting.swift in Sources */,
 				EA1754241E7FDD880020F407 /* SystemConsts.swift in Sources */,
 				E4264E831F4BCF4E00709831 /* VCConsignPendingList.swift in Sources */,
 				EAACCD561E818B0300AA8DB9 /* CheckItem.swift in Sources */,
@@ -800,21 +804,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		E424BA201F60DA97009C7337 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E424BA211F60DA97009C7337 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		EA13B43B1E82EA410020F1FF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				EA13B43C1E82EA410020F1FF /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		EA1753F31E7FDB490020F407 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EA1753F41E7FDB490020F407 /* Base */,
-			);
-			name = Main.storyboard;
-			path = buycar.yuandian;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
