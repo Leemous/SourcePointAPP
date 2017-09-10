@@ -172,9 +172,7 @@ class VCConsignPendingList: UIViewController {
     ///
     /// - Parameter seg: <#seg description#>
     @IBAction func backToConsignPendingList(_ seg: UIStoryboardSegue!) {
-        self.launchData(completion: {
-            self.cplTable.reloadData()
-        })
+        self.cplTable.mj_header.beginRefreshing()
     }
 }
 

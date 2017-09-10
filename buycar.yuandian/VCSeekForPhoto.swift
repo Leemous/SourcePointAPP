@@ -48,7 +48,7 @@ class VCSeekForPhoto: UIViewController {
         let viewToBlock = self.seekButton
         // 此处开始查询
         if self.checkEmpty(textfield: self.lisenceText) && self.checkEmpty(textfield: self.frameText) {
-            self.alert(viewToBlock: viewToBlock, msg: "请至少输入一项条件进行查询")
+            self.alert(viewToBlock: viewToBlock, msg: "请输入查询条件")
             return
         }
         var router: Router!
