@@ -11,6 +11,24 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    
+    /// 获得当前视图
+    ///
+    /// - Parameter base:UIApplication下获取的rootViewController
+    /// - Returns: 当前视图的UIViewController
+    class func currentViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return currentViewController(base: nav.visibleViewController)
+        }
+        if let tab = base as? UITabBarController {
+            return currentViewController(base: tab.selectedViewController)
+        }
+        if let presented = base?.presentedViewController {
+            return currentViewController(base: presented)
+        }
+        return base
+    }
+    
     // 检查用户是否处于登录状态，如果处于登录状态，则返回true
     func isLogined() -> Bool {
         var logined = true
@@ -107,28 +125,54 @@ extension UIViewController {
         pickerView.pickCompletion = completion
         self.present(pickerView, animated: true, completion: nil)
     }
+    
+    /// 点击图片放大，全屏展示
+    ///
+    /// - Parameters:
+    ///   - imageView: 被点击的UIImageView
+    ///   - alpha: 放大后的背景透明度
+    func showBigImageWithImageView(imageView: UIImageView!, alpha: CGFloat) {
+        guard imageView.image != nil else {
+            return
+        }
+        // 要放大展示的图像
+        let image = imageView.image
+        // 放大后的背景层
+        let backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+        backgroundView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: alpha)
+        backgroundView.alpha = 0
+        // 放大后的图像容器
+        let bigImageView = UIImageView(frame: imageView.bounds)
+        bigImageView.image = image
+        bigImageView.tag = 500
+        bigImageView.contentMode = .scaleAspectFit
+        backgroundView.addSubview(bigImageView)
+        self.view.addSubview(backgroundView)
+        
+        // 动画展示
+        UIView.animate(withDuration: 0.4) {
+            let width = screenWidth
+            let height = image!.size.height * width / image!.size.width
+            let y = (screenHeight - height) * 0.5
+            
+            bigImageView.frame = CGRect(x: 0, y: y, width: width, height: height)
+            backgroundView.alpha = 1
+        }
+        
+        // 点击大图缩小
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideBigImage))
+        backgroundView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    /// 点击隐藏大图
+    ///
+    /// - Parameter tap: 手势操作
+    func hideBigImage(tap: UITapGestureRecognizer) {
+        let backgroundView = tap.view
+        UIView.animate(withDuration: 0.4, animations: {
+            backgroundView?.alpha = 0
+        }) { (finished) in
+            backgroundView?.removeFromSuperview()
+        }
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

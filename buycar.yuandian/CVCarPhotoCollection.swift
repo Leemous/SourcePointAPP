@@ -1,6 +1,6 @@
 //
 //  CVCarPhotoCollection.swift
-// 
+//
 //  显示和添加车辆照片的collection view
 //
 //  Created by 姬鹏 on 2017/3/23.
@@ -18,10 +18,10 @@ class CVCarPhotoCollection: UICollectionView {
     
     override func draw(_ rect: CGRect) {
         self.dataSource = self
-
+        
         // 注册collection view头
         self.register(UINib(nibName: "CarPhotoHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: carPhotoHeader)
-
+        
         // 注册功能区Cell
         self.register(UINib(nibName: "CarPhotoCell", bundle: nil), forCellWithReuseIdentifier: carPhotoCell)
     }
@@ -31,7 +31,7 @@ class CVCarPhotoCollection: UICollectionView {
         if n == 0 {
             return 0
         }
-
+        
         switch n%3 {
         case 1, 2: // 余数为1或2时，说明一行不满，不必加高度
             return 0
@@ -60,41 +60,35 @@ extension CVCarPhotoCollection: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch self.carPhotoCollectionDelegate.carPhotos.count {
-        case 0:
-            return 1
-        default:
-            return self.carPhotoCollectionDelegate.carPhotos.count + 1
-        }
+        return self.carPhotoCollectionDelegate.carPhotos.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: carPhotoCell, for: indexPath) as! CVCCarPhotoCell
         
         // 将已有的图片放到单元格中，并将最后一个设置为缺省图片
-        switch indexPath.item {
-        case 0:
-            if self.carPhotoCollectionDelegate.carPhotos.count == 0 {
-                cell.setItem(UIImage(named: "defaultCatchImage")!, setted: false)
+        if indexPath.item < self.carPhotoCollectionDelegate.carPhotos.count {
+            let canRemove = indexPath.item >= self.carPhotoCollectionDelegate.originPhotoCount
+            if (canRemove) {
+                cell.setRemovableItem(self.carPhotoCollectionDelegate.carPhotos[indexPath.item], removeCompletion: {
+                    // 删除照片
+                    if let rc = self.carPhotoCollectionDelegate.removeCallback {
+                        rc(indexPath.item)
+                    }
+                })
             } else {
-                let canDelete = indexPath.item >= self.carPhotoCollectionDelegate.originPhotoCount
-                cell.setItem(self.carPhotoCollectionDelegate.carPhotos[indexPath.item], setted: canDelete)
+                cell.setItem(self.carPhotoCollectionDelegate.carPhotos[indexPath.item])
             }
-        default:
-            if indexPath.item < self.carPhotoCollectionDelegate.carPhotos.count {
-                let canDelete = indexPath.item >= self.carPhotoCollectionDelegate.originPhotoCount
-                cell.setItem(self.carPhotoCollectionDelegate.carPhotos[indexPath.item], setted: canDelete)
-            } else {
-                cell.setItem(UIImage(named: "defaultCatchImage")!, setted: false)
-            }
+        } else {
+            cell.setItem(UIImage(named: "defaultCatchImage")!, imageClick: self.carPhotoCollectionDelegate.pickerImageClick)
         }
         
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let v = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: carPhotoHeader, for: indexPath) as UICollectionReusableView
-
+        
         return v
     }
 }
@@ -112,30 +106,8 @@ class CarPhotoCollectionDelegate {
     var carPhotos: [UIImage]!
     // 已上传的文件url
     var uploadedFileUrls: [String]!
+    // 照片选择事件
+    var pickerImageClick: (() -> Void)!
+    // 移除图片完成后的回调处理
+    var removeCallback: ((_ removeIndex: Int) -> Void)!
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

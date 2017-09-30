@@ -1,6 +1,6 @@
 //
 //  VCCarPhoto.swift
-//  
+//
 //  收车和监销的车辆照片列表界面
 //
 //  Created by 姬鹏 on 2017/3/24.
@@ -20,9 +20,9 @@ class VCCarPhoto: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     var pickedPhoto: UIImage!
     var pickedIndex: Int!
-
+    
     var carPhotoDelegate = CarPhotoDelegate()
-
+    
     var cameraPicker: UIImagePickerController!
     var photoPicker: UIImagePickerController!
     
@@ -32,7 +32,7 @@ class VCCarPhoto: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         super.viewDidLoad()
         
         self.configTitleLabelByText(title: self.carPhotoDelegate.photoTitle)
-
+        
         self.initView()
         
         self.cameraPicker = self.initCameraPicker()
@@ -40,7 +40,7 @@ class VCCarPhoto: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         self.photoPicker = self.initPhotoPicker()
         self.photoPicker.delegate = self
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -61,8 +61,6 @@ class VCCarPhoto: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         self.cpc.isScrollEnabled = true
         self.cpc.alwaysBounceVertical = true
         self.cpc.backgroundColor = textInTintColor
-
-        self.cpc.delegate = self
         
         self.cpc.carPhotoCollectionDelegate.originPhotoCount = self.carPhotoDelegate.carPhotos.count
         self.cpc.carPhotoCollectionDelegate.carPhotos = self.carPhotoDelegate.carPhotos
@@ -70,6 +68,21 @@ class VCCarPhoto: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         self.cpc.carPhotoCollectionDelegate.successCount = 0
         self.cpc.carPhotoCollectionDelegate.failedCount = 0
         self.cpc.carPhotoCollectionDelegate.uploadedFileUrls = [String]()
+        self.cpc.carPhotoCollectionDelegate.pickerImageClick = {
+            self.presentAlertAction { (type: Int) in
+                if type == 0 {
+                    self.present(self.cameraPicker, animated: true, completion: nil)
+                } else {
+                    self.present(self.photoPicker, animated: true, completion: nil)
+                }
+            }
+        }
+        self.cpc.carPhotoCollectionDelegate.removeCallback = { (removeIndex: Int) -> Void in
+            // 更新照片数组
+            self.cpc.carPhotoCollectionDelegate.uploadCount! -= 1
+            self.cpc.carPhotoCollectionDelegate.carPhotos.remove(at: removeIndex)
+            self.cpc.reloadData()
+        }
         
         // 计算collection view的实际高度
         self.view.addSubview(self.cpc)
@@ -80,7 +93,7 @@ class VCCarPhoto: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         // 遮罩层
         self.layer = VLayerView(layerMessage: "正在上传图片...")
     }
-
+    
     func saveCarPhoto(_ sender: UIViewController) {
         // 需要上传的图片
         var toUploadImages = [Data]()
@@ -125,7 +138,7 @@ class VCCarPhoto: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         self.pickedPhoto = info[UIImagePickerControllerOriginalImage] as! UIImage
         self.cpc.carPhotoCollectionDelegate.uploadCount! += 1
         self.cpc.carPhotoCollectionDelegate.carPhotos.append(pickedPhoto)
-
+        
         self.cpc.reloadData()
     }
     
@@ -170,31 +183,6 @@ class VCCarPhoto: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     }
 }
 
-extension VCCarPhoto: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! CVCCarPhotoCell
-
-        self.pickedIndex = indexPath.item
-        if cell.setted {
-            cell.setItem(UIImage(named: "defaultCatchImage")!, setted: false)
-
-            // 更新照片数组
-            self.cpc.carPhotoCollectionDelegate.uploadCount! -= 1
-            self.cpc.carPhotoCollectionDelegate.carPhotos.remove(at: pickedIndex)
-            collectionView.reloadData()
-            
-        } else if self.pickedIndex == self.cpc.carPhotoCollectionDelegate.carPhotos.count {
-            self.presentAlertAction { (type: Int) in
-                if type == 0 {
-                    self.present(self.cameraPicker, animated: true, completion: nil)
-                } else {
-                    self.present(self.photoPicker, animated: true, completion: nil)
-                }
-            }
-        }
-    }
-}
-
 class CarPhotoDelegate {
     var seekFor: SeekForType!
     var carId: String!
@@ -204,28 +192,3 @@ class CarPhotoDelegate {
     var frameNo: String!
     var carPhotos: [UIImage]!
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

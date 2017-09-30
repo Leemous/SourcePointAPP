@@ -1,6 +1,6 @@
 //
 //  VCCarPurchase.swift
-// 
+//
 //  收车界面的view controller，对应的storyboard是Main
 //
 //  Created by 姬鹏 on 2017/3/23.
@@ -16,7 +16,7 @@ private let checkItemCell = "checkItemCell"
 private let checkItemHeanderCell = "checkItemHeaderCell"
 
 class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     @IBOutlet weak var carInfoTable: UITableView!
     
     var cps = CarPurchase()
@@ -25,13 +25,13 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
     var hv: VCarInfoView!
     var cpc: CVCarPhotoCollection!
     var lv: UIView!
-
+    
     // 创建一个作为header的容器view
     var headerView: UIView!
-
+    
     var cameraPicker: UIImagePickerController!
     var photoPicker: UIImagePickerController!
-
+    
     var pickedPhoto: UIImage!
     var pickedIndex: Int!
     
@@ -39,7 +39,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.configTitleLabelByText(title: "收车")
         
         initView()
@@ -59,7 +59,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         // 强制报废日期
         self.hv.forceScrappedDateText.delegate = self
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -68,12 +68,12 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
     private func initView() {
         self.headerView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 0))
         self.headerView.backgroundColor = heavyBackgroundColor
-
+        
         // 初始化header view的第一段
         self.hv = VCarInfoView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 408))
         self.hv.backgroundColor = UIColor.white
         self.headerView.addSubview(self.hv)
-
+        
         // 初始化header view的第二段
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
@@ -84,8 +84,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.cpc = CVCarPhotoCollection(frame: CGRect(x: 0, y: 418, width: screenWidth, height: 146), collectionViewLayout: layout)
         self.cpc.backgroundColor = UIColor.white
         self.cpc.isScrollEnabled = false
-        self.cpc.delegate = self
-
+        
         // 计算collection view的实际高度
         self.cpc.frame.size.height += self.cpc.getNeedAddedHeight(availableImageNumber: 1)
         self.headerView.addSubview(self.cpc)
@@ -121,6 +120,49 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.cpc.carPhotoCollectionDelegate.failedCount = 0
         // 保存的url数组为空
         self.cpc.carPhotoCollectionDelegate.uploadedFileUrls = []
+        // 更新照片数组
+        self.cpc.carPhotoCollectionDelegate.uploadCount! -= 1
+        // 图片选择事件
+        self.cpc.carPhotoCollectionDelegate.pickerImageClick = {
+            // 利用委托记录当前值
+            if let lisenceText = self.hv.lisenceText {
+                self.hv.carInfoViewDelegate.lisenceNo = lisenceText.text
+            }
+            
+            if let frameText = self.hv.frameText {
+                self.hv.carInfoViewDelegate.frameNo = frameText.text
+            }
+            
+            if let scrapValueText = self.hv.scrapValueText {
+                self.hv.carInfoViewDelegate.scrapValue = scrapValueText.text
+            }
+            
+            if let memoText = self.hv.memoText {
+                self.hv.carInfoViewDelegate.memo = memoText.text
+            }
+            
+            self.presentAlertAction { (type: Int) in
+                if type == 0 {
+                    self.present(self.cameraPicker, animated: true, completion: nil)
+                } else {
+                    self.present(self.photoPicker, animated: true, completion: nil)
+                }
+            }
+        }
+        // 移除图片回调
+        self.cpc.carPhotoCollectionDelegate.removeCallback = { (removeIndex: Int) -> Void in
+            // 更新照片数组
+            self.cpc.carPhotoCollectionDelegate.uploadCount! -= 1
+            self.cpc.carPhotoCollectionDelegate.carPhotos.remove(at: removeIndex)
+            // 重新计算table header view的高度
+            let removedH = self.cpc.getNeedRemovedHeight(availableImageNumber: self.cpc.carPhotoCollectionDelegate.carPhotos.count)
+            self.cpc.frame.size.height -= removedH
+            self.headerView.frame.size.height -= removedH
+            self.lv.frame.origin.y -= removedH
+            self.carInfoTable.tableHeaderView = self.headerView
+            
+            self.cpc.reloadData()
+        }
         
         // 遮罩层
         self.layer = VLayerView(layerMessage: "正在保存数据...")
@@ -145,7 +187,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
                 
                 self.carInfoTable.dataSource = self
                 self.carInfoTable.delegate = self
-
+                
                 self.carInfoTable.separatorInset = UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 18)
                 
                 self.carInfoTable.register(UINib(nibName: "CheckItemCell", bundle: nil), forCellReuseIdentifier: checkItemCell)
@@ -235,7 +277,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.pickedPhoto = info[UIImagePickerControllerOriginalImage] as! UIImage
         self.cpc.carPhotoCollectionDelegate.uploadCount! += 1
         self.cpc.carPhotoCollectionDelegate.carPhotos.append(pickedPhoto)
-
+        
         // 重新计算table header view的高度
         let addedH = self.cpc.getNeedAddedHeight(availableImageNumber: self.cpc.carPhotoCollectionDelegate.carPhotos.count)
         self.cpc.frame.size.height += addedH
@@ -294,10 +336,10 @@ extension VCCarPurchase: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.cis[section].itemOptions.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: checkItemCell, for: indexPath) as! TVCCheckItemCell
-
+        
         cell.selectionStyle = .none
         
         cell.itemName.text = self.cis[indexPath.section].itemOptions[indexPath.row].optionName
@@ -335,7 +377,7 @@ extension VCCarPurchase: UITableViewDelegate {
         
         h!.backgroundView = UIView()
         h!.contentView.backgroundColor = UIColor.white
-
+        
         var qlbl = h!.contentView.viewWithTag(1001) as? UILabel
         if qlbl == nil {
             // 添加一个文本框
@@ -343,7 +385,7 @@ extension VCCarPurchase: UITableViewDelegate {
             qlbl!.tag = 1001
             h!.contentView.addSubview(qlbl!)
         }
-
+        
         qlbl!.translatesAutoresizingMaskIntoConstraints = false
         h!.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-18-[hil]", options: .alignAllCenterY, metrics: nil, views: ["hil": qlbl!]))
         h!.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-9-[hil]", options: .alignAllCenterY, metrics: nil, views: ["hil":qlbl!]))
@@ -362,7 +404,7 @@ extension VCCarPurchase: UITableViewDelegate {
         h!.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[hline1(1)]", options: [], metrics: nil, views: ["hline1": hline1]))
         
         hline1.backgroundColor = separatorLineColor
-
+        
         return h
     }
     
@@ -373,56 +415,6 @@ extension VCCarPurchase: UITableViewDelegate {
         return nil
     }
 }
-
-extension VCCarPurchase: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! CVCCarPhotoCell
-        
-        self.pickedIndex = indexPath.item
-        if cell.setted {
-            cell.setItem(UIImage(named: "defaultCatchImage")!, setted: false)
-            
-            // 更新照片数组
-            self.cpc.carPhotoCollectionDelegate.uploadCount! -= 1
-            self.cpc.carPhotoCollectionDelegate.carPhotos.remove(at: pickedIndex)
-            // 重新计算table header view的高度
-            let removedH = self.cpc.getNeedRemovedHeight(availableImageNumber: self.cpc.carPhotoCollectionDelegate.carPhotos.count)
-            self.cpc.frame.size.height -= removedH
-            self.headerView.frame.size.height -= removedH
-            self.lv.frame.origin.y -= removedH
-            self.carInfoTable.tableHeaderView = self.headerView
-
-            collectionView.reloadData()
-            
-        } else {
-            // 利用委托记录当前值
-            if let lisenceText = self.hv.lisenceText {
-                self.hv.carInfoViewDelegate.lisenceNo = lisenceText.text
-            }
-            
-            if let frameText = self.hv.frameText {
-                self.hv.carInfoViewDelegate.frameNo = frameText.text
-            }
-            
-            if let scrapValueText = self.hv.scrapValueText {
-                self.hv.carInfoViewDelegate.scrapValue = scrapValueText.text
-            }
-            
-            if let memoText = self.hv.memoText {
-                self.hv.carInfoViewDelegate.memo = memoText.text
-            }
-            
-            self.presentAlertAction { (type: Int) in
-                if type == 0 {
-                    self.present(self.cameraPicker, animated: true, completion: nil)
-                } else {
-                    self.present(self.photoPicker, animated: true, completion: nil)
-                }
-            }
-        }
-    }
-}
-
 
 // MARK: - 自定义文本输入框委托
 extension VCCarPurchase: UITextFieldDelegate {
@@ -448,30 +440,3 @@ extension VCCarPurchase: UITextFieldDelegate {
 class CarPurchaseDelegate {
     var carPurchase: CarPurchase!
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
