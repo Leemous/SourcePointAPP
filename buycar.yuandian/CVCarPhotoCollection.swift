@@ -32,7 +32,7 @@ class CVCarPhotoCollection: UICollectionView {
             return 0
         }
         
-        switch n%3 {
+        switch n % 3 {
         case 1, 2: // 余数为1或2时，说明一行不满，不必加高度
             return 0
         default:    // 余数为0时，说明一行已满，需要加一行高度
@@ -45,7 +45,7 @@ class CVCarPhotoCollection: UICollectionView {
             return 0
         }
         
-        switch n%3 {
+        switch n % 3 {
         case 0, 1:  // 余数为0或1时，说明该行还有单元，不必减高度
             return 0
         default:    // 余数为2时，说明单元格正好充满整，所以需要减去多余的一行高度
@@ -60,7 +60,7 @@ extension CVCarPhotoCollection: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.carPhotoCollectionDelegate.carPhotos.count + 1
+        return self.carPhotoCollectionDelegate.carPhotos.count + (self.carPhotoCollectionDelegate.allowAdd ? 1 : 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -94,6 +94,7 @@ extension CVCarPhotoCollection: UICollectionViewDataSource {
 }
 
 class CarPhotoCollectionDelegate {
+    var allowAdd: Bool! = true
     // 原始照片数量
     var originPhotoCount: Int!
     // 本次上传照片数量
