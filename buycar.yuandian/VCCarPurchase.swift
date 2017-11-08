@@ -120,8 +120,6 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.cpc.carPhotoCollectionDelegate.failedCount = 0
         // 保存的url数组为空
         self.cpc.carPhotoCollectionDelegate.uploadedFileUrls = []
-        // 更新照片数组
-        self.cpc.carPhotoCollectionDelegate.uploadCount! -= 1
         // 图片选择事件
         self.cpc.carPhotoCollectionDelegate.pickerImageClick = {
             // 利用委托记录当前值
@@ -237,7 +235,6 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
             saveData()
         }
     }
-    
     
     /// TODO 需要将此方法和VCCarPhoto.swift中的savePhoto抽象成一个方法
     func uploadPhoto() {
