@@ -41,10 +41,10 @@ public let defaultPlaceOfOriginIdKey = "defaultPlaceOfOriginIdKey"
 public let defaultPlaceOfOriginKey = "defaultPlaceOfOriginKey"
 public let defaultAddressKey = "defaultAddressKey"
 
-// HTTP请求地址
-public let baseUrl = "http://192.168.1.114:8180/api"
-//public let baseUrl = "https://ios.tymaker.cn/api"
-//public let baseUrl = "http://59.110.112.15:8100/api"
+// HTTP请求地址-线上
+//public let baseUrl = "https://car.ios.iyuandian.net/api"
+// HTTP请求地址-测试
+public let baseUrl = "http://59.110.112.15:8100/api"
 
 // 网络未连接的提示信息
 public let msgNoConnection = "未检测到网络连接"
