@@ -96,13 +96,13 @@ extension CVCarPhotoCollection: UICollectionViewDataSource {
 class CarPhotoCollectionDelegate {
     var allowAdd: Bool! = true
     // 原始照片数量
-    var originPhotoCount: Int!
+    var originPhotoCount: Int! = 0
     // 本次上传照片数量
-    var uploadCount: Int!
+    var uploadCount: Int! = 0
     // 本次上传成功数量
-    var successCount: Int!
+    var successCount: Int! = 0
     // 本次上传失败数量
-    var failedCount: Int!
+    var failedCount: Int! = 0
     // 全部照片
     var carPhotos: [UIImage]!
     // 已上传的文件url

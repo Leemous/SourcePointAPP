@@ -48,6 +48,7 @@ enum Router: URLRequestConvertible {
     case getConsign(String)
     case saveConsignSetting(String, String)
     case getConsignSetting()
+    case seekCarDetail(String, String)
     
     func asURLRequest() throws -> URLRequest {
         var method = "GET"
@@ -122,6 +123,9 @@ enum Router: URLRequestConvertible {
                 return ("/car/consign/setting/update", params)
             case .getConsignSetting:
                 return ("/car/consign/setting/get", nil)
+            case .seekCarDetail(let carNumber, let carShelfNumber):
+                let params = ["carNumber":"\(carNumber)", "carShelfNumber":"\(carShelfNumber)"]
+                return ("/car/queryCarInfoDetail", params)
             }
         }()
         let url = try baseUrl.asURL()

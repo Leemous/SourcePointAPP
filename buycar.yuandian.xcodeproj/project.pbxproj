@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F0AE4DE392D99216CE0BDB1 /* Pods_buycar_yuandianTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89528B727E3DCA439FBE9255 /* Pods_buycar_yuandianTests.framework */; };
 		73C1C5A2D8E437396A63F1B8 /* Pods_buycar_yuandianUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE270EA97796B68EBC795D3 /* Pods_buycar_yuandianUITests.framework */; };
+		E407287D1FB4531B00863F54 /* TVCarCheckItemTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E407287C1FB4531B00863F54 /* TVCarCheckItemTable.swift */; };
 		E41873971F4D1566006D61E1 /* Consign.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41873961F4D1566006D61E1 /* Consign.swift */; };
 		E41873991F4D1E9A006D61E1 /* TVCConsignHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41873981F4D1E9A006D61E1 /* TVCConsignHistoryCell.swift */; };
 		E418739D1F4D22DE006D61E1 /* ConsignPendingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E418739C1F4D22DE006D61E1 /* ConsignPendingCell.xib */; };
@@ -32,7 +33,11 @@
 		E456F2001F0BF2990097C79D /* VLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E456F1FF1F0BF2990097C79D /* VLayerView.swift */; };
 		E469B6511EFFCD0900C264B4 /* CarPurchaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E469B6501EFFCD0900C264B4 /* CarPurchaseCell.xib */; };
 		E469B65B1EFFCD5300C264B4 /* VCDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E469B65A1EFFCD5300C264B4 /* VCDatePicker.swift */; };
+		E4776C631FB332360085FE52 /* VCSeekForCarDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4776C621FB332360085FE52 /* VCSeekForCarDetail.swift */; };
 		E4A435021F4AB13300C9221E /* TVCConsignPendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A435011F4AB13300C9221E /* TVCConsignPendingCell.swift */; };
+		E4EEB5751FB34D1C0022673D /* VCCarDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EEB5741FB34D1C0022673D /* VCCarDetail.swift */; };
+		E4FC55831FB4A0F400B54AE3 /* VCarTextGroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FC55821FB4A0F400B54AE3 /* VCarTextGroupsView.swift */; };
+		E4FC558B1FB5897800B54AE3 /* VTextGroupTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FC558A1FB5897800B54AE3 /* VTextGroupTitleView.swift */; };
 		E6288CBF8C458BCE87438A56 /* Pods_buycar_yuandian.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15DE131EE952E0EFA857EFF1 /* Pods_buycar_yuandian.framework */; };
 		EA105F6C1E83721200705ECD /* VCCarPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA105F6B1E83721200705ECD /* VCCarPurchase.swift */; };
 		EA105F6E1E83739A00705ECD /* VCarInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA105F6D1E83739A00705ECD /* VCarInfoView.swift */; };
@@ -119,6 +124,7 @@
 		B34B2273739884483DCB2893 /* Pods-buycar.yuandianUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buycar.yuandianUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-buycar.yuandianUITests/Pods-buycar.yuandianUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B3DA87025EE57CF222C67F7E /* Pods-buycar.yuandianTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buycar.yuandianTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-buycar.yuandianTests/Pods-buycar.yuandianTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BC3566D9CEABFF0C3A13ED14 /* Pods-buycar.yuandianUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buycar.yuandianUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-buycar.yuandianUITests/Pods-buycar.yuandianUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E407287C1FB4531B00863F54 /* TVCarCheckItemTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCarCheckItemTable.swift; sourceTree = "<group>"; };
 		E41873961F4D1566006D61E1 /* Consign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consign.swift; sourceTree = "<group>"; };
 		E41873981F4D1E9A006D61E1 /* TVCConsignHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVCConsignHistoryCell.swift; sourceTree = "<group>"; };
 		E418739C1F4D22DE006D61E1 /* ConsignPendingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsignPendingCell.xib; sourceTree = "<group>"; };
@@ -144,7 +150,11 @@
 		E456F1FF1F0BF2990097C79D /* VLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLayerView.swift; sourceTree = "<group>"; };
 		E469B6501EFFCD0900C264B4 /* CarPurchaseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarPurchaseCell.xib; sourceTree = "<group>"; };
 		E469B65A1EFFCD5300C264B4 /* VCDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCDatePicker.swift; sourceTree = "<group>"; };
+		E4776C621FB332360085FE52 /* VCSeekForCarDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCSeekForCarDetail.swift; sourceTree = "<group>"; };
 		E4A435011F4AB13300C9221E /* TVCConsignPendingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVCConsignPendingCell.swift; sourceTree = "<group>"; };
+		E4EEB5741FB34D1C0022673D /* VCCarDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCCarDetail.swift; sourceTree = "<group>"; };
+		E4FC55821FB4A0F400B54AE3 /* VCarTextGroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCarTextGroupsView.swift; sourceTree = "<group>"; };
+		E4FC558A1FB5897800B54AE3 /* VTextGroupTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VTextGroupTitleView.swift; sourceTree = "<group>"; };
 		E80F8C096789E80DF9466CCA /* Pods-buycar.yuandian.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buycar.yuandian.release.xcconfig"; path = "Pods/Target Support Files/Pods-buycar.yuandian/Pods-buycar.yuandian.release.xcconfig"; sourceTree = "<group>"; };
 		EA105F6B1E83721200705ECD /* VCCarPurchase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCCarPurchase.swift; sourceTree = "<group>"; };
 		EA105F6D1E83739A00705ECD /* VCarInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCarInfoView.swift; sourceTree = "<group>"; };
@@ -393,6 +403,8 @@
 				E41873B41F500CC2006D61E1 /* VCSimplePicker.swift */,
 				E41873BC1F53AC4A006D61E1 /* VCConsignListPage.swift */,
 				E424BA231F60F18C009C7337 /* VCConsignSetting.swift */,
+				E4776C621FB332360085FE52 /* VCSeekForCarDetail.swift */,
+				E4EEB5741FB34D1C0022673D /* VCCarDetail.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -415,6 +427,9 @@
 				E41873981F4D1E9A006D61E1 /* TVCConsignHistoryCell.swift */,
 				E41873AE1F4ECB4C006D61E1 /* TVCHorizontalGroupCell.swift */,
 				E41873B61F500E5D006D61E1 /* TVCSimplePickerCell.swift */,
+				E407287C1FB4531B00863F54 /* TVCarCheckItemTable.swift */,
+				E4FC55821FB4A0F400B54AE3 /* VCarTextGroupsView.swift */,
+				E4FC558A1FB5897800B54AE3 /* VTextGroupTitleView.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -739,7 +754,9 @@
 				EAACCD481E80FE4000AA8DB9 /* VAlertView.swift in Sources */,
 				EAACCD381E80DF7500AA8DB9 /* NCLogin.swift in Sources */,
 				E41873B71F500E5D006D61E1 /* TVCSimplePickerCell.swift in Sources */,
+				E4EEB5751FB34D1C0022673D /* VCCarDetail.swift in Sources */,
 				EAACCD2D1E80C8E000AA8DB9 /* ViewForReleaseKeyboard.swift in Sources */,
+				E4FC558B1FB5897800B54AE3 /* VTextGroupTitleView.swift in Sources */,
 				EA13B3E31E8221920020F1FF /* TVCCarPurchaseCell.swift in Sources */,
 				E41873A71F4EA258006D61E1 /* VCConsignDetail.swift in Sources */,
 				EAACCD541E8189BA00AA8DB9 /* CarPurchase.swift in Sources */,
@@ -747,12 +764,14 @@
 				E456F2001F0BF2990097C79D /* VLayerView.swift in Sources */,
 				EAACCD4A1E8135FC00AA8DB9 /* SystemTools.swift in Sources */,
 				EAACCD341E80D29F00AA8DB9 /* VCLogin.swift in Sources */,
+				E407287D1FB4531B00863F54 /* TVCarCheckItemTable.swift in Sources */,
 				E41873971F4D1566006D61E1 /* Consign.swift in Sources */,
 				EAACCD581E818CDA00AA8DB9 /* CheckItemOption.swift in Sources */,
 				EA1753F01E7FDB490020F407 /* AppDelegate.swift in Sources */,
 				EA13B3E71E82790A0020F1FF /* VCDailyList.swift in Sources */,
 				EAACCD441E80FE2100AA8DB9 /* VNoConnectionView.swift in Sources */,
 				EA105F6C1E83721200705ECD /* VCCarPurchase.swift in Sources */,
+				E4FC55831FB4A0F400B54AE3 /* VCarTextGroupsView.swift in Sources */,
 				EAACCD5A1E818E2C00AA8DB9 /* WebTools.swift in Sources */,
 				EAACCD521E817E0100AA8DB9 /* CVCFeatureCell.swift in Sources */,
 				EAACCD361E80D2DD00AA8DB9 /* DrawingTools.swift in Sources */,
@@ -763,6 +782,7 @@
 				E4378A481EE57DCC00284E23 /* Qiniu.swift in Sources */,
 				E4A435021F4AB13300C9221E /* TVCConsignPendingCell.swift in Sources */,
 				EA105F781E83D90500705ECD /* CVCarPhotoCollection.swift in Sources */,
+				E4776C631FB332360085FE52 /* VCSeekForCarDetail.swift in Sources */,
 				EAACCD321E80D13100AA8DB9 /* VCSharedBusiness.swift in Sources */,
 				E41873AB1F4EC081006D61E1 /* Option.swift in Sources */,
 				EA17542F1E7FE2370020F407 /* StringTools.swift in Sources */,

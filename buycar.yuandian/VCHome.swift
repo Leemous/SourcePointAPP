@@ -38,14 +38,14 @@ class VCHome: UIViewController {
     }
 
     private func initView() {
-        // 设置顶端四个功能按钮
+        // 设置顶端功能按钮
         self.featureCollection.dataSource = self
         self.featureCollection.delegate = self
         
         // 设置collection view的layout属性
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
-        layout.itemSize = CGSize(width: (screenWidth - 5)/5, height: 124)
+        layout.itemSize = CGSize(width: (screenWidth - 4) / 4, height: 100)
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 1
         self.featureCollection.collectionViewLayout = layout
@@ -166,7 +166,7 @@ extension VCHome: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -182,6 +182,8 @@ extension VCHome: UICollectionViewDataSource {
         case 3:
             (cell as! CVCFeatureCell).setItem(UIImage(named: "consignImage")!, title: "托运")
         case 4:
+            (cell as! CVCFeatureCell).setItem(UIImage(named: "searchCarImage")!, title: "车辆信息")
+        case 5:
             (cell as! CVCFeatureCell).setItem(UIImage(named: "dailyImage")!, title: "日报")
         default:
             break
@@ -215,6 +217,9 @@ extension VCHome: UICollectionViewDelegate {
             self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcConsignListPage", animated: true, completion: nil)
             self.configNavigationBackItem(sourceViewController: self)
         case 4:
+            self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcSeekForCarDetail", animated: true, completion: nil)
+            self.configNavigationBackItem(sourceViewController: self)
+        case 5:
             self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcDailyList", animated: true, completion: nil)
             self.configNavigationBackItem(sourceViewController: self)
         default:

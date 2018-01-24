@@ -18,6 +18,8 @@ class VCSeekForPhoto: UIViewController {
     @IBOutlet weak var lisenceText: TextFieldWithFinishButton!
     @IBOutlet weak var frameText: TextFieldWithFinishButton!
     @IBOutlet weak var seekButton: UIButton!
+    
+    var layer: VLayerView!
 
     var uploadResultMsg: String?
     let seekForPhotoDelegate = VCSeekForPhotoDelegate()
@@ -51,6 +53,12 @@ class VCSeekForPhoto: UIViewController {
             self.alert(viewToBlock: viewToBlock, msg: "请输入查询条件")
             return
         }
+        
+        self.view.addSubview(self.layer)
+        self.seekButton.isEnabled = false
+        self.lisenceText.resignFirstResponder()
+        self.frameText.resignFirstResponder()
+        
         var router: Router!
         let carNumber = self.lisenceText.text!
         let carFrameNumber = self.frameText.text!
@@ -62,6 +70,10 @@ class VCSeekForPhoto: UIViewController {
         }
         Alamofire.request(router).responseJSON {
             response in
+            if self.layer.superview != nil {
+                self.seekButton.isEnabled = true
+                self.layer.removeFromSuperview()
+            }
             if (response.result.isSuccess) {
                 // 请求成功
                 if let jsonValue = response.result.value {
@@ -117,6 +129,8 @@ class VCSeekForPhoto: UIViewController {
         // 为文本框设置下划线
         self.configUnderlyingLineForTextField(tf: self.lisenceText, height: 1, leading: 84, trailing: -18)
         self.configUnderlyingLineForTextField(tf: self.frameText, height: 1, leading: 84, trailing: -18)
+        
+        layer = VLayerView(layerMessage: "正在查询车辆照片...")
     }
     
     // 用于从拍照界面返回
