@@ -10,15 +10,17 @@
 import UIKit
 
 class VCarInfoView: UIView {
-    var lisenceLabel: UILabel!
-    var frameLabel: UILabel!
-    var scrapValueLabel: UILabel!
-    var forceScrappedDateSwitchLabel: UILabel!
-    var forceScrappedDateLabel: UILabel!
-    var memoLabel: UILabel!
+    private var licenseLabel: UILabel!
+    private var frameLabel: UILabel!
+    private var modelLabel: UILabel!
+    private var scrapValueLabel: UILabel!
+    private var forceScrappedDateSwitchLabel: UILabel!
+    private var forceScrappedDateLabel: UILabel!
+    private var memoLabel: UILabel!
 
-    var lisenceText: TextFieldWithFinishButton!
+    var licenseText: TextFieldWithFinishButton!
     var frameText: TextFieldWithFinishButton!
+    var modelText: TextFieldWithFinishButton!
     var scrapValueText: TextFieldWithFinishButton!
     var forceScrappedDateSwitch: UISwitch!
     var forceScrappedDateText: DatePickerField!
@@ -30,25 +32,26 @@ class VCarInfoView: UIView {
         initView()
 
         // 如果有值，则赋值给文本框
-        self.lisenceText.text = carInfoViewDelegate.lisenceNo
-        self.frameText.text = carInfoViewDelegate.frameNo
-        self.scrapValueText.text = carInfoViewDelegate.scrapValue
-        self.forceScrappedDateSwitch.isOn = carInfoViewDelegate.forceScrappedOn == true
-        self.forceScrappedDateText.text = carInfoViewDelegate.forceScrappedDate
-        self.memoText.text = carInfoViewDelegate.memo
+        self.licenseText.text = self.carInfoViewDelegate.lisenceNo
+        self.frameText.text = self.carInfoViewDelegate.frameNo
+        self.modelText.text = self.carInfoViewDelegate.model
+        self.scrapValueText.text = self.carInfoViewDelegate.scrapValue
+        self.forceScrappedDateSwitch.isOn = self.carInfoViewDelegate.forceScrappedOn == true
+        self.forceScrappedDateText.text = self.carInfoViewDelegate.forceScrappedDate
+        self.memoText.text = self.carInfoViewDelegate.memo
     }
     
     private func initView() {
         // 设置所有标签
         // 车牌号标签
-        self.lisenceLabel = UILabel()
-        self.addSubview(self.lisenceLabel)
-        self.lisenceLabel.font = systemFont
-        self.lisenceLabel.textColor = mainTextColor
-        self.lisenceLabel.text = "车牌号"
-        self.lisenceLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.lisenceLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 18))
-        self.addConstraint(NSLayoutConstraint(item: self.lisenceLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 18))
+        self.licenseLabel = UILabel()
+        self.addSubview(self.licenseLabel)
+        self.licenseLabel.font = systemFont
+        self.licenseLabel.textColor = mainTextColor
+        self.licenseLabel.text = "车牌号"
+        self.licenseLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.addConstraint(NSLayoutConstraint(item: self.licenseLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 18))
+        self.addConstraint(NSLayoutConstraint(item: self.licenseLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 18))
 
         // 车架号标签
         self.frameLabel = UILabel()
@@ -57,8 +60,18 @@ class VCarInfoView: UIView {
         self.frameLabel.textColor = mainTextColor
         self.frameLabel.text = "车架号"
         self.frameLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.frameLabel, attribute: .leading, relatedBy: .equal, toItem: self.lisenceLabel, attribute: .leading, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.frameLabel, attribute: .top, relatedBy: .equal, toItem: self.lisenceLabel, attribute: .bottom, multiplier: 1, constant: 20))
+        self.addConstraint(NSLayoutConstraint(item: self.frameLabel, attribute: .leading, relatedBy: .equal, toItem: self.licenseLabel, attribute: .leading, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self.frameLabel, attribute: .top, relatedBy: .equal, toItem: self.licenseLabel, attribute: .bottom, multiplier: 1, constant: 20))
+        
+        // 车辆品牌标签
+        self.modelLabel = UILabel()
+        self.addSubview(self.modelLabel)
+        self.modelLabel.font = systemFont
+        self.modelLabel.textColor = mainTextColor
+        self.modelLabel.text = "车辆品牌"
+        self.modelLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.addConstraint(NSLayoutConstraint(item: self.modelLabel, attribute: .leading, relatedBy: .equal, toItem: self.frameLabel, attribute: .leading, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self.modelLabel, attribute: .top, relatedBy: .equal, toItem: self.frameLabel, attribute: .bottom, multiplier: 1, constant: 20))
 
         // 残值标签
         self.scrapValueLabel = UILabel()
@@ -67,8 +80,8 @@ class VCarInfoView: UIView {
         self.scrapValueLabel.textColor = mainTextColor
         self.scrapValueLabel.text = "残值"
         self.scrapValueLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.scrapValueLabel, attribute: .leading, relatedBy: .equal, toItem: self.frameLabel, attribute: .leading, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.scrapValueLabel, attribute: .top, relatedBy: .equal, toItem: self.frameLabel, attribute: .bottom, multiplier: 1, constant: 20))
+        self.addConstraint(NSLayoutConstraint(item: self.scrapValueLabel, attribute: .leading, relatedBy: .equal, toItem: self.modelLabel, attribute: .leading, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self.scrapValueLabel, attribute: .top, relatedBy: .equal, toItem: self.modelLabel, attribute: .bottom, multiplier: 1, constant: 20))
         
         // 强制报废提醒标签
         self.forceScrappedDateSwitchLabel = UILabel()
@@ -102,15 +115,15 @@ class VCarInfoView: UIView {
         
         // 设置所有文本框
         // 车牌号文本框
-        self.lisenceText = TextFieldWithFinishButton()
-        self.addSubview(self.lisenceText)
-        self.lisenceText.contentMode = .redraw
-        self.lisenceText.font = textFont
-        self.lisenceText.textColor = mainTextColor
-        self.lisenceText.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.lisenceText, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 84))
-        self.addConstraint(NSLayoutConstraint(item: self.lisenceText, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -18))
-        self.addConstraint(NSLayoutConstraint(item: self.lisenceText, attribute: .centerY, relatedBy: .equal, toItem: self.lisenceLabel, attribute: .centerY, multiplier: 1, constant: 0))
+        self.licenseText = TextFieldWithFinishButton()
+        self.addSubview(self.licenseText)
+        self.licenseText.contentMode = .redraw
+        self.licenseText.font = textFont
+        self.licenseText.textColor = mainTextColor
+        self.licenseText.translatesAutoresizingMaskIntoConstraints = false
+        self.addConstraint(NSLayoutConstraint(item: self.licenseText, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 90))
+        self.addConstraint(NSLayoutConstraint(item: self.licenseText, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -18))
+        self.addConstraint(NSLayoutConstraint(item: self.licenseText, attribute: .centerY, relatedBy: .equal, toItem: self.licenseLabel, attribute: .centerY, multiplier: 1, constant: 0))
 
         // 车架号文本框
         self.frameText = TextFieldWithFinishButton()
@@ -119,9 +132,20 @@ class VCarInfoView: UIView {
         self.frameText.font = textFont
         self.frameText.textColor = mainTextColor
         self.frameText.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.frameText, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 84))
+        self.addConstraint(NSLayoutConstraint(item: self.frameText, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 90))
         self.addConstraint(NSLayoutConstraint(item: self.frameText, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -18))
         self.addConstraint(NSLayoutConstraint(item: self.frameText, attribute: .centerY, relatedBy: .equal, toItem: self.frameLabel, attribute: .centerY, multiplier: 1, constant: 0))
+        
+        // 车辆品牌文本框
+        self.modelText = TextFieldWithFinishButton()
+        self.addSubview(self.modelText)
+        self.modelText.contentMode = .redraw
+        self.modelText.font = textFont
+        self.modelText.textColor = mainTextColor
+        self.modelText.translatesAutoresizingMaskIntoConstraints = false
+        self.addConstraint(NSLayoutConstraint(item: self.modelText, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 90))
+        self.addConstraint(NSLayoutConstraint(item: self.modelText, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -18))
+        self.addConstraint(NSLayoutConstraint(item: self.modelText, attribute: .centerY, relatedBy: .equal, toItem: self.modelLabel, attribute: .centerY, multiplier: 1, constant: 0))
 
         // 残值文本框
         self.scrapValueText = TextFieldWithFinishButton()
@@ -130,7 +154,7 @@ class VCarInfoView: UIView {
         self.scrapValueText.font = textFont
         self.scrapValueText.textColor = mainTextColor
         self.scrapValueText.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.scrapValueText, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 84))
+        self.addConstraint(NSLayoutConstraint(item: self.scrapValueText, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 90))
         self.addConstraint(NSLayoutConstraint(item: self.scrapValueText, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -18))
         self.addConstraint(NSLayoutConstraint(item: self.scrapValueText, attribute: .centerY, relatedBy: .equal, toItem: self.scrapValueLabel, attribute: .centerY, multiplier: 1, constant: 0))
         
@@ -149,7 +173,7 @@ class VCarInfoView: UIView {
         self.forceScrappedDateText.font = textFont
         self.forceScrappedDateText.textColor = mainTextColor
         self.forceScrappedDateText.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateText, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 124))
+        self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateText, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 120))
         self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateText, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -18))
         self.addConstraint(NSLayoutConstraint(item: self.forceScrappedDateText, attribute: .centerY, relatedBy: .equal, toItem: self.forceScrappedDateLabel, attribute: .centerY, multiplier: 1, constant: 0))
 
@@ -175,9 +199,9 @@ class VCarInfoView: UIView {
         self.addSubview(hline1)
         hline1.translatesAutoresizingMaskIntoConstraints = false
         self.addConstraint(NSLayoutConstraint(item: hline1, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 1))
-        self.addConstraint(NSLayoutConstraint(item: hline1, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 84))
-        self.addConstraint(NSLayoutConstraint(item: hline1, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -18))
-        self.addConstraint(NSLayoutConstraint(item: hline1, attribute: .top, relatedBy: .equal, toItem: self.lisenceText, attribute: .bottom, multiplier: 1, constant: 5))
+        self.addConstraint(NSLayoutConstraint(item: hline1, attribute: .leading, relatedBy: .equal, toItem: self.licenseText, attribute: .leading, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: hline1, attribute: .trailing, relatedBy: .equal, toItem: self.licenseText, attribute: .trailing, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: hline1, attribute: .top, relatedBy: .equal, toItem: self.licenseText, attribute: .bottom, multiplier: 1, constant: 5))
         
         // 为车架号文本框设置下划线
         let hline2 = UIView()
@@ -185,29 +209,39 @@ class VCarInfoView: UIView {
         self.addSubview(hline2)
         hline2.translatesAutoresizingMaskIntoConstraints = false
         self.addConstraint(NSLayoutConstraint(item: hline2, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 1))
-        self.addConstraint(NSLayoutConstraint(item: hline2, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 84))
-        self.addConstraint(NSLayoutConstraint(item: hline2, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -18))
+        self.addConstraint(NSLayoutConstraint(item: hline2, attribute: .leading, relatedBy: .equal, toItem: self.frameText, attribute: .leading, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: hline2, attribute: .trailing, relatedBy: .equal, toItem: self.frameText, attribute: .trailing, multiplier: 1, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: hline2, attribute: .top, relatedBy: .equal, toItem: self.frameText, attribute: .bottom, multiplier: 1, constant: 5))
         
-        // 为残值文本框设置下划线
+        // 为车辆品牌文本框设置下划线
         let hline3 = UIView()
         hline3.backgroundColor = separatorLineColor
         self.addSubview(hline3)
         hline3.translatesAutoresizingMaskIntoConstraints = false
         self.addConstraint(NSLayoutConstraint(item: hline3, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 1))
-        self.addConstraint(NSLayoutConstraint(item: hline3, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 84))
-        self.addConstraint(NSLayoutConstraint(item: hline3, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -18))
-        self.addConstraint(NSLayoutConstraint(item: hline3, attribute: .top, relatedBy: .equal, toItem: self.scrapValueText, attribute: .bottom, multiplier: 1, constant: 5))
+        self.addConstraint(NSLayoutConstraint(item: hline3, attribute: .leading, relatedBy: .equal, toItem: self.modelText, attribute: .leading, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: hline3, attribute: .trailing, relatedBy: .equal, toItem: self.modelText, attribute: .trailing, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: hline3, attribute: .top, relatedBy: .equal, toItem: self.modelText, attribute: .bottom, multiplier: 1, constant: 5))
         
-        // 为强制报废日期设置下划线
+        // 为残值文本框设置下划线
         let hline4 = UIView()
         hline4.backgroundColor = separatorLineColor
         self.addSubview(hline4)
         hline4.translatesAutoresizingMaskIntoConstraints = false
         self.addConstraint(NSLayoutConstraint(item: hline4, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 1))
-        self.addConstraint(NSLayoutConstraint(item: hline4, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 124))
-        self.addConstraint(NSLayoutConstraint(item: hline4, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -18))
-        self.addConstraint(NSLayoutConstraint(item: hline4, attribute: .top, relatedBy: .equal, toItem: self.forceScrappedDateText, attribute: .bottom, multiplier: 1, constant: 5))
+        self.addConstraint(NSLayoutConstraint(item: hline4, attribute: .leading, relatedBy: .equal, toItem: self.scrapValueText, attribute: .leading, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: hline4, attribute: .trailing, relatedBy: .equal, toItem: self.scrapValueText, attribute: .trailing, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: hline4, attribute: .top, relatedBy: .equal, toItem: self.scrapValueText, attribute: .bottom, multiplier: 1, constant: 5))
+        
+        // 为强制报废日期设置下划线
+        let hline5 = UIView()
+        hline5.backgroundColor = separatorLineColor
+        self.addSubview(hline5)
+        hline5.translatesAutoresizingMaskIntoConstraints = false
+        self.addConstraint(NSLayoutConstraint(item: hline5, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 1))
+        self.addConstraint(NSLayoutConstraint(item: hline5, attribute: .leading, relatedBy: .equal, toItem: self.forceScrappedDateText, attribute: .leading, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: hline5, attribute: .trailing, relatedBy: .equal, toItem: self.forceScrappedDateText, attribute: .trailing, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: hline5, attribute: .top, relatedBy: .equal, toItem: self.forceScrappedDateText, attribute: .bottom, multiplier: 1, constant: 5))
         
         // 设置备注文本框的圆角边框
         let _ = drawRoundBorderForView(memoText, borderRadius: 6, borderWidth: 1, borderColor: systemTintColor)
@@ -229,6 +263,7 @@ class VCarInfoView: UIView {
 class CarInfoViewDelegate {
     var lisenceNo: String?
     var frameNo: String?
+    var model: String?
     var scrapValue: String?
     var forceScrappedOn: Bool?
     var forceScrappedDate: String?

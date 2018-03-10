@@ -70,7 +70,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.headerView.backgroundColor = heavyBackgroundColor
         
         // 初始化header view的第一段
-        self.hv = VCarInfoView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 408))
+        self.hv = VCarInfoView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 450))
         self.hv.backgroundColor = UIColor.white
         self.headerView.addSubview(self.hv)
         
@@ -81,7 +81,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 1
         layout.headerReferenceSize = CGSize(width: screenWidth, height: 30)
-        self.cpc = CVCarPhotoCollection(frame: CGRect(x: 0, y: 418, width: screenWidth, height: 146), collectionViewLayout: layout)
+        self.cpc = CVCarPhotoCollection(frame: CGRect(x: 0, y: 460, width: screenWidth, height: 146), collectionViewLayout: layout)
         self.cpc.backgroundColor = UIColor.white
         self.cpc.isScrollEnabled = false
         
@@ -90,8 +90,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.headerView.addSubview(self.cpc)
         
         // 添加一个显示“车况检查”的label
-        
-        self.lv = UIView(frame: CGRect(x: 0, y: 408 + self.cpc.frame.size.height + 20 , width: screenWidth, height: 45))
+        self.lv = UIView(frame: CGRect(x: 0, y: self.cpc.frame.origin.y + self.cpc.frame.size.height + 10 , width: screenWidth, height: 45))
         self.lv.backgroundColor = UIColor.white
         self.headerView.addSubview(self.lv)
         
@@ -123,12 +122,16 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         // 图片选择事件
         self.cpc.carPhotoCollectionDelegate.pickerImageClick = {
             // 利用委托记录当前值
-            if let lisenceText = self.hv.lisenceText {
+            if let lisenceText = self.hv.licenseText {
                 self.hv.carInfoViewDelegate.lisenceNo = lisenceText.text
             }
             
             if let frameText = self.hv.frameText {
                 self.hv.carInfoViewDelegate.frameNo = frameText.text
+            }
+            
+            if let modelText = self.hv.modelText {
+                self.hv.carInfoViewDelegate.model = modelText.text
             }
             
             if let scrapValueText = self.hv.scrapValueText {
@@ -172,6 +175,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         // 可以设置数据
         self.hv.carInfoViewDelegate.lisenceNo = ""
         self.hv.carInfoViewDelegate.frameNo = ""
+        self.hv.carInfoViewDelegate.model = ""
         self.hv.carInfoViewDelegate.scrapValue = ""
         self.hv.carInfoViewDelegate.memo = ""
         self.cpc.carPhotoCollectionDelegate.carPhotos = [UIImage]()
@@ -206,7 +210,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
     }
     
     func saveCarPurchase(_ sender: UIViewController) {
-        if checkEmpty(textfield: self.hv.lisenceText as UITextField) {
+        if checkEmpty(textfield: self.hv.licenseText as UITextField) {
             self.alert(viewToBlock: nil, msg: "请输入车牌号")
             return
         }
@@ -248,7 +252,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         }
         // 上传文件并保存url到服务器
         let qiniu = Qiniu()
-        qiniu.uploadFiles(self, fileIdentifier: self.hv.lisenceText.text!, files: toUploadImages) { (isSuccess: Bool, fileKey: String) in
+        qiniu.uploadFiles(self, fileIdentifier: self.hv.licenseText.text!, files: toUploadImages) { (isSuccess: Bool, fileKey: String) in
             let success = isSuccess
             if success {
                 self.cpc.carPhotoCollectionDelegate.successCount! += 1
@@ -288,10 +292,11 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
     func saveData() {
         // 构造数据
         var paramDict: [String : Any] = [:]
-        paramDict["carNumber"] = self.hv.lisenceText.text
-        paramDict["carShelfNumber"] = self.hv.frameText.text!
-        paramDict["salvage"] = self.hv.scrapValueText.text!
-        paramDict["forceScrappedDate"] = self.hv.forceScrappedDateText.text!
+        paramDict["carNumber"] = self.hv.licenseText.text
+        paramDict["carShelfNumber"] = self.hv.frameText.text
+        paramDict["carModelName"] = self.hv.modelText.text
+        paramDict["salvage"] = self.hv.scrapValueText.text
+        paramDict["forceScrappedDate"] = self.hv.forceScrappedDateText.text
         paramDict["remark"] = self.hv.memoText.text!
         for ci in cis {
             paramDict[ci.itemKey] = ci.itemOptions[ci.optionAnswer].optionKey
@@ -421,11 +426,8 @@ extension VCCarPurchase: UITextFieldDelegate {
     /// - Returns: 返回true成为第一响应项，显示键盘开始编辑，返回false，无法获得焦点
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if (textField is DatePickerField) {
-            // 取消其它输入框的第一响应，弹出日期选择器
-            self.hv.lisenceText.resignFirstResponder()
-            self.hv.frameText.resignFirstResponder()
-            self.hv.scrapValueText.resignFirstResponder()
-            self.hv.memoText.resignFirstResponder()
+            // 结束当前视图正在进行的编辑
+            self.view.endEditing(true)
             
             self.showDatePicker(dateField: textField as! DatePickerField, minimumDate: Date.init(timeIntervalSinceNow: 0), maximumDate: nil)
             return false
