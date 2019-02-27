@@ -261,19 +261,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E41D4E6A1EE10D0A0063A644 /* qiniu */ = {
-			isa = PBXGroup;
-			children = (
-				E41D4E741EE10D730063A644 /* QNUploadUtil.h */,
-				E41D4E751EE10D730063A644 /* QNUploadUtil.m */,
-				E41D4E731EE10D720063A644 /* buycar.yuandian-Bridging-Header.h */,
-			);
-			name = qiniu;
-			sourceTree = "<group>";
-		};
 		E4D3B4F2222667E20036D92A /* main */ = {
 			isa = PBXGroup;
 			children = (
+				E4D3B4FA22266D7D0036D92A /* storyboard */,
+				E4D3B4F822266C900036D92A /* model */,
+				E4D3B4F722266C670036D92A /* tools */,
+				E4D3B4F622266C310036D92A /* view */,
 				E4D3B4F4222668520036D92A /* common */,
 				E4D3B4F3222667F80036D92A /* controller */,
 			);
@@ -312,8 +306,93 @@
 		E4D3B4F4222668520036D92A /* common */ = {
 			isa = PBXGroup;
 			children = (
+				EA1754231E7FDD880020F407 /* SystemConsts.swift */,
 			);
 			path = common;
+			sourceTree = "<group>";
+		};
+		E4D3B4F622266C310036D92A /* view */ = {
+			isa = PBXGroup;
+			children = (
+				EA105F731E83893500705ECD /* CarPhotoCell.xib */,
+				EA105F7B1E84192900705ECD /* CarPhotoHeaderView.xib */,
+				E469B6501EFFCD0900C264B4 /* CarPurchaseCell.xib */,
+				EAEC5DB21E88D1C3006C8CD9 /* CheckItemCell.xib */,
+				E424BA201F60DA97009C7337 /* Main.storyboard */,
+				EAACCD4F1E817DD200AA8DB9 /* FeatureCell.xib */,
+				EAACCD3D1E80FCDE00AA8DB9 /* NoConnectionView.xib */,
+				EAACCD3F1E80FCF400AA8DB9 /* NoDataView.xib */,
+				E418739C1F4D22DE006D61E1 /* ConsignPendingCell.xib */,
+				E418739E1F4D2E1D006D61E1 /* ConsignHistoryCell.xib */,
+				E41873AC1F4EC687006D61E1 /* HorizontalGroupCell.xib */,
+				E41873B81F500F19006D61E1 /* SimplePickerCell.xib */,
+				EA105F771E83D90500705ECD /* CVCarPhotoCollection.swift */,
+				EA105F751E838AA000705ECD /* CVCCarPhotoCell.swift */,
+				EAACCD511E817E0100AA8DB9 /* CVCFeatureCell.swift */,
+				EA13B3E21E8221920020F1FF /* TVCCarPurchaseCell.swift */,
+				EAACCD471E80FE4000AA8DB9 /* VAlertView.swift */,
+				EA105F6D1E83739A00705ECD /* VCarInfoView.swift */,
+				EAACCD2C1E80C8E000AA8DB9 /* ViewForReleaseKeyboard.swift */,
+				EAACCD431E80FE2100AA8DB9 /* VNoConnectionView.swift */,
+				EAACCD451E80FE3000AA8DB9 /* VNoDataView.swift */,
+				EAEC5DB81E88F2B0006C8CD9 /* TVCCheckItemCell.swift */,
+				E456F1FF1F0BF2990097C79D /* VLayerView.swift */,
+				E4A435011F4AB13300C9221E /* TVCConsignPendingCell.swift */,
+				E41873981F4D1E9A006D61E1 /* TVCConsignHistoryCell.swift */,
+				E41873AE1F4ECB4C006D61E1 /* TVCHorizontalGroupCell.swift */,
+				E41873B61F500E5D006D61E1 /* TVCSimplePickerCell.swift */,
+				E407287C1FB4531B00863F54 /* TVCarCheckItemTable.swift */,
+				E4FC55821FB4A0F400B54AE3 /* VCarTextGroupsView.swift */,
+				E4FC558A1FB5897800B54AE3 /* VTextGroupTitleView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		E4D3B4F722266C670036D92A /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				E4D3B4F922266CB40036D92A /* qiniu */,
+				EA17542E1E7FE2370020F407 /* StringTools.swift */,
+				EAACCD351E80D2DD00AA8DB9 /* DrawingTools.swift */,
+				EAACCD491E8135FC00AA8DB9 /* SystemTools.swift */,
+				EAACCD591E818E2C00AA8DB9 /* WebTools.swift */,
+				E41873A21F4E8261006D61E1 /* ViewTools.swift */,
+			);
+			path = tools;
+			sourceTree = "<group>";
+		};
+		E4D3B4F822266C900036D92A /* model */ = {
+			isa = PBXGroup;
+			children = (
+				EAACCD391E80E62800AA8DB9 /* User.swift */,
+				EAACCD3B1E80E69400AA8DB9 /* CommonModel.swift */,
+				EAACCD531E8189BA00AA8DB9 /* CarPurchase.swift */,
+				EAACCD551E818B0300AA8DB9 /* CheckItem.swift */,
+				EAACCD571E818CDA00AA8DB9 /* CheckItemOption.swift */,
+				EA13B3E81E82795E0020F1FF /* Daily.swift */,
+				E4378A471EE57DCC00284E23 /* Qiniu.swift */,
+				E41873961F4D1566006D61E1 /* Consign.swift */,
+				E41873AA1F4EC081006D61E1 /* Option.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		E4D3B4F922266CB40036D92A /* qiniu */ = {
+			isa = PBXGroup;
+			children = (
+				E41D4E741EE10D730063A644 /* QNUploadUtil.h */,
+				E41D4E751EE10D730063A644 /* QNUploadUtil.m */,
+			);
+			path = qiniu;
+			sourceTree = "<group>";
+		};
+		E4D3B4FA22266D7D0036D92A /* storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				EAACCD2A1E80C85600AA8DB9 /* Login.storyboard */,
+				EA13B43B1E82EA410020F1FF /* LaunchScreen.storyboard */,
+			);
+			path = storyboard;
 			sourceTree = "<group>";
 		};
 		EA1753E31E7FDB480020F407 = {
@@ -342,14 +421,10 @@
 			isa = PBXGroup;
 			children = (
 				EA1753FB1E7FDB490020F407 /* Info.plist */,
+				E41D4E731EE10D720063A644 /* buycar.yuandian-Bridging-Header.h */,
 				EA1753EF1E7FDB490020F407 /* AppDelegate.swift */,
 				EA1753F61E7FDB490020F407 /* Assets.xcassets */,
-				EA17541D1E7FDBDE0020F407 /* interfaces */,
 				E4D3B4F2222667E20036D92A /* main */,
-				EA1754211E7FDCE40020F407 /* models */,
-				E41D4E6A1EE10D0A0063A644 /* qiniu */,
-				EA1754201E7FDCDD0020F407 /* tools */,
-				EAACCD2E1E80CB8700AA8DB9 /* views */,
 			);
 			path = buycar.yuandian;
 			sourceTree = "<group>";
@@ -370,84 +445,6 @@
 				EA1754111E7FDB490020F407 /* Info.plist */,
 			);
 			path = buycar.yuandianUITests;
-			sourceTree = "<group>";
-		};
-		EA17541D1E7FDBDE0020F407 /* interfaces */ = {
-			isa = PBXGroup;
-			children = (
-				EAACCD2A1E80C85600AA8DB9 /* Login.storyboard */,
-				EA105F731E83893500705ECD /* CarPhotoCell.xib */,
-				EA105F7B1E84192900705ECD /* CarPhotoHeaderView.xib */,
-				E469B6501EFFCD0900C264B4 /* CarPurchaseCell.xib */,
-				EAEC5DB21E88D1C3006C8CD9 /* CheckItemCell.xib */,
-				E424BA201F60DA97009C7337 /* Main.storyboard */,
-				EAACCD4F1E817DD200AA8DB9 /* FeatureCell.xib */,
-				EAACCD3D1E80FCDE00AA8DB9 /* NoConnectionView.xib */,
-				EAACCD3F1E80FCF400AA8DB9 /* NoDataView.xib */,
-				EA13B43B1E82EA410020F1FF /* LaunchScreen.storyboard */,
-				E418739C1F4D22DE006D61E1 /* ConsignPendingCell.xib */,
-				E418739E1F4D2E1D006D61E1 /* ConsignHistoryCell.xib */,
-				E41873AC1F4EC687006D61E1 /* HorizontalGroupCell.xib */,
-				E41873B81F500F19006D61E1 /* SimplePickerCell.xib */,
-			);
-			name = interfaces;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		EA1754201E7FDCDD0020F407 /* tools */ = {
-			isa = PBXGroup;
-			children = (
-				EA1754231E7FDD880020F407 /* SystemConsts.swift */,
-				EA17542E1E7FE2370020F407 /* StringTools.swift */,
-				EAACCD351E80D2DD00AA8DB9 /* DrawingTools.swift */,
-				EAACCD491E8135FC00AA8DB9 /* SystemTools.swift */,
-				EAACCD591E818E2C00AA8DB9 /* WebTools.swift */,
-				E41873A21F4E8261006D61E1 /* ViewTools.swift */,
-			);
-			name = tools;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		EA1754211E7FDCE40020F407 /* models */ = {
-			isa = PBXGroup;
-			children = (
-				EAACCD391E80E62800AA8DB9 /* User.swift */,
-				EAACCD3B1E80E69400AA8DB9 /* CommonModel.swift */,
-				EAACCD531E8189BA00AA8DB9 /* CarPurchase.swift */,
-				EAACCD551E818B0300AA8DB9 /* CheckItem.swift */,
-				EAACCD571E818CDA00AA8DB9 /* CheckItemOption.swift */,
-				EA13B3E81E82795E0020F1FF /* Daily.swift */,
-				E4378A471EE57DCC00284E23 /* Qiniu.swift */,
-				E41873961F4D1566006D61E1 /* Consign.swift */,
-				E41873AA1F4EC081006D61E1 /* Option.swift */,
-			);
-			name = models;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		EAACCD2E1E80CB8700AA8DB9 /* views */ = {
-			isa = PBXGroup;
-			children = (
-				EA105F771E83D90500705ECD /* CVCarPhotoCollection.swift */,
-				EA105F751E838AA000705ECD /* CVCCarPhotoCell.swift */,
-				EAACCD511E817E0100AA8DB9 /* CVCFeatureCell.swift */,
-				EA13B3E21E8221920020F1FF /* TVCCarPurchaseCell.swift */,
-				EAACCD471E80FE4000AA8DB9 /* VAlertView.swift */,
-				EA105F6D1E83739A00705ECD /* VCarInfoView.swift */,
-				EAACCD2C1E80C8E000AA8DB9 /* ViewForReleaseKeyboard.swift */,
-				EAACCD431E80FE2100AA8DB9 /* VNoConnectionView.swift */,
-				EAACCD451E80FE3000AA8DB9 /* VNoDataView.swift */,
-				EAEC5DB81E88F2B0006C8CD9 /* TVCCheckItemCell.swift */,
-				E456F1FF1F0BF2990097C79D /* VLayerView.swift */,
-				E4A435011F4AB13300C9221E /* TVCConsignPendingCell.swift */,
-				E41873981F4D1E9A006D61E1 /* TVCConsignHistoryCell.swift */,
-				E41873AE1F4ECB4C006D61E1 /* TVCHorizontalGroupCell.swift */,
-				E41873B61F500E5D006D61E1 /* TVCSimplePickerCell.swift */,
-				E407287C1FB4531B00863F54 /* TVCarCheckItemTable.swift */,
-				E4FC55821FB4A0F400B54AE3 /* VCarTextGroupsView.swift */,
-				E4FC558A1FB5897800B54AE3 /* VTextGroupTitleView.swift */,
-			);
-			name = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
