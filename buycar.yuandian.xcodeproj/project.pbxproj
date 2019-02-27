@@ -271,6 +271,51 @@
 			name = qiniu;
 			sourceTree = "<group>";
 		};
+		E4D3B4F2222667E20036D92A /* main */ = {
+			isa = PBXGroup;
+			children = (
+				E4D3B4F4222668520036D92A /* common */,
+				E4D3B4F3222667F80036D92A /* controller */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+		E4D3B4F3222667F80036D92A /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				EA1754271E7FDED60020F407 /* NCHome.swift */,
+				EAACCD371E80DF7500AA8DB9 /* NCLogin.swift */,
+				EA13B3EC1E82B9C60020F1FF /* VCAddDaily.swift */,
+				E4EEB5741FB34D1C0022673D /* VCCarDetail.swift */,
+				EA1913F81E84C260007AE9C3 /* VCCarPhoto.swift */,
+				EA105F6B1E83721200705ECD /* VCCarPurchase.swift */,
+				E41873A41F4E9A6B006D61E1 /* VCConsign.swift */,
+				E41873A61F4EA258006D61E1 /* VCConsignDetail.swift */,
+				E41873A01F4E7F3C006D61E1 /* VCConsignHistoryList.swift */,
+				E41873BC1F53AC4A006D61E1 /* VCConsignListPage.swift */,
+				E4264E821F4BCF4E00709831 /* VCConsignPendingList.swift */,
+				E424BA231F60F18C009C7337 /* VCConsignSetting.swift */,
+				EA13B3E61E82790A0020F1FF /* VCDailyList.swift */,
+				E469B65A1EFFCD5300C264B4 /* VCDatePicker.swift */,
+				EA1754291E7FDF2A0020F407 /* VCHome.swift */,
+				EAACCD331E80D29F00AA8DB9 /* VCLogin.swift */,
+				EA13B3EA1E82A88F0020F1FF /* VCMyAccount.swift */,
+				E4776C621FB332360085FE52 /* VCSeekForCarDetail.swift */,
+				EA13B3E41E8268E50020F1FF /* VCSeekForPhoto.swift */,
+				EAACCD311E80D13100AA8DB9 /* VCSharedBusiness.swift */,
+				E41873B41F500CC2006D61E1 /* VCSimplePicker.swift */,
+				EA17542C1E7FE1E90020F407 /* VCUnifiedSetting.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		E4D3B4F4222668520036D92A /* common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
 		EA1753E31E7FDB480020F407 = {
 			isa = PBXGroup;
 			children = (
@@ -299,8 +344,8 @@
 				EA1753FB1E7FDB490020F407 /* Info.plist */,
 				EA1753EF1E7FDB490020F407 /* AppDelegate.swift */,
 				EA1753F61E7FDB490020F407 /* Assets.xcassets */,
-				EA1754221E7FDD380020F407 /* controllers */,
 				EA17541D1E7FDBDE0020F407 /* interfaces */,
+				E4D3B4F2222667E20036D92A /* main */,
 				EA1754211E7FDCE40020F407 /* models */,
 				E41D4E6A1EE10D0A0063A644 /* qiniu */,
 				EA1754201E7FDCDD0020F407 /* tools */,
@@ -378,35 +423,6 @@
 			);
 			name = models;
 			path = ..;
-			sourceTree = "<group>";
-		};
-		EA1754221E7FDD380020F407 /* controllers */ = {
-			isa = PBXGroup;
-			children = (
-				EA1754271E7FDED60020F407 /* NCHome.swift */,
-				EAACCD371E80DF7500AA8DB9 /* NCLogin.swift */,
-				EA13B3EC1E82B9C60020F1FF /* VCAddDaily.swift */,
-				EA105F6B1E83721200705ECD /* VCCarPurchase.swift */,
-				EA13B3E61E82790A0020F1FF /* VCDailyList.swift */,
-				EA1754291E7FDF2A0020F407 /* VCHome.swift */,
-				EAACCD331E80D29F00AA8DB9 /* VCLogin.swift */,
-				EA13B3EA1E82A88F0020F1FF /* VCMyAccount.swift */,
-				EA13B3E41E8268E50020F1FF /* VCSeekForPhoto.swift */,
-				EAACCD311E80D13100AA8DB9 /* VCSharedBusiness.swift */,
-				EA17542C1E7FE1E90020F407 /* VCUnifiedSetting.swift */,
-				EA1913F81E84C260007AE9C3 /* VCCarPhoto.swift */,
-				E469B65A1EFFCD5300C264B4 /* VCDatePicker.swift */,
-				E4264E821F4BCF4E00709831 /* VCConsignPendingList.swift */,
-				E41873A01F4E7F3C006D61E1 /* VCConsignHistoryList.swift */,
-				E41873A41F4E9A6B006D61E1 /* VCConsign.swift */,
-				E41873A61F4EA258006D61E1 /* VCConsignDetail.swift */,
-				E41873B41F500CC2006D61E1 /* VCSimplePicker.swift */,
-				E41873BC1F53AC4A006D61E1 /* VCConsignListPage.swift */,
-				E424BA231F60F18C009C7337 /* VCConsignSetting.swift */,
-				E4776C621FB332360085FE52 /* VCSeekForCarDetail.swift */,
-				E4EEB5741FB34D1C0022673D /* VCCarDetail.swift */,
-			);
-			name = controllers;
 			sourceTree = "<group>";
 		};
 		EAACCD2E1E80CB8700AA8DB9 /* views */ = {
