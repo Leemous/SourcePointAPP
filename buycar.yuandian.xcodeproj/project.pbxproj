@@ -318,7 +318,6 @@
 				EA105F7B1E84192900705ECD /* CarPhotoHeaderView.xib */,
 				E469B6501EFFCD0900C264B4 /* CarPurchaseCell.xib */,
 				EAEC5DB21E88D1C3006C8CD9 /* CheckItemCell.xib */,
-				E424BA201F60DA97009C7337 /* Main.storyboard */,
 				EAACCD4F1E817DD200AA8DB9 /* FeatureCell.xib */,
 				EAACCD3D1E80FCDE00AA8DB9 /* NoConnectionView.xib */,
 				EAACCD3F1E80FCF400AA8DB9 /* NoDataView.xib */,
@@ -390,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				EAACCD2A1E80C85600AA8DB9 /* Login.storyboard */,
+				E424BA201F60DA97009C7337 /* Main.storyboard */,
 				EA13B43B1E82EA410020F1FF /* LaunchScreen.storyboard */,
 			);
 			path = storyboard;
