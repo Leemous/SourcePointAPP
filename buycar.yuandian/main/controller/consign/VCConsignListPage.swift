@@ -56,9 +56,9 @@ class VCConsignListPage: UIViewController {
         
         self.configTitleLabelByText(title: "托运")
         
-        pageViewController = self.childViewControllers.first as! UIPageViewController
-        pendingList = storyboard?.instantiateViewController(withIdentifier: "vcConsignPendingList") as! VCConsignPendingList
-        historyList = storyboard?.instantiateViewController(withIdentifier: "vcConsignHistoryList") as! VCConsignHistoryList
+        pageViewController = (self.childViewControllers.first as! UIPageViewController)
+        pendingList = (storyboard?.instantiateViewController(withIdentifier: "vcConsignPendingList") as! VCConsignPendingList)
+        historyList = (storyboard?.instantiateViewController(withIdentifier: "vcConsignHistoryList") as! VCConsignHistoryList)
         
         //设置pageViewController的数据源代理为当前Controller
         pageViewController.dataSource = self
@@ -100,6 +100,10 @@ class VCConsignListPage: UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "other")
         self.present(vc, animated: true)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

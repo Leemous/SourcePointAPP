@@ -12,6 +12,9 @@ class TVCConsignPendingCell: UITableViewCell {
     @IBOutlet weak var licenseLabel: UILabel!
     @IBOutlet weak var frameLabel: UILabel!
     @IBOutlet weak var consignButton: UIButton!
+    @IBOutlet weak var selectedButton: UIButton!
+    
+    var selectedAction: ((_ isSelected: Bool) -> Void)?
     
     var consignPendingCellDelegate = ConsignPendingCellDelegate()
     
@@ -22,6 +25,13 @@ class TVCConsignPendingCell: UITableViewCell {
         self.consignButton.layer.borderColor = systemTintColor.cgColor
         self.consignButton.layer.borderWidth = 1
         self.consignButton.layer.cornerRadius = 16
+    }
+    
+    @IBAction func didSelectedCell(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if let handle = self.selectedAction {
+            handle(sender.isSelected)
+        }
     }
 }
 

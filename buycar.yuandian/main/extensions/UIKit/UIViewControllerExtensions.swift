@@ -1,10 +1,9 @@
 //
-//  VCUnifiedSetting.swift
-//  
-//  与view controller相关的通用设置方法
+//  UIViewControllerExtensions.swift
+//  buycar.yuandian
 //
-//  Created by 姬鹏 on 2017/3/20.
-//  Copyright © 2017年 tymaker. All rights reserved.
+//  Created by 李萌 on 2019/2/28.
+//  Copyright © 2019年 tymaker. All rights reserved.
 //
 
 import UIKit
@@ -112,7 +111,7 @@ extension UIViewController {
         if let c = completion {
             c(vc)
         }
-
+        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -202,28 +201,3 @@ extension UIViewController {
         self.present(action, animated: true, completion: nil)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
