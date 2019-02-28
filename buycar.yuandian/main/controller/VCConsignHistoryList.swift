@@ -8,7 +8,7 @@
 import UIKit
 import MJRefresh
 
-private let historyCell = "pendingCell"
+private let historyCell = "historyCell"
 
 class VCConsignHistoryList: UIViewController {
     
