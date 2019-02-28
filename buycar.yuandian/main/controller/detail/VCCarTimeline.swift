@@ -66,6 +66,8 @@ class VCCarTimeline: UIViewController {
         timelineTableView.delegate = self
         timelineTableView.dataSource = self
         
+        // 展示标题
+        self.timelineTableView.tableHeaderView = headerView
         // 取消所有多余分隔线
         self.timelineTableView.tableFooterView = UIView()
     }

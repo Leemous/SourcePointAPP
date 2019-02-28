@@ -29,9 +29,9 @@ class TVCCarTimelineCell: UITableViewCell {
             symbolLabel.textColor = UIColor.mi_hex("E7505A")
             eventLabel.textColor = UIColor.mi_hex("E7505A")
         } else {
-            timeLabel.textColor = UIColor.gray
-            symbolLabel.textColor = UIColor.gray
-            eventLabel.textColor = UIColor.gray
+            timeLabel.textColor = UIColor.darkGray
+            symbolLabel.textColor = UIColor.darkGray
+            eventLabel.textColor = UIColor.darkGray
         }
     }
 }
