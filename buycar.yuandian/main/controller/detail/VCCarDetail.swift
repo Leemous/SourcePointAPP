@@ -24,8 +24,6 @@ class VCCarDetail: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.configTitleLabelByText(title: "车辆信息")
-        
         // 守卫代码，保证页面正常绘制不闪退
         guard detail != nil else {
             return

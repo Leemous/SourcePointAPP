@@ -75,8 +75,8 @@ class VCSeekForCarDetail: UIViewController {
                     let code = json["code"].int
                     let msg = json["msg"].string!
                     if (code == 1) {
-                        self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcCarDetail", animated: true) { (vc: UIViewController) in
-                            let vc = vc as! VCCarDetail
+                        self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcCarSeekResult", animated: true) { (vc: UIViewController) in
+                            let vc = vc as! VCCarSeekResult
                             
                             vc.detail = json["obj"].arrayValue
                         }

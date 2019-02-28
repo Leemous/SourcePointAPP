@@ -35,6 +35,11 @@
 		E469B65B1EFFCD5300C264B4 /* VCDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E469B65A1EFFCD5300C264B4 /* VCDatePicker.swift */; };
 		E4776C631FB332360085FE52 /* VCSeekForCarDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4776C621FB332360085FE52 /* VCSeekForCarDetail.swift */; };
 		E4A435021F4AB13300C9221E /* TVCConsignPendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A435011F4AB13300C9221E /* TVCConsignPendingCell.swift */; };
+		E4D3B503222675880036D92A /* VCCarTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D3B502222675880036D92A /* VCCarTimeline.swift */; };
+		E4D3B5052226871D0036D92A /* VCCarSeekResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D3B5042226871D0036D92A /* VCCarSeekResult.swift */; };
+		E4D3B50922269A980036D92A /* TVCCarTimelineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D3B50822269A980036D92A /* TVCCarTimelineCell.swift */; };
+		E4D3B50F222785A10036D92A /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D3B50E222785A10036D92A /* UIColorExtensions.swift */; };
+		E4D3B511222786850036D92A /* UITableViewCellExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D3B510222786850036D92A /* UITableViewCellExtensions.swift */; };
 		E4EEB5751FB34D1C0022673D /* VCCarDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EEB5741FB34D1C0022673D /* VCCarDetail.swift */; };
 		E4FC55831FB4A0F400B54AE3 /* VCarTextGroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FC55821FB4A0F400B54AE3 /* VCarTextGroupsView.swift */; };
 		E4FC558B1FB5897800B54AE3 /* VTextGroupTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FC558A1FB5897800B54AE3 /* VTextGroupTitleView.swift */; };
@@ -152,6 +157,11 @@
 		E469B65A1EFFCD5300C264B4 /* VCDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCDatePicker.swift; sourceTree = "<group>"; };
 		E4776C621FB332360085FE52 /* VCSeekForCarDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCSeekForCarDetail.swift; sourceTree = "<group>"; };
 		E4A435011F4AB13300C9221E /* TVCConsignPendingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVCConsignPendingCell.swift; sourceTree = "<group>"; };
+		E4D3B502222675880036D92A /* VCCarTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCCarTimeline.swift; sourceTree = "<group>"; };
+		E4D3B5042226871D0036D92A /* VCCarSeekResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCCarSeekResult.swift; sourceTree = "<group>"; };
+		E4D3B50822269A980036D92A /* TVCCarTimelineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCCarTimelineCell.swift; sourceTree = "<group>"; };
+		E4D3B50E222785A10036D92A /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		E4D3B510222786850036D92A /* UITableViewCellExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensions.swift; sourceTree = "<group>"; };
 		E4EEB5741FB34D1C0022673D /* VCCarDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCCarDetail.swift; sourceTree = "<group>"; };
 		E4FC55821FB4A0F400B54AE3 /* VCarTextGroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCarTextGroupsView.swift; sourceTree = "<group>"; };
 		E4FC558A1FB5897800B54AE3 /* VTextGroupTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VTextGroupTitleView.swift; sourceTree = "<group>"; };
@@ -264,12 +274,13 @@
 		E4D3B4F2222667E20036D92A /* main */ = {
 			isa = PBXGroup;
 			children = (
-				E4D3B4FA22266D7D0036D92A /* storyboard */,
-				E4D3B4F822266C900036D92A /* model */,
-				E4D3B4F722266C670036D92A /* tools */,
-				E4D3B4F622266C310036D92A /* view */,
+				E4D3B50C2227827E0036D92A /* extensions */,
 				E4D3B4F4222668520036D92A /* common */,
 				E4D3B4F3222667F80036D92A /* controller */,
+				E4D3B4F822266C900036D92A /* model */,
+				E4D3B4FA22266D7D0036D92A /* storyboard */,
+				E4D3B4F722266C670036D92A /* tools */,
+				E4D3B4F622266C310036D92A /* view */,
 			);
 			path = main;
 			sourceTree = "<group>";
@@ -277,10 +288,10 @@
 		E4D3B4F3222667F80036D92A /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				E4D3B4FB22266F8E0036D92A /* detail */,
 				EA1754271E7FDED60020F407 /* NCHome.swift */,
 				EAACCD371E80DF7500AA8DB9 /* NCLogin.swift */,
 				EA13B3EC1E82B9C60020F1FF /* VCAddDaily.swift */,
-				E4EEB5741FB34D1C0022673D /* VCCarDetail.swift */,
 				EA1913F81E84C260007AE9C3 /* VCCarPhoto.swift */,
 				EA105F6B1E83721200705ECD /* VCCarPurchase.swift */,
 				E41873A41F4E9A6B006D61E1 /* VCConsign.swift */,
@@ -343,6 +354,7 @@
 				E407287C1FB4531B00863F54 /* TVCarCheckItemTable.swift */,
 				E4FC55821FB4A0F400B54AE3 /* VCarTextGroupsView.swift */,
 				E4FC558A1FB5897800B54AE3 /* VTextGroupTitleView.swift */,
+				E4D3B50822269A980036D92A /* TVCCarTimelineCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -393,6 +405,33 @@
 				EA13B43B1E82EA410020F1FF /* LaunchScreen.storyboard */,
 			);
 			path = storyboard;
+			sourceTree = "<group>";
+		};
+		E4D3B4FB22266F8E0036D92A /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				E4EEB5741FB34D1C0022673D /* VCCarDetail.swift */,
+				E4D3B502222675880036D92A /* VCCarTimeline.swift */,
+				E4D3B5042226871D0036D92A /* VCCarSeekResult.swift */,
+			);
+			path = detail;
+			sourceTree = "<group>";
+		};
+		E4D3B50C2227827E0036D92A /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E4D3B50D2227828D0036D92A /* UIKit */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		E4D3B50D2227828D0036D92A /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				E4D3B50E222785A10036D92A /* UIColorExtensions.swift */,
+				E4D3B510222786850036D92A /* UITableViewCellExtensions.swift */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		EA1753E31E7FDB480020F407 = {
@@ -754,8 +793,10 @@
 				EA17542D1E7FE1E90020F407 /* VCUnifiedSetting.swift in Sources */,
 				E41873A51F4E9A6B006D61E1 /* VCConsign.swift in Sources */,
 				EA13B3E51E8268E50020F1FF /* VCSeekForPhoto.swift in Sources */,
+				E4D3B50922269A980036D92A /* TVCCarTimelineCell.swift in Sources */,
 				E41873BD1F53AC4A006D61E1 /* VCConsignListPage.swift in Sources */,
 				E469B65B1EFFCD5300C264B4 /* VCDatePicker.swift in Sources */,
+				E4D3B50F222785A10036D92A /* UIColorExtensions.swift in Sources */,
 				EA13B3EB1E82A88F0020F1FF /* VCMyAccount.swift in Sources */,
 				EAACCD3C1E80E69400AA8DB9 /* CommonModel.swift in Sources */,
 				E424BA241F60F18C009C7337 /* VCConsignSetting.swift in Sources */,
@@ -771,6 +812,7 @@
 				EAACCD2D1E80C8E000AA8DB9 /* ViewForReleaseKeyboard.swift in Sources */,
 				E4FC558B1FB5897800B54AE3 /* VTextGroupTitleView.swift in Sources */,
 				EA13B3E31E8221920020F1FF /* TVCCarPurchaseCell.swift in Sources */,
+				E4D3B503222675880036D92A /* VCCarTimeline.swift in Sources */,
 				E41873A71F4EA258006D61E1 /* VCConsignDetail.swift in Sources */,
 				EAACCD541E8189BA00AA8DB9 /* CarPurchase.swift in Sources */,
 				EA13B3E91E82795E0020F1FF /* Daily.swift in Sources */,
@@ -785,6 +827,7 @@
 				EAACCD441E80FE2100AA8DB9 /* VNoConnectionView.swift in Sources */,
 				EA105F6C1E83721200705ECD /* VCCarPurchase.swift in Sources */,
 				E4FC55831FB4A0F400B54AE3 /* VCarTextGroupsView.swift in Sources */,
+				E4D3B511222786850036D92A /* UITableViewCellExtensions.swift in Sources */,
 				EAACCD5A1E818E2C00AA8DB9 /* WebTools.swift in Sources */,
 				EAACCD521E817E0100AA8DB9 /* CVCFeatureCell.swift in Sources */,
 				EAACCD361E80D2DD00AA8DB9 /* DrawingTools.swift in Sources */,
@@ -801,6 +844,7 @@
 				EA17542F1E7FE2370020F407 /* StringTools.swift in Sources */,
 				EAACCD461E80FE3000AA8DB9 /* VNoDataView.swift in Sources */,
 				EA105F761E838AA000705ECD /* CVCCarPhotoCell.swift in Sources */,
+				E4D3B5052226871D0036D92A /* VCCarSeekResult.swift in Sources */,
 				EA1754281E7FDED60020F407 /* NCHome.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
