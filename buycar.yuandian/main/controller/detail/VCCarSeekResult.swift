@@ -86,7 +86,6 @@ class VCCarSeekResult: UIViewController {
         self.tabBottomLineView.addSubview(sliderImageView)
         
         NotificationCenter.default.addObserver(self, selector: #selector(VCConsignListPage.currentPageChanged(notification:)), name: NSNotification.Name(rawValue: "currentPageChanged"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(VCConsignListPage.gotoOtherPage(notification:)), name: NSNotification.Name(rawValue: "gotoOtherPage"), object: nil)
     }
     
     /// 点击tab按钮切换页面
@@ -103,13 +102,8 @@ class VCCarSeekResult: UIViewController {
         currentPage = notification.object as! Int
     }
     
-    /// 跳转到其他页面
-    ///
-    /// - Parameter notification: <#notification description#>
-    func gotoOtherPage(notification: NSNotification) {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "other")
-        self.present(vc, animated: true)
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
