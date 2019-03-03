@@ -15,12 +15,9 @@ class TVCConsignPendingCell: UITableViewCell {
     @IBOutlet weak var selectedButton: UIButton!
     
     var selectedAction: ((_ isSelected: Bool) -> Void)?
-    
-    var consignPendingCellDelegate = ConsignPendingCellDelegate()
+    var consignAction: (() -> Void)?
     
     override func draw(_ rect: CGRect) {
-        self.licenseLabel.text = consignPendingCellDelegate.carLisenceNo
-        self.frameLabel.text = consignPendingCellDelegate.carFrameNo
         self.tag = 2000
         self.consignButton.layer.borderColor = systemTintColor.cgColor
         self.consignButton.layer.borderWidth = 1
@@ -33,10 +30,30 @@ class TVCConsignPendingCell: UITableViewCell {
             handle(sender.isSelected)
         }
     }
+    
+    @IBAction func didClickedConsignButton(_ sender: Any) {
+        if let handle = self.consignAction {
+            handle()
+        }
+    }
+    
+    func configure(model: ConsignPendingCellModel) {
+        self.licenseLabel.text = model.carLisense
+        self.frameLabel.text = model.carFrameNo
+        self.selectedButton.isSelected = model.isSelected == true
+    }
 }
 
-class ConsignPendingCellDelegate {
+class ConsignPendingCellModel {
     var carId: String!
-    var carLisenceNo: String!
+    var carLisense: String!
     var carFrameNo: String!
+    var isSelected: Bool?
+    
+    init(_ carId: String, _ carLisense: String, _ carFrameNo: String, _ isSelected: Bool?) {
+        self.carId = carId
+        self.carLisense = carLisense
+        self.carFrameNo = carFrameNo
+        self.isSelected = isSelected
+    }
 }

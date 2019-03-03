@@ -13,22 +13,26 @@ private let pendingCell = "pendingCell"
 
 class VCConsignPendingList: UIViewController {
     
-    let cplTable = UITableView()
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var selectedAllButton: UIButton!
+    @IBOutlet weak var batchConsignButton: UIButton!
+    @IBOutlet weak var batchSelfConsignButton: UIButton!
+    
     let refreshHeader = MJRefreshNormalHeader()
     let refreshFooter = MJRefreshAutoNormalFooter()
     var lastRefreshTime = Date()
     var total = 0
     var pageNo = 0
     let pageSize = 15
-    var cs = [Consign]()
+    
+    lazy var cs = [Consign]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.automaticallyAdjustsScrollViewInsets = false
+        self.initView()
         
-        initView()
-        self.cplTable.mj_header.beginRefreshing()
+        self.tableView.mj_header.beginRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,30 +43,32 @@ class VCConsignPendingList: UIViewController {
     }
     
     private func initView() {
+        
         // 为TableView添加刷新控件
         self.refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(VCConsignPendingList.headerRefresh))
         self.refreshHeader.setTitle("下拉刷新数据", for: .idle)
         self.refreshHeader.setTitle("松开刷新数据", for: .pulling)
         self.refreshHeader.setTitle("正在刷新数据...", for: .refreshing)
         self.refreshHeader.lastUpdatedTimeLabel.isHidden = true
-        self.cplTable.mj_header = self.refreshHeader
+        self.tableView.mj_header = self.refreshHeader
         self.refreshFooter.setRefreshingTarget(self, refreshingAction: #selector(VCConsignPendingList.footerRefresh))
         self.refreshFooter.setTitle("上拉加载更多", for: .idle)
         self.refreshFooter.setTitle("加载中...", for: .refreshing)
         self.refreshFooter.setTitle("没有更多数据了", for: .noMoreData)
         self.refreshFooter.stateLabel.isHidden = true
-        self.cplTable.mj_footer = self.refreshFooter
+        self.tableView.mj_footer = self.refreshFooter
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        // 设置cell的分隔线，以便其可以顶头开始
+        self.tableView.layoutMargins = UIEdgeInsets.zero
+        self.tableView.separatorInset = UIEdgeInsets.zero
+        self.tableView.separatorColor = separatorLineColor
         
         // 取消所有多余分隔线
-        self.cplTable.tableFooterView = UIView()
-        self.view.addSubview(self.cplTable)
-        
-        self.cplTable.delegate = self
-        self.cplTable.register(UINib(nibName: "ConsignPendingCell", bundle: nil), forCellReuseIdentifier: pendingCell)
-        
-        self.cplTable.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tv]|", options: [], metrics: nil, views: ["tv": self.cplTable]))
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tv]|", options: [], metrics: nil, views: ["tv": self.cplTable]))
+        self.tableView.tableFooterView = UIView()
+        self.tableView.register(UINib(nibName: "ConsignPendingCell", bundle: nil), forCellReuseIdentifier: pendingCell)
     }
     
     private func launchData(completion: (() -> Swift.Void)? = nil) {
@@ -71,11 +77,6 @@ class VCConsignPendingList: UIViewController {
         cps.getConsignPendingList(pageNo: self.pageNo, pageSize: self.pageSize, lastRefreshDate: self.lastRefreshTime) { (status: ReturnedStatus, msg: String?, total: Int?, cs: [Consign]?) in
             switch status {
             case .normal:
-                self.cplTable.dataSource = self
-                // 设置cell的分隔线，以便其可以顶头开始
-                self.cplTable.layoutMargins = UIEdgeInsets.zero
-                self.cplTable.separatorInset = UIEdgeInsets.zero
-                self.cplTable.separatorColor = separatorLineColor
                 
                 self.total = total!
                 self.cs.append(contentsOf: cs!)
@@ -107,13 +108,13 @@ class VCConsignPendingList: UIViewController {
         self.cs.removeAll()
         self.lastRefreshTime = Date()
         self.launchData(completion: {
-            self.cplTable.reloadData()
-            self.cplTable.mj_header.endRefreshing()
+            self.tableView.reloadData()
+            self.tableView.mj_header.endRefreshing()
             if self.total > self.pageNo * self.pageSize {
                 self.refreshFooter.stateLabel.isHidden = false
-                self.cplTable.mj_footer.endRefreshing()
+                self.tableView.mj_footer.endRefreshing()
             } else {
-                self.cplTable.mj_footer.endRefreshingWithNoMoreData()
+                self.tableView.mj_footer.endRefreshingWithNoMoreData()
             }
         })
     }
@@ -122,47 +123,27 @@ class VCConsignPendingList: UIViewController {
     func footerRefresh() {
         self.pageNo += 1
         self.launchData(completion: {
-            self.cplTable.reloadData()
+            self.tableView.reloadData()
             if self.total > self.pageNo * self.pageSize {
-                self.cplTable.mj_footer.endRefreshing()
+                self.tableView.mj_footer.endRefreshing()
             } else {
-                self.cplTable.mj_footer.endRefreshingWithNoMoreData()
+                self.tableView.mj_footer.endRefreshingWithNoMoreData()
             }
         })
     }
     
-    /// 托运按钮点击事件
-    ///
-    /// - Parameter carId: <#carId description#>
-    func doConsign(sender : UIButton) {
-        let tvc = sender.superView(of: TVCConsignPendingCell.self)!
-        self.presentConsignWayAction(tvc.consignPendingCellDelegate.carId)
-    }
-    
     /// 弹出托运方式选择框
     ///
-    /// - Parameter present: <#present description#>
-    func presentConsignWayAction(_ carId: String!) {
+    /// - Parameter consign: 托运信息
+    func presentConsignWayAction(_ consign: Consign) {
         let action = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         action.addAction(UIAlertAction(title: "托运", style: .default) {_ in
             // 托运处理
-            self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcConsign", animated: true, completion: {(vc: UIViewController) -> Void in
-                let consign = vc as! VCConsign
-                consign.consignDelegate.carId = carId
-                consign.consignDelegate.consignBySelf = false
-                consign.consignDelegate.title = "托运"
-            })
-            self.configNavigationBackItem(sourceViewController: self)
+            self.doConsign(cs: [consign])
         })
         action.addAction(UIAlertAction(title: "自运", style: .default) {_ in
             // 自运处理
-            self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcConsign", animated: true, completion: {(vc: UIViewController) -> Void in
-                let consign = vc as! VCConsign
-                consign.consignDelegate.carId = carId
-                consign.consignDelegate.consignBySelf = true
-                consign.consignDelegate.title = "自运"
-            })
-            self.configNavigationBackItem(sourceViewController: self)
+            self.doConsign(cs: [consign], isConsignBySelf: true)
         })
         action.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         self.present(action, animated: true, completion: nil)
@@ -172,7 +153,67 @@ class VCConsignPendingList: UIViewController {
     ///
     /// - Parameter seg: <#seg description#>
     @IBAction func backToConsignPendingList(_ seg: UIStoryboardSegue!) {
-        self.cplTable.mj_header.beginRefreshing()
+        self.tableView.mj_header.beginRefreshing()
+    }
+    
+    @IBAction func didClickedSelectedAllButton(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        changeSelectedAll(isSelected: sender.isSelected)
+    }
+    
+    @IBAction func didClickedBatchConsignButton(_ sender: Any) {
+        let selectedConsigns = self.getSelected()
+        if (selectedConsigns.count == 0) {
+            self.alert(viewToBlock: self.batchConsignButton, msg: "未选择任何记录")
+        } else {
+            self.doConsign(cs: selectedConsigns)
+        }
+    }
+    
+    @IBAction func didClickedBatchSelfConsignButton(_ sender: Any) {
+        let selectedConsigns = self.getSelected()
+        if (selectedConsigns.count == 0) {
+            self.alert(viewToBlock: self.batchConsignButton, msg: "未选择任何记录")
+        } else {
+            self.doConsign(cs: selectedConsigns, isConsignBySelf: true)
+        }
+    }
+    
+    private func getSelected() -> [Consign] {
+        var selectedConsigns = [Consign]()
+        for model in self.cs {
+            if model.isSelected == true {
+                selectedConsigns.append(model)
+            }
+        }
+        return selectedConsigns
+    }
+    
+    private func doConsign(cs: [Consign], isConsignBySelf: Bool = false) {
+        self.pushViewControllerFromStoryboard(storyboardName: "Main", idInStoryboard: "vcConsign", animated: true, completion: {(vc: UIViewController) -> Void in
+            let vcConsign = vc as! VCConsign
+            vcConsign.consigns = cs
+            vcConsign.consignForm.consignBySelf = isConsignBySelf
+        })
+        self.configNavigationBackItem(sourceViewController: self)
+    }
+    
+    private func changeSelectedAll(isSelected: Bool) {
+        var temp: [Consign] = []
+        for model in self.cs {
+            model.isSelected = isSelected
+            temp.append(model)
+        }
+        self.cs = temp
+        self.tableView.reloadData()
+    }
+    
+    func checkSelectAll() {
+        var isSelectedAll = true
+        for model in self.cs {
+            isSelectedAll = isSelectedAll && (model.isSelected == true)
+        }
+        self.selectedAllButton.isSelected = isSelectedAll
     }
 }
 
@@ -187,22 +228,24 @@ extension VCConsignPendingList: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: pendingCell, for: indexPath) as! TVCConsignPendingCell
+        cell.selectionStyle = .none
         
-        cell.consignPendingCellDelegate.carId = self.cs[indexPath.row].carId
-        cell.consignPendingCellDelegate.carLisenceNo = self.cs[indexPath.row].carLicenseNo
-        cell.consignPendingCellDelegate.carFrameNo = self.cs[indexPath.row].carFrameNo
+        let consign = self.cs[indexPath.row]
         
-        if cell.tag != 2000 {
-            // 首次绘制单元格
-            cell.selectionStyle = .none
-        } else {
-            // 重用单元格，手动设置label值
-            cell.licenseLabel.text = self.cs[indexPath.row].carLicenseNo
-            cell.frameLabel.text = self.cs[indexPath.row].carFrameNo
+        cell.configure(model: ConsignPendingCellModel(consign.carId, consign.carLicenseNo, consign.carFrameNo, consign.isSelected))
+        
+        cell.selectedAction = { [weak self] (isSelected) in
+            let newModel = consign
+            newModel.isSelected = isSelected
+            self?.cs[indexPath.row] = newModel
+            // 检查是否全选
+            self?.checkSelectAll()
+            self?.tableView.reloadData()
         }
         
-        // 托运按钮点击，同一类型事件只能存在一个，重用cell指定事件时会覆盖原有事件
-        cell.consignButton.addTarget(self, action: #selector(VCConsignPendingList.doConsign(sender:)), for: .touchUpInside)
+        cell.consignAction = { [weak self] in
+            self?.presentConsignWayAction(consign)
+        }
         
         return cell
     }

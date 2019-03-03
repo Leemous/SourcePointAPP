@@ -27,6 +27,18 @@ class Consign: CommonModel {
     var charger: String!
     var consignDate: String!
     var remark: String!
+    var isSelected: Bool?
+}
+
+class ConsignForm: CommonModel {
+    var carIds: String!
+    var consignBySelf: Bool!
+    var placeOfOriginId: String?
+    var address: String?
+    var destinationId: String?
+    var consignorId: String?
+    var chargerId: String!
+    var remark: String!
 }
 
 extension Consign {
@@ -104,21 +116,21 @@ extension Consign {
     /// 保存托运信息
     ///
     /// - Parameters:
-    ///   - consign: <#consign description#>
-    ///   - completion: <#completion description#>
-    func saveConsign(consign: Consign!, completion: @escaping ((ReturnedStatus, String?) -> Void)) {
+    ///   - consignForm: 托运表单信息
+    ///   - completion: 保存完成后的回调
+    func saveConsign(consignForm: ConsignForm!, completion: @escaping ((ReturnedStatus, String?) -> Void)) {
         var paramDict: [String : Any] = [:]
-        paramDict["carId"] = consign.carId
-        paramDict["consignBySelf"] = consign.consignBySelf! ? "true" : "false"
-        if !consign.consignBySelf {
+        paramDict["carIds"] = consignForm.carIds
+        paramDict["consignBySelf"] = consignForm.consignBySelf! ? "true" : "false"
+        if !consignForm.consignBySelf {
             // 非自运
-            paramDict["placeOfOriginId"] = consign.placeOfOriginId
-            paramDict["address"] = consign.address
-            paramDict["destinationId"] = consign.destinationId
-            paramDict["consignorId"] = consign.consignorId
+            paramDict["placeOfOriginId"] = consignForm.placeOfOriginId
+            paramDict["address"] = consignForm.address
+            paramDict["destinationId"] = consignForm.destinationId
+            paramDict["consignorId"] = consignForm.consignorId
         }
-        paramDict["chargerId"] = consign.chargerId
-        paramDict["remark"] = consign.remark
+        paramDict["chargerId"] = consignForm.chargerId
+        paramDict["remark"] = consignForm.remark
         
         Alamofire.request(Router.saveConsign(paramDict)).responseJSON { response in
             if (response.result.isSuccess) {

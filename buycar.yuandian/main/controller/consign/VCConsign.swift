@@ -11,11 +11,12 @@ import UIKit
 private let horizontalGroupCell = "horizontalGroupCell"
 
 class VCConsign: UIViewController {
+    
     var detailTable: UITableView!
+    var headerView: UIView!
     var remarkView: UIView!
     
-    var tableCellCount = 0
-    var consignDelegate = ConsignDelegate()
+    var layer: VLayerView!
     
     var addressText: TextFieldWithFinishButton!     // 此处用来记录详细地址的输入框对象，便于隐藏软键盘
     var remarkLabel: UILabel!
@@ -27,23 +28,20 @@ class VCConsign: UIViewController {
     var consigors: [Option]!
     var consignChargers: [Option]!
     
-    var layer: VLayerView!
+    var consigns: [Consign] = []
+    var consignForm = ConsignForm()
+    var tableCellCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // 守卫代码，保证页面正常绘制不闪退
-        guard consignDelegate.title != nil && consignDelegate.consignBySelf != nil && consignDelegate.carId != nil else {
+        guard consignForm.consignBySelf != nil && consigns.count != 0 else {
             return
         }
         
-        self.configTitleLabelByText(title: consignDelegate.title)
-        
-        if consignDelegate.consignBySelf {
-            tableCellCount = 1
-        } else {
-            tableCellCount = 5
-        }
+        self.configTitleLabelByText(title: consignForm.consignBySelf ? "自运" : "托运")
+        self.tableCellCount = consignForm.consignBySelf ? 1 : 5
         
         initView()
     }
@@ -56,24 +54,63 @@ class VCConsign: UIViewController {
         // 初始化视图
         self.detailTable = UITableView()
         self.detailTable.tableFooterView = UIView()
-        // 设置cell的分隔线
-        self.detailTable.separatorInset = UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 18)
-        self.detailTable.dataSource = self
-        self.detailTable.delegate = self
-        // 取消所有多余分隔线
-        self.detailTable.tableFooterView = UIView()
-        
         // 设置cell的分隔线，以便其可以顶头开始
         self.detailTable.layoutMargins = UIEdgeInsets.zero
         self.detailTable.separatorInset = UIEdgeInsets.zero
         self.detailTable.separatorColor = separatorLineColor
+        // 设置委托和数据源
+        self.detailTable.dataSource = self
+        self.detailTable.delegate = self
+        // 取消所有多余分隔线
+        self.detailTable.tableHeaderView = UIView()
+        self.detailTable.tableFooterView = UIView()
         
+        // 注册单元格
         self.detailTable.register(UINib(nibName: "HorizontalGroupCell", bundle: nil), forCellReuseIdentifier: horizontalGroupCell)
         self.view.addSubview(self.detailTable)
         
         self.detailTable.translatesAutoresizingMaskIntoConstraints = false
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tv]|", options: [], metrics: nil, views: ["tv": self.detailTable]))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tv]|", options: [], metrics: nil, views: ["tv": self.detailTable]))
+        
+        // 设置表头
+        self.headerView = UIView(frame: CGRect(x: 10, y: 10, width: screenWidth - 20, height: 100))
+        self.headerView.backgroundColor = UIColor.mi_hex("FEECCE")
+        let headerTitleLabel = UILabel()
+        headerTitleLabel.text = "本次托运的车牌号为："
+        self.headerView.addSubview(headerTitleLabel)
+        
+        let headerViewHeightConstraint = NSLayoutConstraint(item: self.headerView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0)
+        headerViewHeightConstraint.priority = 249
+        self.headerView.addConstraint(headerViewHeightConstraint)
+        
+        headerTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.headerView.addConstraint(NSLayoutConstraint(item: headerTitleLabel, attribute: .top, relatedBy: .equal, toItem: self.headerView, attribute: .top, multiplier: 1, constant: 10))
+        self.headerView.addConstraint(NSLayoutConstraint(item: headerTitleLabel, attribute: .leading, relatedBy: .equal, toItem: self.headerView, attribute: .leading, multiplier: 1, constant: 10))
+        self.headerView.addConstraint(NSLayoutConstraint(item: headerTitleLabel, attribute: .trailing, relatedBy: .equal, toItem: self.headerView, attribute: .trailing, multiplier: 1, constant: -10))
+        self.headerView.addConstraint(NSLayoutConstraint(item: headerTitleLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40))
+        
+        let carLicenseLabel = UILabel()
+        carLicenseLabel.numberOfLines = 0
+        carLicenseLabel.lineBreakMode = .byWordWrapping
+        carLicenseLabel.setContentHuggingPriority(251, for: .horizontal)
+        carLicenseLabel.setContentHuggingPriority(251, for: .vertical)
+        var carLicenses = ""
+        for consign in self.consigns {
+            carLicenses += consign.carLicenseNo + ","
+        }
+        // 移除最后一个分隔符
+        carLicenses.remove(at: carLicenses.index(before: carLicenses.endIndex))
+        carLicenseLabel.text = carLicenses
+        self.headerView.addSubview(carLicenseLabel)
+        
+        carLicenseLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.headerView.addConstraint(NSLayoutConstraint(item: carLicenseLabel, attribute: .top, relatedBy: .equal, toItem: headerTitleLabel, attribute: .bottom, multiplier: 1, constant: 5))
+        self.headerView.addConstraint(NSLayoutConstraint(item: carLicenseLabel, attribute: .leading, relatedBy: .equal, toItem: headerTitleLabel, attribute: .leading, multiplier: 1, constant: 0))
+        self.headerView.addConstraint(NSLayoutConstraint(item: carLicenseLabel, attribute: .trailing, relatedBy: .equal, toItem: headerTitleLabel, attribute: .trailing, multiplier: 1, constant: 0))
+        self.headerView.addConstraint(NSLayoutConstraint(item: carLicenseLabel, attribute: .bottom, relatedBy: .equal, toItem: self.headerView, attribute: .bottom, multiplier: 1, constant: 10))
+        
+//        self.detailTable.tableHeaderView = self.headerView
         
         self.remarkView = UIView(frame: CGRect(x: 0, y: CGFloat(tableCellCount * 50 + 10), width: screenWidth, height: 150))
         self.view.addSubview(self.remarkView)
@@ -111,45 +148,40 @@ class VCConsign: UIViewController {
     
     /// 保存托运单
     func saveConsign() {
-        // 构造数据
-        let consign = Consign()
-        consign.carId = self.consignDelegate.carId
-        consign.consignBySelf = self.consignDelegate.consignBySelf
-        consign.remark = self.remarkText.text
+        var carIds = ""
+        for item in self.consigns {
+            carIds += item.carId + ","
+        }
+        // 移除最后一个分隔符
+        carIds.remove(at: carIds.index(before: carIds.endIndex))
         
-        if !self.consignDelegate.consignBySelf {
+        // 构造数据
+        consignForm.carIds = carIds
+        consignForm.remark = self.remarkText.text
+        
+        if !self.consignForm.consignBySelf {
             // 托运
-            if self.consignDelegate.placeOfOriginId == nil {
+            if self.consignForm.placeOfOriginId == nil {
                 self.alert(viewToBlock: nil, msg: "请选择托运起点")
                 return
-            } else {
-                consign.placeOfOriginId = self.consignDelegate.placeOfOriginId
             }
-            if self.consignDelegate.address == nil {
+            if self.consignForm.address == nil {
                 self.addressText.becomeFirstResponder()
                 self.alert(viewToBlock: nil, msg: "请填写起运详细地址")
                 return
-            } else {
-                consign.address = self.consignDelegate.address
             }
-            if self.consignDelegate.destinationId == nil {
+            if self.consignForm.destinationId == nil {
                 self.alert(viewToBlock: nil, msg: "请选择托运终点")
                 return
-            } else {
-                consign.destinationId = self.consignDelegate.destinationId
             }
-            if self.consignDelegate.consignorId == nil {
+            if self.consignForm.consignorId == nil {
                 self.alert(viewToBlock: nil, msg: "请选择托运人")
                 return
-            } else {
-                consign.consignorId = self.consignDelegate.consignorId
             }
         }
-        if self.consignDelegate.chargerId == nil {
+        if self.consignForm.chargerId == nil {
             self.alert(viewToBlock: nil, msg: "请选择负责人")
             return
-        } else {
-            consign.chargerId = self.consignDelegate.chargerId
         }
         
         // 显示遮罩层
@@ -157,7 +189,8 @@ class VCConsign: UIViewController {
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         
         // 保存到服务器
-        consign.saveConsign(consign: consign) { (status: ReturnedStatus, msg: String?) in
+        let consign = Consign()
+        consign.saveConsign(consignForm: consignForm) { (status: ReturnedStatus, msg: String?) in
             if self.layer.superview != nil {
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
                 self.layer.removeFromSuperview()
@@ -177,17 +210,6 @@ class VCConsign: UIViewController {
     }
 }
 
-class ConsignDelegate {
-    var title: String!
-    var carId: String!
-    var consignBySelf: Bool!
-    var placeOfOriginId: String!
-    var address: String!
-    var destinationId: String!
-    var consignorId: String!
-    var chargerId: String!
-}
-
 extension VCConsign: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -205,7 +227,7 @@ extension VCConsign: UITableViewDataSource {
         var clickToPick: (() -> Void)!
         
         let cell = tableView.dequeueReusableCell(withIdentifier: horizontalGroupCell, for: indexPath) as! TVCHorizontalGroupCell
-        if !self.consignDelegate.consignBySelf && indexPath.row == 0 {
+        if !self.consignForm.consignBySelf && indexPath.row == 0 {
             // 非自运，托运起点
             groupText = "托运起点"
             placeholderText = "请选择托运起点"
@@ -213,7 +235,7 @@ extension VCConsign: UITableViewDataSource {
             let pickCompletion = { (key: String, text: String) in
                 cell.changeContentKeyAndText(contentKey: key, contentText: text)
                 // 选中后修改委托中的记录值
-                self.consignDelegate.placeOfOriginId = key
+                self.consignForm.placeOfOriginId = key
             }
             clickToPick = {
                 if self.placeOfOrigins == nil {
@@ -233,9 +255,9 @@ extension VCConsign: UITableViewDataSource {
                 }
             }
             // 设置默认值
-            self.consignDelegate.placeOfOriginId = self.getStringFromUserDefaultsByKey(key: defaultPlaceOfOriginIdKey)
+            self.consignForm.placeOfOriginId = self.getStringFromUserDefaultsByKey(key: defaultPlaceOfOriginIdKey)
             cell.changeContentKeyAndText(contentKey: self.getStringFromUserDefaultsByKey(key: defaultPlaceOfOriginIdKey), contentText: self.getStringFromUserDefaultsByKey(key: defaultPlaceOfOriginKey))
-        } else if !self.consignDelegate.consignBySelf && indexPath.row == 1 {
+        } else if !self.consignForm.consignBySelf && indexPath.row == 1 {
             // 非自运，起运详址
             groupText = "起运详址"
             placeholderText = "请填写起运详细地址"
@@ -244,12 +266,12 @@ extension VCConsign: UITableViewDataSource {
                 self.addressText = cell.textFieldView
             }
             cell.afterTextChanged = { (newText: String) in
-                self.consignDelegate.address = newText
+                self.consignForm.address = newText
             }
             // 设置默认值
-            self.consignDelegate.address = self.getStringFromUserDefaultsByKey(key: defaultAddressKey)
+            self.consignForm.address = self.getStringFromUserDefaultsByKey(key: defaultAddressKey)
             cell.horizontalGroupCellDelegate.contentText = self.getStringFromUserDefaultsByKey(key: defaultAddressKey)
-        } else if !self.consignDelegate.consignBySelf && indexPath.row == 2 {
+        } else if !self.consignForm.consignBySelf && indexPath.row == 2 {
             // 非自运，托运终点
             groupText = "托运终点"
             placeholderText = "请选择托运终点"
@@ -257,7 +279,7 @@ extension VCConsign: UITableViewDataSource {
             let pickCompletion = { (key: String, text: String) in
                 cell.changeContentKeyAndText(contentKey: key, contentText: text)
                 // 选中后修改委托中的记录值
-                self.consignDelegate.destinationId = key
+                self.consignForm.destinationId = key
             }
             clickToPick = {
                 if self.destinations == nil {
@@ -276,7 +298,7 @@ extension VCConsign: UITableViewDataSource {
                     self.showTablePickerView(options: self.destinations, completion: pickCompletion)
                 }
             }
-        } else if !self.consignDelegate.consignBySelf && indexPath.row == 3 {
+        } else if !self.consignForm.consignBySelf && indexPath.row == 3 {
             // 非自运，托运人
             groupText = "托运人"
             placeholderText = "请选择托运人"
@@ -284,7 +306,7 @@ extension VCConsign: UITableViewDataSource {
             let pickCompletion = { (key: String, text: String) in
                 cell.changeContentKeyAndText(contentKey: key, contentText: text)
                 // 选中后修改委托中的记录值
-                self.consignDelegate.consignorId = key
+                self.consignForm.consignorId = key
             }
             clickToPick = {
                 if self.consigors == nil {
@@ -303,7 +325,7 @@ extension VCConsign: UITableViewDataSource {
                     self.showTablePickerView(options: self.consigors, completion: pickCompletion)
                 }
             }
-        } else if (!self.consignDelegate.consignBySelf && indexPath.row == 4) || (self.consignDelegate.consignBySelf && indexPath.row == 0) {
+        } else if (!self.consignForm.consignBySelf && indexPath.row == 4) || (self.consignForm.consignBySelf && indexPath.row == 0) {
             // 负责人
             groupText = "负责人"
             placeholderText = "请选择负责人"
@@ -311,7 +333,7 @@ extension VCConsign: UITableViewDataSource {
             let pickCompletion = { (key: String, text: String) in
                 cell.changeContentKeyAndText(contentKey: key, contentText: text)
                 // 选中后修改委托中的记录值
-                self.consignDelegate.chargerId = key
+                self.consignForm.chargerId = key
             }
             clickToPick = {
                 if self.consignChargers == nil {

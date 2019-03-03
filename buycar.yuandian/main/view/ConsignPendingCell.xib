@@ -43,6 +43,9 @@
                         <state key="normal" title="托运">
                             <color key="titleColor" red="0.30739781259999999" green="0.72377473120000002" blue="0.52944374080000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </state>
+                        <connections>
+                            <action selector="didClickedConsignButton:" destination="H25-vf-Ubk" eventType="touchUpInside" id="DXP-WA-vha"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTf-dc-uM7">
                         <rect key="frame" x="0.0" y="0.0" width="40" height="79.5"/>

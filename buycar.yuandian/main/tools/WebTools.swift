@@ -107,7 +107,7 @@ enum Router: URLRequestConvertible {
                  return ("/car/consign/listConsignChargers", nil)
             case .saveConsign(let paramDic):
                 method = "POST"
-                return ("/car/consign/save", paramDic)
+                return ("/car/consign/saves", paramDic)
             case .consignPendingList(let pageNo, let pageSize, let lastRefreshStamp):
                 let params = ["pageNo" : pageNo, "pageSize" : pageSize, "lastRefreshStamp" : lastRefreshStamp] as [String : Any]
                 return ("/car/consign/listTodo", params)

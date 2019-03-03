@@ -849,12 +849,95 @@
                     <view key="view" contentMode="scaleToFill" id="yHc-Cc-5j4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PCi-dU-89q">
+                                <rect key="frame" x="0.0" y="20" width="375" height="597"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Esb-Oy-Qyx">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vBX-bC-ha1">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="sol-gj-RT3"/>
+                                        </constraints>
+                                        <state key="normal" image="selectNormalImage"/>
+                                        <state key="selected" image="selectSelectedImage"/>
+                                        <connections>
+                                            <action selector="didClickedSelectedAllButton:" destination="n2J-xn-8vy" eventType="touchUpInside" id="glD-sx-irm"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全选" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MXF-rj-CVy">
+                                        <rect key="frame" x="40" y="0.0" width="35" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sst-Bz-HLP">
+                                        <rect key="frame" x="109" y="7.5" width="120" height="35"/>
+                                        <color key="backgroundColor" red="0.0" green="0.69411764710000001" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="Mkn-ZD-kYT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
+                                        <state key="normal" title="批量托运">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didClickedBatchConsignButton:" destination="n2J-xn-8vy" eventType="touchUpInside" id="Y32-zj-DLW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7p7-Wb-dDk">
+                                        <rect key="frame" x="239" y="7.5" width="120" height="35"/>
+                                        <color key="backgroundColor" red="0.0" green="0.69411764710000001" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
+                                        <state key="normal" title="批量自运">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didClickedBatchSelfConsignButton:" destination="n2J-xn-8vy" eventType="touchUpInside" id="T9d-Ww-fhu"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="7p7-Wb-dDk" firstAttribute="centerY" secondItem="sst-Bz-HLP" secondAttribute="centerY" id="1q4-gN-w9T"/>
+                                    <constraint firstItem="7p7-Wb-dDk" firstAttribute="leading" secondItem="sst-Bz-HLP" secondAttribute="trailing" constant="10" id="GEa-fl-ILI"/>
+                                    <constraint firstItem="MXF-rj-CVy" firstAttribute="top" secondItem="Esb-Oy-Qyx" secondAttribute="top" id="HAm-yj-bNg"/>
+                                    <constraint firstAttribute="bottom" secondItem="MXF-rj-CVy" secondAttribute="bottom" id="I0I-qr-JGX"/>
+                                    <constraint firstItem="vBX-bC-ha1" firstAttribute="leading" secondItem="Esb-Oy-Qyx" secondAttribute="leading" id="M7z-Cb-vCm"/>
+                                    <constraint firstItem="MXF-rj-CVy" firstAttribute="leading" secondItem="vBX-bC-ha1" secondAttribute="trailing" id="Nez-O8-VJe"/>
+                                    <constraint firstItem="7p7-Wb-dDk" firstAttribute="width" secondItem="sst-Bz-HLP" secondAttribute="width" id="YjL-tB-PRw"/>
+                                    <constraint firstItem="sst-Bz-HLP" firstAttribute="centerY" secondItem="Esb-Oy-Qyx" secondAttribute="centerY" id="juT-hj-Wfk"/>
+                                    <constraint firstAttribute="trailing" secondItem="7p7-Wb-dDk" secondAttribute="trailing" constant="16" id="kGc-6X-S9k"/>
+                                    <constraint firstItem="vBX-bC-ha1" firstAttribute="top" secondItem="Esb-Oy-Qyx" secondAttribute="top" id="oUs-xF-o4H"/>
+                                    <constraint firstAttribute="bottom" secondItem="vBX-bC-ha1" secondAttribute="bottom" id="sZZ-RV-sCI"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PCi-dU-89q" firstAttribute="top" secondItem="5ov-T5-68M" secondAttribute="bottom" id="HsQ-pB-aPW"/>
+                            <constraint firstItem="Esb-Oy-Qyx" firstAttribute="leading" secondItem="yHc-Cc-5j4" secondAttribute="leading" id="QHg-Uf-Fsz"/>
+                            <constraint firstAttribute="trailing" secondItem="PCi-dU-89q" secondAttribute="trailing" id="RBN-jF-icK"/>
+                            <constraint firstItem="PCi-dU-89q" firstAttribute="leading" secondItem="yHc-Cc-5j4" secondAttribute="leading" id="SZb-h3-rgf"/>
+                            <constraint firstItem="Esb-Oy-Qyx" firstAttribute="top" secondItem="PCi-dU-89q" secondAttribute="bottom" id="TL8-Gt-418"/>
+                            <constraint firstAttribute="bottom" secondItem="Esb-Oy-Qyx" secondAttribute="bottom" id="g3m-py-laD"/>
+                            <constraint firstAttribute="trailing" secondItem="Esb-Oy-Qyx" secondAttribute="trailing" id="g7G-Ew-eDa"/>
+                            <constraint firstItem="dE6-bs-1Iv" firstAttribute="top" secondItem="PCi-dU-89q" secondAttribute="bottom" constant="50" id="zhZ-7K-mdk"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="batchConsignButton" destination="sst-Bz-HLP" id="Ikh-nI-Iid"/>
+                        <outlet property="batchSelfConsignButton" destination="7p7-Wb-dDk" id="W5t-BF-8CH"/>
+                        <outlet property="selectedAllButton" destination="vBX-bC-ha1" id="Rnt-LR-7wB"/>
+                        <outlet property="tableView" destination="PCi-dU-89q" id="CYQ-ta-kNM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KFZ-NH-66g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1052" y="1490"/>
+            <point key="canvasLocation" x="1052" y="1489.2053973013494"/>
         </scene>
         <!--Consign-->
         <scene sceneID="VHo-jo-b2s">
@@ -997,6 +1080,8 @@
     <resources>
         <image name="arrowRightImage" width="10" height="16"/>
         <image name="avatarImage" width="42" height="42"/>
+        <image name="selectNormalImage" width="24" height="24"/>
+        <image name="selectSelectedImage" width="24" height="24"/>
         <image name="settingImage" width="20" height="20"/>
     </resources>
 </document>
