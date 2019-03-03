@@ -74,27 +74,21 @@ class VCConsign: UIViewController {
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tv]|", options: [], metrics: nil, views: ["tv": self.detailTable]))
         
         // 设置表头
-        self.headerView = UIView(frame: CGRect(x: 10, y: 10, width: screenWidth - 20, height: 100))
+        self.headerView = UIView(frame: CGRect(x: 10, y: 10, width: screenWidth - 20, height: 40))
         self.headerView.backgroundColor = UIColor.mi_hex("FEECCE")
         let headerTitleLabel = UILabel()
         headerTitleLabel.text = "本次托运的车牌号为："
         self.headerView.addSubview(headerTitleLabel)
         
-        let headerViewHeightConstraint = NSLayoutConstraint(item: self.headerView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0)
-        headerViewHeightConstraint.priority = 249
-        self.headerView.addConstraint(headerViewHeightConstraint)
-        
         headerTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.headerView.addConstraint(NSLayoutConstraint(item: headerTitleLabel, attribute: .top, relatedBy: .equal, toItem: self.headerView, attribute: .top, multiplier: 1, constant: 10))
         self.headerView.addConstraint(NSLayoutConstraint(item: headerTitleLabel, attribute: .leading, relatedBy: .equal, toItem: self.headerView, attribute: .leading, multiplier: 1, constant: 10))
         self.headerView.addConstraint(NSLayoutConstraint(item: headerTitleLabel, attribute: .trailing, relatedBy: .equal, toItem: self.headerView, attribute: .trailing, multiplier: 1, constant: -10))
-        self.headerView.addConstraint(NSLayoutConstraint(item: headerTitleLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40))
+        self.headerView.addConstraint(NSLayoutConstraint(item: headerTitleLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20))
         
         let carLicenseLabel = UILabel()
         carLicenseLabel.numberOfLines = 0
         carLicenseLabel.lineBreakMode = .byWordWrapping
-        carLicenseLabel.setContentHuggingPriority(251, for: .horizontal)
-        carLicenseLabel.setContentHuggingPriority(251, for: .vertical)
         var carLicenses = ""
         for consign in self.consigns {
             carLicenses += consign.carLicenseNo + ","
@@ -104,15 +98,20 @@ class VCConsign: UIViewController {
         carLicenseLabel.text = carLicenses
         self.headerView.addSubview(carLicenseLabel)
         
+        // 计算车牌号label的高度
+        let carLicenseLabelHeight = self.calculateUILabelHeight(width: screenWidth - 40, text: carLicenses, font: carLicenseLabel.font)
+        
         carLicenseLabel.translatesAutoresizingMaskIntoConstraints = false
         self.headerView.addConstraint(NSLayoutConstraint(item: carLicenseLabel, attribute: .top, relatedBy: .equal, toItem: headerTitleLabel, attribute: .bottom, multiplier: 1, constant: 5))
         self.headerView.addConstraint(NSLayoutConstraint(item: carLicenseLabel, attribute: .leading, relatedBy: .equal, toItem: headerTitleLabel, attribute: .leading, multiplier: 1, constant: 0))
         self.headerView.addConstraint(NSLayoutConstraint(item: carLicenseLabel, attribute: .trailing, relatedBy: .equal, toItem: headerTitleLabel, attribute: .trailing, multiplier: 1, constant: 0))
-        self.headerView.addConstraint(NSLayoutConstraint(item: carLicenseLabel, attribute: .bottom, relatedBy: .equal, toItem: self.headerView, attribute: .bottom, multiplier: 1, constant: 10))
+        self.headerView.addConstraint(NSLayoutConstraint(item: carLicenseLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: carLicenseLabelHeight))
         
-//        self.detailTable.tableHeaderView = self.headerView
+        self.headerView.frame.size.height = self.headerView.frame.size.height + carLicenseLabelHeight
         
-        self.remarkView = UIView(frame: CGRect(x: 0, y: CGFloat(tableCellCount * 50 + 10), width: screenWidth, height: 150))
+        self.detailTable.tableHeaderView = self.headerView
+        
+        self.remarkView = UIView(frame: CGRect(x: 0, y: self.headerView.frame.size.height + CGFloat(tableCellCount * 50 + 10), width: screenWidth, height: 150))
         self.view.addSubview(self.remarkView)
         // 备注标签
         self.remarkLabel = UILabel()
@@ -207,6 +206,22 @@ class VCConsign: UIViewController {
                 break
             }
         }
+    }
+    
+    /// 计算UILabel的宽度
+    ///
+    /// - Parameters:
+    ///   - width: UILabel宽度
+    ///   - text: UILabel的文本
+    ///   - font: UILabel的字体
+    /// - Returns: UILabel的高度
+    private func calculateUILabelHeight(width: CGFloat, text: String, font: UIFont) -> CGFloat {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: 0))
+        label.text = text
+        label.font = font
+        label.numberOfLines = 0
+        label.sizeToFit()
+        return label.frame.size.height
     }
 }
 
