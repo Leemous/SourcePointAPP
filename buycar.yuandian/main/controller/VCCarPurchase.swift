@@ -78,7 +78,20 @@ class VCCarPurchase: ImagePickerViewController {
         // 向header view添加视图，记录y坐标的变化，作为最终高度的参考值
         var yPosition = CGFloat(0)
         // 初始化header view的第一段-行驶证拍照
-        self.drivingLicenseGroup = DoublePictureGroup(frame: CGRect(x: 0, y: yPosition, width: screenWidth, height: 150), titleText: "车辆行驶证拍照", holderImageL: UIImage(named: "placeholder_driving_license_1"), pickerPictureL: { (leftImage: UIImage?) in
+        // 添加一个显示"车辆行驶证拍照"的label
+        let drivingLicenseLabelView = UIView(frame: CGRect(x: 0, y: yPosition, width: screenWidth, height: 35))
+        drivingLicenseLabelView.backgroundColor = UIColor.white
+        self.headerView.addSubview(drivingLicenseLabelView)
+        yPosition += 35
+        
+        let drivingLicenseLabel = UILabel(frame: CGRect(x: 15, y: 5, width: 100, height: 25))
+        drivingLicenseLabel.backgroundColor = UIColor.white
+        drivingLicenseLabel.font = textFont
+        drivingLicenseLabel.textColor = systemTintColor
+        drivingLicenseLabel.text = "车辆行驶证拍照"
+        drivingLicenseLabelView.addSubview(drivingLicenseLabel)
+        
+        self.drivingLicenseGroup = DoublePictureGroup(frame: CGRect(x: 0, y: yPosition, width: screenWidth, height: 120), titleText: "", holderImageL: UIImage(named: "placeholder_driving_license_1"), pickerPictureL: { (leftImage: UIImage?) in
             if let photo = leftImage {
                 // 预览行驶证左侧照片
                 super.previewImage(image: photo, alpha: 0.8, deletable: true, deleteText: changeImageText, deleteCompletion: {
@@ -106,7 +119,7 @@ class VCCarPurchase: ImagePickerViewController {
         
         self.drivingLicenseGroup.backgroundColor = .white
         self.headerView.addSubview(self.drivingLicenseGroup)
-        yPosition += 150
+        yPosition += 120
         
         // 初始化header view的第二段-车辆信息
         self.hv = VCarInfoView(frame: CGRect(x: 0, y: yPosition, width: screenWidth, height: 450))
@@ -137,10 +150,10 @@ class VCCarPurchase: ImagePickerViewController {
         yPosition += 10
         
         // 添加一个显示“车况检查”的label
-        self.lv = UIView(frame: CGRect(x: 0, y: yPosition, width: screenWidth, height: 45))
+        self.lv = UIView(frame: CGRect(x: 0, y: yPosition, width: screenWidth, height: 35))
         self.lv.backgroundColor = UIColor.white
         self.headerView.addSubview(self.lv)
-        yPosition += 45
+        yPosition += 35
         
         let lbl = UILabel(frame: CGRect(x: 15, y: 5, width: 100, height: 25))
         lbl.backgroundColor = UIColor.white
