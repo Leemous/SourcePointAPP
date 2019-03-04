@@ -15,27 +15,37 @@ import SwiftyJSON
 private let checkItemCell = "checkItemCell"
 private let checkItemHeanderCell = "checkItemHeaderCell"
 
-class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class VCCarPurchase: ImagePickerViewController {
     
     @IBOutlet weak var carInfoTable: UITableView!
     
-    var cps = CarPurchase()
+    /// 收车模型
+    let carPurchaseModel = CarPurchaseModel()
+    /// 车况检查数据源
     var cis = [CheckItem]()
     
+    /// 收车信息视图
     var hv: VCarInfoView!
+    /// 上传照片视图
     var cpc: CVCarPhotoCollection!
+    /// 车况检查label
     var lv: UIView!
     
-    // 创建一个作为header的容器view
+    /// 创建一个作为header的容器view
     var headerView: UIView!
     
-    var cameraPicker: UIImagePickerController!
-    var photoPicker: UIImagePickerController!
-    
-    var pickedPhoto: UIImage!
-    var pickedIndex: Int!
-    
     var layer: VLayerView!
+    
+    // 拍照文件标识
+    private var photographTypeKey = ""
+    // 行驶证拍照标识-左
+    private var drivingLicenseLeftPhotoKey = "DRIVING_LICENSE_LEFT"
+    // 行驶证拍照标识-右
+    private var drivingLicenseRightPhotoKey = "DRIVING_LICENSE_RIGHT"
+    // 其他拍照标识
+    private var otherPhotoKey = "RECEIVE_OTHER_PHOTO"
+    // 行驶证拍照
+    private var drivingLicenseGroup: DoublePictureGroup!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +54,6 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         
         initView()
         launchData()
-        
-        self.cameraPicker = initCameraPicker()
-        self.cameraPicker.delegate = self
-        self.photoPicker = initPhotoPicker()
-        self.photoPicker.delegate = self
     }
     
     
@@ -66,13 +71,50 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
     }
     
     private func initView() {
+        // 实例化header view
         self.headerView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 0))
         self.headerView.backgroundColor = heavyBackgroundColor
         
+        // 向header view添加视图，记录y坐标的变化，作为最终高度的参考值
+        var yPosition = CGFloat(0)
+        // 初始化header view的第一段-行驶证拍照
+        self.drivingLicenseGroup = DoublePictureGroup(frame: CGRect(x: 0, y: yPosition, width: screenWidth, height: 150), titleText: "车辆行驶证拍照", holderImageL: UIImage(named: "placeholder_driving_license_1"), pickerPictureL: {
+            if let photo = self.drivingLicenseGroup.leftImage {
+                // 预览行驶证左侧照片
+                super.previewImage(image: photo, alpha: 0.8, deletable: true, deleteText: changeImageText, deleteCompletion: {
+                    self.photographTypeKey = self.drivingLicenseLeftPhotoKey
+                    super.presentImagePicker(true)
+                })
+            } else {
+                // 车辆行驶证左侧拍照
+                self.photographTypeKey = self.drivingLicenseLeftPhotoKey
+                self.presentImagePicker(true)
+            }
+        }, holderImageR: UIImage(named: "placeholder_driving_license_2"), pickerPictureR: {
+            if let photo = self.drivingLicenseGroup.rightImage {
+                // 预览行驶证右侧照片
+                super.previewImage(image: photo, alpha: 0.8, deletable: true, deleteText: changeImageText, deleteCompletion: {
+                    self.photographTypeKey = self.drivingLicenseRightPhotoKey
+                    super.presentImagePicker(true)
+                })
+            } else {
+                // 车辆行驶证右侧拍照
+                self.photographTypeKey = self.drivingLicenseRightPhotoKey
+                super.presentImagePicker(true)
+            }
+        })
+        self.drivingLicenseGroup.backgroundColor = .white
+        self.headerView.addSubview(self.drivingLicenseGroup)
+        yPosition += 150
+        
         // 初始化header view的第一段
-        self.hv = VCarInfoView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 450))
+        self.hv = VCarInfoView(frame: CGRect(x: 0, y: yPosition, width: screenWidth, height: 450))
         self.hv.backgroundColor = UIColor.white
         self.headerView.addSubview(self.hv)
+        yPosition += 450
+        
+        // 留出间隙
+        yPosition += 10
         
         // 初始化header view的第二段
         let layout = UICollectionViewFlowLayout()
@@ -81,18 +123,23 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 1
         layout.headerReferenceSize = CGSize(width: screenWidth, height: 30)
-        self.cpc = CVCarPhotoCollection(frame: CGRect(x: 0, y: 460, width: screenWidth, height: 146), collectionViewLayout: layout)
+        self.cpc = CVCarPhotoCollection(frame: CGRect(x: 0, y: yPosition, width: screenWidth, height: 146), collectionViewLayout: layout)
         self.cpc.backgroundColor = UIColor.white
         self.cpc.isScrollEnabled = false
         
         // 计算collection view的实际高度
         self.cpc.frame.size.height += self.cpc.getNeedAddedHeight(availableImageNumber: 1)
         self.headerView.addSubview(self.cpc)
+        yPosition += self.cpc.frame.size.height
+        
+        // 留出间隙
+        yPosition += 10
         
         // 添加一个显示“车况检查”的label
-        self.lv = UIView(frame: CGRect(x: 0, y: self.cpc.frame.origin.y + self.cpc.frame.size.height + 10 , width: screenWidth, height: 45))
+        self.lv = UIView(frame: CGRect(x: 0, y: yPosition, width: screenWidth, height: 45))
         self.lv.backgroundColor = UIColor.white
         self.headerView.addSubview(self.lv)
+        yPosition += 45
         
         let lbl = UILabel(frame: CGRect(x: 15, y: 5, width: 100, height: 25))
         lbl.backgroundColor = UIColor.white
@@ -101,7 +148,7 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         lbl.text = "车况检查"
         self.lv.addSubview(lbl)
         
-        self.headerView.frame.size.height = hv.frame.size.height + self.cpc.frame.size.height + 55
+        self.headerView.frame.size.height = yPosition
         
         self.carInfoTable.tableHeaderView = self.headerView
         
@@ -142,13 +189,9 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
                 self.hv.carInfoViewDelegate.memo = memoText.text
             }
             
-            self.presentAlertAction { (type: Int) in
-                if type == 0 {
-                    self.present(self.cameraPicker, animated: true, completion: nil)
-                } else {
-                    self.present(self.photoPicker, animated: true, completion: nil)
-                }
-            }
+            // 收车照片
+            self.photographTypeKey = self.drivingLicenseRightPhotoKey
+            self.presentImagePicker(true)
         }
         // 移除图片回调
         self.cpc.carPhotoCollectionDelegate.removeCallback = { (removeIndex: Int) -> Void in
@@ -252,12 +295,12 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         }
         // 上传文件并保存url到服务器
         let qiniu = Qiniu()
-        qiniu.uploadFiles(self, fileIdentifier: self.hv.licenseText.text!, files: toUploadImages) { (isSuccess: Bool, fileKey: String) in
+        qiniu.uploadFiles(self, fileIdentifier: self.hv.licenseText.text!, files: toUploadImages) { (isSuccess: Bool, fileUrl: String) in
             let success = isSuccess
             if success {
                 self.cpc.carPhotoCollectionDelegate.successCount! += 1
                 self.cpc.carPhotoCollectionDelegate.originPhotoCount! += 1
-                self.cpc.carPhotoCollectionDelegate.uploadedFileUrls.append(fileKey)
+                self.cpc.carPhotoCollectionDelegate.uploadedFileUrls.append(fileUrl)
             } else {
                 self.cpc.carPhotoCollectionDelegate.failedCount! += 1
             }
@@ -270,28 +313,61 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
         }
     }
     
-    
+    /// 选择图片或拍照后的回调
+    ///
+    /// - Parameters:
+    ///   - picker: 图片选择器
+    ///   - info: 返回信息
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.dismiss(animated: true, completion: nil)
         
-        //获得照片
-        self.pickedPhoto = info[UIImagePickerControllerOriginalImage] as! UIImage
-        self.cpc.carPhotoCollectionDelegate.uploadCount! += 1
-        self.cpc.carPhotoCollectionDelegate.carPhotos.append(pickedPhoto)
+        // 获得照片
+        let pickedPhoto = (info[UIImagePickerControllerOriginalImage] as! UIImage)
         
-        // 重新计算table header view的高度
-        let addedH = self.cpc.getNeedAddedHeight(availableImageNumber: self.cpc.carPhotoCollectionDelegate.carPhotos.count)
-        self.cpc.frame.size.height += addedH
-        self.headerView.frame.size.height += addedH
-        self.lv.frame.origin.y += addedH
-        self.carInfoTable.tableHeaderView = self.headerView
-        
-        self.cpc.reloadData()
+        if self.otherPhotoKey == self.photographTypeKey {
+            self.cpc.carPhotoCollectionDelegate.uploadCount! += 1
+            self.cpc.carPhotoCollectionDelegate.carPhotos.append(pickedPhoto)
+            
+            // 重新计算table header view的高度
+            let addedH = self.cpc.getNeedAddedHeight(availableImageNumber: self.cpc.carPhotoCollectionDelegate.carPhotos.count)
+            self.cpc.frame.size.height += addedH
+            self.headerView.frame.size.height += addedH
+            self.lv.frame.origin.y += addedH
+            self.carInfoTable.tableHeaderView = self.headerView
+            
+            self.cpc.reloadData()
+        } else {
+            // 行驶证拍照，上传照片，记录图片url
+            // 压缩图片
+            if let pickedPhotoData = UIImageJPEGRepresentation(pickedPhoto, 0.8) {
+                self.showLayer(layerMessage: "正在上传图片...")
+                let qiniu = Qiniu()
+                qiniu.uploadFiles(self, fileIdentifier: self.photographTypeKey, files: [pickedPhotoData]) { (isSuccess: Bool, fileUrl: String) in
+                    self.hideLayer()
+                    if isSuccess {
+                        if self.drivingLicenseLeftPhotoKey == self.photographTypeKey {
+                            self.drivingLicenseGroup.leftImage = pickedPhoto
+                            self.carPurchaseModel.drivingLicenseFrontUrl = fileUrl
+                        } else if self.drivingLicenseRightPhotoKey == self.photographTypeKey {
+                            self.drivingLicenseGroup.rightImage = pickedPhoto
+                            self.carPurchaseModel.drivingLicenseBackUrl = fileUrl
+                        }
+                        // TODO 行驶证信息识别
+                    } else {
+                        // 上传失败
+                        self.showLayer(layerMessage: "上传行驶证照片失败")
+                    }
+                }
+            }
+        }
     }
     
-    func saveData() {
+    /// 保存收车信息
+    private func saveData() {
         // 构造数据
         var paramDict: [String : Any] = [:]
+        paramDict["drivingLicenseFrontUrl"] = self.carPurchaseModel.drivingLicenseFrontUrl
+        paramDict["drivingLicenseBackUrl"] = self.carPurchaseModel.drivingLicenseBackUrl
         paramDict["carNumber"] = self.hv.licenseText.text
         paramDict["carShelfNumber"] = self.hv.frameText.text
         paramDict["carModelName"] = self.hv.modelText.text
@@ -326,6 +402,25 @@ class VCCarPurchase: UIViewController, UIImagePickerControllerDelegate, UINaviga
             } else {
                 self.alert(viewToBlock: nil, msg: msgNoConnection)
             }
+        }
+    }
+    
+    /// 展示遮罩层
+    ///
+    /// - Parameter layerMessage: 遮罩层消息
+    private func showLayer(layerMessage: String) {
+        // 遮罩层
+        self.layer = VLayerView(layerMessage: layerMessage)
+        // 显示遮罩层
+        self.view.addSubview(self.layer)
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+    }
+    
+    /// 隐藏遮罩层
+    private func hideLayer() {
+        if self.layer != nil {
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+            self.layer.removeFromSuperview()
         }
     }
 }
@@ -436,6 +531,10 @@ extension VCCarPurchase: UITextFieldDelegate {
     }
 }
 
-class CarPurchaseDelegate {
-    var carPurchase: CarPurchase!
+/// 收车模型
+class CarPurchaseModel {
+    /// 行驶证正面url
+    var drivingLicenseFrontUrl: String?
+    /// 行驶证背面url
+    var drivingLicenseBackUrl: String?
 }

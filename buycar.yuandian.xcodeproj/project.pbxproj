@@ -30,6 +30,8 @@
 		E424BA241F60F18C009C7337 /* VCConsignSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E424BA231F60F18C009C7337 /* VCConsignSetting.swift */; };
 		E4264E831F4BCF4E00709831 /* VCConsignPendingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4264E821F4BCF4E00709831 /* VCConsignPendingList.swift */; };
 		E4378A481EE57DCC00284E23 /* Qiniu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4378A471EE57DCC00284E23 /* Qiniu.swift */; };
+		E44A33FF222D28D500319AF8 /* DoublePictureGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44A33FE222D28D500319AF8 /* DoublePictureGroup.swift */; };
+		E44A3404222D450500319AF8 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44A3403222D450500319AF8 /* ImagePickerViewController.swift */; };
 		E456F2001F0BF2990097C79D /* VLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E456F1FF1F0BF2990097C79D /* VLayerView.swift */; };
 		E469B6511EFFCD0900C264B4 /* CarPurchaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E469B6501EFFCD0900C264B4 /* CarPurchaseCell.xib */; };
 		E469B65B1EFFCD5300C264B4 /* VCDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E469B65A1EFFCD5300C264B4 /* VCDatePicker.swift */; };
@@ -152,6 +154,8 @@
 		E424BA231F60F18C009C7337 /* VCConsignSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCConsignSetting.swift; sourceTree = "<group>"; };
 		E4264E821F4BCF4E00709831 /* VCConsignPendingList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCConsignPendingList.swift; sourceTree = "<group>"; };
 		E4378A471EE57DCC00284E23 /* Qiniu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Qiniu.swift; sourceTree = "<group>"; };
+		E44A33FE222D28D500319AF8 /* DoublePictureGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoublePictureGroup.swift; sourceTree = "<group>"; };
+		E44A3403222D450500319AF8 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		E456F1FF1F0BF2990097C79D /* VLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLayerView.swift; sourceTree = "<group>"; };
 		E469B6501EFFCD0900C264B4 /* CarPurchaseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarPurchaseCell.xib; sourceTree = "<group>"; };
 		E469B65A1EFFCD5300C264B4 /* VCDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCDatePicker.swift; sourceTree = "<group>"; };
@@ -271,6 +275,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E44A33FC222D28B300319AF8 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				E44A33FD222D28BE00319AF8 /* formgroup */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		E44A33FD222D28BE00319AF8 /* formgroup */ = {
+			isa = PBXGroup;
+			children = (
+				E44A33FE222D28D500319AF8 /* DoublePictureGroup.swift */,
+			);
+			path = formgroup;
+			sourceTree = "<group>";
+		};
+		E44A3400222D334000319AF8 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				E44A3403222D450500319AF8 /* ImagePickerViewController.swift */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
 		E4D3B4F2222667E20036D92A /* main */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +316,7 @@
 		E4D3B4F3222667F80036D92A /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				E44A3400222D334000319AF8 /* base */,
 				E4D3B5142227B4100036D92A /* consign */,
 				E4D3B4FB22266F8E0036D92A /* detail */,
 				EA1754271E7FDED60020F407 /* NCHome.swift */,
@@ -320,6 +349,7 @@
 		E4D3B4F622266C310036D92A /* view */ = {
 			isa = PBXGroup;
 			children = (
+				E44A33FC222D28B300319AF8 /* common */,
 				EA105F731E83893500705ECD /* CarPhotoCell.xib */,
 				EA105F7B1E84192900705ECD /* CarPhotoHeaderView.xib */,
 				E469B6501EFFCD0900C264B4 /* CarPurchaseCell.xib */,
@@ -826,6 +856,7 @@
 				EA13B3E91E82795E0020F1FF /* Daily.swift in Sources */,
 				E456F2001F0BF2990097C79D /* VLayerView.swift in Sources */,
 				EAACCD4A1E8135FC00AA8DB9 /* SystemTools.swift in Sources */,
+				E44A33FF222D28D500319AF8 /* DoublePictureGroup.swift in Sources */,
 				EAACCD341E80D29F00AA8DB9 /* VCLogin.swift in Sources */,
 				E407287D1FB4531B00863F54 /* TVCarCheckItemTable.swift in Sources */,
 				E41873971F4D1566006D61E1 /* Consign.swift in Sources */,
@@ -849,6 +880,7 @@
 				E4776C631FB332360085FE52 /* VCSeekForCarDetail.swift in Sources */,
 				EAACCD321E80D13100AA8DB9 /* VCSharedBusiness.swift in Sources */,
 				E41873AB1F4EC081006D61E1 /* Option.swift in Sources */,
+				E44A3404222D450500319AF8 /* ImagePickerViewController.swift in Sources */,
 				EA17542F1E7FE2370020F407 /* StringTools.swift in Sources */,
 				EAACCD461E80FE3000AA8DB9 /* VNoDataView.swift in Sources */,
 				EA105F761E838AA000705ECD /* CVCCarPhotoCell.swift in Sources */,

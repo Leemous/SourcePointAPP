@@ -48,3 +48,4 @@ public let baseUrl = "http://59.110.112.15:8100/api"
 
 // 网络未连接的提示信息
 public let msgNoConnection = "未检测到网络连接"
+public let changeImageText = "更改图片"                                                              // 更改图片文本
