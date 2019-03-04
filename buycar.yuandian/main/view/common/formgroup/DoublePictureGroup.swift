@@ -39,9 +39,9 @@ class DoublePictureGroup: UIView {
     // 右侧占位图
     private var holderImageR: UIImage?
     // 左侧视图选择图片事件
-    private var pickerPictureL: (() -> Void)?
+    private var pickerPictureL: ((UIImage?) -> Void)?
     // 右侧视图选择图片事件
-    private var pickerPictureR: (() -> Void)?
+    private var pickerPictureR: ((UIImage?) -> Void)?
     // 水平间隙宽度
     private var horizontalSpaceWidth: CGFloat!
     
@@ -64,7 +64,7 @@ class DoublePictureGroup: UIView {
     ///   - titleText: 表单标题文本
     ///   - holderImage: 占位图片
     ///   - pickerPicture: 图片选择事件
-    init(frame: CGRect, titleText: String, holderImageL: UIImage? = nil, pickerPictureL: (() -> Void)? = nil, holderImageR: UIImage? = nil, pickerPictureR: (() -> Void)? = nil) {
+    init(frame: CGRect, titleText: String, holderImageL: UIImage? = nil, pickerPictureL: ((UIImage?) -> Void)? = nil, holderImageR: UIImage? = nil, pickerPictureR: ((UIImage?) -> Void)? = nil) {
         
         self.titleText = titleText
         self.holderImageL = holderImageL
@@ -99,10 +99,10 @@ class DoublePictureGroup: UIView {
             self.addSubview(self.titleLabel)
             // 为表单标题文本添加约束
             self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
-            self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30))
             self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 10))
             self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 10))
             self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0))
+            self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: self.titleText.isEmpty ? 0 : 30))
             
             // 设置左侧照片视图属性
             self.photoViewL.backgroundColor = heavyBackgroundColor
@@ -163,14 +163,14 @@ class DoublePictureGroup: UIView {
     /// 左侧照片视图点击事件
     @objc private func photoViewClickL() {
         if let ppl = self.pickerPictureL {
-            ppl()
+            ppl(self.leftImage)
         }
     }
     
     /// 右侧照片视图点击事件
     @objc private func photoViewClickR() {
         if let ppr = self.pickerPictureR {
-            ppr()
+            ppr(self.rightImage)
         }
     }
 }

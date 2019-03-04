@@ -78,8 +78,8 @@ class VCCarPurchase: ImagePickerViewController {
         // 向header view添加视图，记录y坐标的变化，作为最终高度的参考值
         var yPosition = CGFloat(0)
         // 初始化header view的第一段-行驶证拍照
-        self.drivingLicenseGroup = DoublePictureGroup(frame: CGRect(x: 0, y: yPosition, width: screenWidth, height: 150), titleText: "车辆行驶证拍照", holderImageL: UIImage(named: "placeholder_driving_license_1"), pickerPictureL: {
-            if let photo = self.drivingLicenseGroup.leftImage {
+        self.drivingLicenseGroup = DoublePictureGroup(frame: CGRect(x: 0, y: yPosition, width: screenWidth, height: 150), titleText: "车辆行驶证拍照", holderImageL: UIImage(named: "placeholder_driving_license_1"), pickerPictureL: { (leftImage: UIImage?) in
+            if let photo = leftImage {
                 // 预览行驶证左侧照片
                 super.previewImage(image: photo, alpha: 0.8, deletable: true, deleteText: changeImageText, deleteCompletion: {
                     self.photographTypeKey = self.drivingLicenseLeftPhotoKey
@@ -90,8 +90,8 @@ class VCCarPurchase: ImagePickerViewController {
                 self.photographTypeKey = self.drivingLicenseLeftPhotoKey
                 self.presentImagePicker(true)
             }
-        }, holderImageR: UIImage(named: "placeholder_driving_license_2"), pickerPictureR: {
-            if let photo = self.drivingLicenseGroup.rightImage {
+        }, holderImageR: UIImage(named: "placeholder_driving_license_2"), pickerPictureR: { (rightImage: UIImage?) in
+            if let photo = rightImage {
                 // 预览行驶证右侧照片
                 super.previewImage(image: photo, alpha: 0.8, deletable: true, deleteText: changeImageText, deleteCompletion: {
                     self.photographTypeKey = self.drivingLicenseRightPhotoKey
@@ -103,11 +103,12 @@ class VCCarPurchase: ImagePickerViewController {
                 super.presentImagePicker(true)
             }
         })
+        
         self.drivingLicenseGroup.backgroundColor = .white
         self.headerView.addSubview(self.drivingLicenseGroup)
         yPosition += 150
         
-        // 初始化header view的第一段
+        // 初始化header view的第二段-车辆信息
         self.hv = VCarInfoView(frame: CGRect(x: 0, y: yPosition, width: screenWidth, height: 450))
         self.hv.backgroundColor = UIColor.white
         self.headerView.addSubview(self.hv)
@@ -116,7 +117,7 @@ class VCCarPurchase: ImagePickerViewController {
         // 留出间隙
         yPosition += 10
         
-        // 初始化header view的第二段
+        // 初始化header view的第三段-车辆拍照
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         layout.itemSize = CGSize(width: (screenWidth - 2)/3, height: 106)

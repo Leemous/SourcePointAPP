@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class VCCarDetail: UIViewController {
+class VCCarDetail: ImagePickerViewController {
     
     @IBOutlet weak var checkTable: TVCarCheckItemTable!
     
@@ -44,6 +44,7 @@ class VCCarDetail: UIViewController {
     }
     
     private func initView() {
+        var drivingLicensePhotoDetail: JSON!
         // 基础信息
         var baseDetail: JSON!
         // 状态信息
@@ -56,6 +57,9 @@ class VCCarDetail: UIViewController {
         // 把查询结果按类型区分
         for item in detail {
             switch item["type"] {
+            case "drivingLicensePhoto":
+                drivingLicensePhotoDetail = item
+                break
             case "base":
                 baseDetail = item
                 break
@@ -75,6 +79,44 @@ class VCCarDetail: UIViewController {
         // 初始化头部视图
         self.headerView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 0))
         self.headerView.backgroundColor = heavyBackgroundColor
+        
+        /********************************设置行驶证照片********************************/
+        if let detial = drivingLicensePhotoDetail {
+            // 添加一个显示标题的label
+            let lvBaseTitle = VTextGroupTitleView(frame: CGRect(x: 0, y: self.headerView.frame.size.height, width: screenWidth, height: 35), titleText: drivingLicensePhotoDetail["title"].stringValue, drawSeparatorLine: true)
+            lvBaseTitle.backgroundColor = UIColor.white
+            self.headerView.addSubview(lvBaseTitle)
+            self.headerView.frame.size.height += 35
+            
+            // 初始化行驶证拍照
+            let drivingLicenseGroup = DoublePictureGroup(frame: CGRect(x: 0, y: self.headerView.frame.size.height, width: screenWidth, height: 120), titleText: "", holderImageL: UIImage(named: "placeholder_driving_license_1"), pickerPictureL: { (leftmage: UIImage?) in
+                if let photo = leftmage {
+                    // 预览行驶证左侧照片
+                    super.previewImage(image: photo, alpha: 0.8)
+                }
+            }, holderImageR: UIImage(named: "placeholder_driving_license_2"), pickerPictureR: { (rightImage: UIImage?) in
+                if let photo = rightImage {
+                    // 预览行驶证右侧照片
+                    super.previewImage(image: photo, alpha: 0.8)
+                }
+            })
+            drivingLicenseGroup.backgroundColor = .white
+            self.headerView.addSubview(drivingLicenseGroup)
+            self.headerView.frame.size.height += 120
+            
+            // 构造车辆行驶证数据源
+            let drivingLicensePhotoContent = detial["content"].arrayValue
+            for content in drivingLicensePhotoContent {
+                if let data = try? Data(contentsOf: URL(string: content["url"].stringValue)!) {
+                    if content["type"] == "drivingLicenseFront" {
+                        drivingLicenseGroup.leftImage = UIImage(data: data)
+                    } else if content["type"] == "drivingLicenseBack" {
+                        drivingLicenseGroup.rightImage = UIImage(data: data)
+                    }
+                }
+            }
+        }
+        /********************************设置行驶证照片********************************/
         
         /********************************设置基础信息********************************/
         // 添加一个显示标题的label
