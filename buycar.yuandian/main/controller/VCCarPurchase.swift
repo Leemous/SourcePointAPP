@@ -19,8 +19,8 @@ class VCCarPurchase: ImagePickerViewController {
     
     @IBOutlet weak var carInfoTable: UITableView!
     
-    /// 收车模型
-    let carPurchaseModel = CarPurchaseModel()
+    /// 行驶证信息模型
+    let carDrivingLicenseModel = CarDrivingLicenseModel()
     /// 车况检查数据源
     var cis = [CheckItem]()
     
@@ -221,9 +221,6 @@ class VCCarPurchase: ImagePickerViewController {
             
             self.cpc.reloadData()
         }
-        
-        // 遮罩层
-        self.layer = VLayerView(layerMessage: "正在保存数据...")
     }
     
     private func launchData() {
@@ -286,8 +283,7 @@ class VCCarPurchase: ImagePickerViewController {
         }
         
         // 显示遮罩层
-        self.view.addSubview(self.layer)
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.showLayer(layerMessage: "正在保存数据...")
         
         // 上传图片到七牛
         if self.cpc.carPhotoCollectionDelegate.uploadCount > 0 {
@@ -361,15 +357,62 @@ class VCCarPurchase: ImagePickerViewController {
                     if isSuccess {
                         if self.drivingLicenseLeftPhotoKey == self.photographTypeKey {
                             self.drivingLicenseGroup.leftImage = pickedPhoto
-                            self.carPurchaseModel.drivingLicenseFrontUrl = fileUrl
+                            self.carDrivingLicenseModel.frontFileUrl = fileUrl
+                            
+                            self.showLayer(layerMessage: "正在识别行驶证信息...")
+                            self.carDrivingLicenseModel.recognizeFront(completion: { (status: ReturnedStatus, msg: String?) in
+                                
+                                self.hideLayer()
+                                
+                                switch status {
+                                case .normal:
+                                    // 填充信息
+                                    self.hv.carInfoViewDelegate.lisenceNo = self.carDrivingLicenseModel.license
+                                    self.hv.carInfoViewDelegate.frameNo = self.carDrivingLicenseModel.frameNumber
+                                    self.hv.carInfoViewDelegate.model = self.carDrivingLicenseModel.carModelName
+                                    
+                                    self.hv.licenseText.text = self.carDrivingLicenseModel.license
+                                    self.hv.frameText.text = self.carDrivingLicenseModel.frameNumber
+                                    self.hv.modelText.text = self.carDrivingLicenseModel.carModelName
+                                case .warning,.noData:
+                                    self.alertLong(viewToBlock: nil, msg: msg == nil ? "识别行驶证信息失败" : msg!)
+                                    return
+                                case .noConnection:
+                                    self.alert(viewToBlock: nil, msg: msgNoConnection)
+                                    return
+                                default:
+                                    return
+                                }
+                            })
                         } else if self.drivingLicenseRightPhotoKey == self.photographTypeKey {
                             self.drivingLicenseGroup.rightImage = pickedPhoto
-                            self.carPurchaseModel.drivingLicenseBackUrl = fileUrl
+                            self.carDrivingLicenseModel.backFileUrl = fileUrl
+                            
+                            self.showLayer(layerMessage: "正在识别行驶证信息...")
+                            self.carDrivingLicenseModel.recognizeBack(completion: { (status: ReturnedStatus, msg: String?) in
+                                
+                                self.hideLayer()
+                                
+                                switch status {
+                                case .normal:
+                                    // 填充信息
+                                    self.hv.carInfoViewDelegate.lisenceNo = self.carDrivingLicenseModel.license
+                                    
+                                    self.hv.licenseText.text = self.carDrivingLicenseModel.license
+                                case .warning,.noData:
+                                    self.alertLong(viewToBlock: nil, msg: msg == nil ? "识别行驶证信息失败" : msg!)
+                                    return
+                                case .noConnection:
+                                    self.alert(viewToBlock: nil, msg: msgNoConnection)
+                                    return
+                                default:
+                                    return
+                                }
+                            })
                         }
-                        // TODO 行驶证信息识别
                     } else {
                         // 上传失败
-                        self.showLayer(layerMessage: "上传行驶证照片失败")
+                        self.alert(viewToBlock: nil, msg: "上传行驶证照片失败")
                     }
                 }
             }
@@ -380,8 +423,22 @@ class VCCarPurchase: ImagePickerViewController {
     private func saveData() {
         // 构造数据
         var paramDict: [String : Any] = [:]
-        paramDict["drivingLicenseFrontUrl"] = self.carPurchaseModel.drivingLicenseFrontUrl
-        paramDict["drivingLicenseBackUrl"] = self.carPurchaseModel.drivingLicenseBackUrl
+        // 行驶证信息以及识别得到的信息
+        paramDict["drivingLicenseFrontUrl"] = self.carDrivingLicenseModel.frontFileUrl
+        paramDict["drivingLicenseBackUrl"] = self.carDrivingLicenseModel.backFileUrl
+        paramDict["carTypeName"] = self.carDrivingLicenseModel.carTypeName
+        paramDict["carOwnerName"] = self.carDrivingLicenseModel.carOwnerName
+        paramDict["carUseKindName"] = self.carDrivingLicenseModel.carUseKindName
+        paramDict["carOwnerAddress"] = self.carDrivingLicenseModel.carOwnerAddress
+        paramDict["carPattern"] = self.carDrivingLicenseModel.carPattern
+        paramDict["carEngineNumber"] = self.carDrivingLicenseModel.carEngineNumber
+        paramDict["drivingLicenseRegisterDate"] = self.carDrivingLicenseModel.registerDate
+        paramDict["approvedPassenger"] = self.carDrivingLicenseModel.approvedPassenger
+        paramDict["totalWeight"] = self.carDrivingLicenseModel.totalWeight
+        paramDict["carLength"] = self.carDrivingLicenseModel.carLength
+        paramDict["fuelType"] = self.carDrivingLicenseModel.fuelType
+        
+        // 填写的信息
         paramDict["carNumber"] = self.hv.licenseText.text
         paramDict["carShelfNumber"] = self.hv.frameText.text
         paramDict["carModelName"] = self.hv.modelText.text
@@ -423,6 +480,8 @@ class VCCarPurchase: ImagePickerViewController {
     ///
     /// - Parameter layerMessage: 遮罩层消息
     private func showLayer(layerMessage: String) {
+        // 首先隐藏正在展示的遮罩层
+        self.hideLayer()
         // 遮罩层
         self.layer = VLayerView(layerMessage: layerMessage)
         // 显示遮罩层
@@ -543,12 +602,4 @@ extension VCCarPurchase: UITextFieldDelegate {
         }
         return true
     }
-}
-
-/// 收车模型
-class CarPurchaseModel {
-    /// 行驶证正面url
-    var drivingLicenseFrontUrl: String?
-    /// 行驶证背面url
-    var drivingLicenseBackUrl: String?
 }

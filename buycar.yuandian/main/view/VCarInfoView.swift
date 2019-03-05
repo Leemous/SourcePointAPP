@@ -269,30 +269,3 @@ class CarInfoViewDelegate {
     var forceScrappedDate: String?
     var memo: String?
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

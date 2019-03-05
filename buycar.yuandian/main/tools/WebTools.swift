@@ -33,6 +33,8 @@ enum Router: URLRequestConvertible {
     case todayPurchase()
     case missingParts()
     case qiniu()
+    case recognizeDrivingLicenseFront(String)
+    case recognizeDrivingLicenseBack(String)
     case addPurchase([String : Any])
     case seekCollectPhoto(String, String)
     case seekSupervisedPhoto(String, String)
@@ -78,6 +80,14 @@ enum Router: URLRequestConvertible {
                 return ("/car/todayCollect", nil)
             case .qiniu():
                 return ("/thirdpartyparam/qiniu", nil)
+            case .recognizeDrivingLicenseFront(let fileUrl):
+                method = "POST"
+                let params = ["fileUrl" : "\(fileUrl)"]
+                return ("/ocr/vehicleLicense/face", params)
+            case .recognizeDrivingLicenseBack(let fileUrl):
+                method = "POST"
+                let params = ["fileUrl" : "\(fileUrl)"]
+                return ("/ocr/vehicleLicense/back", params)
             case .addPurchase(let paramDic):
                 method = "POST"
                 return ("/car/add", paramDic)
