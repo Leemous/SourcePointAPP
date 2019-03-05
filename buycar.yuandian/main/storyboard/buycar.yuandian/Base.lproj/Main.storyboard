@@ -1071,7 +1071,7 @@
         <!--CarSeekResultPage-->
         <scene sceneID="WSV-rc-rXE">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="scv-53-5jM" userLabel="CarSeekResultPage" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="scv-53-5jM" userLabel="CarSeekResultPage" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z6y-h1-6Kz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2057" y="-633"/>

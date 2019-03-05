@@ -35,8 +35,7 @@ class VCCarSeekResult: UIViewController {
                 //根据currentPage 和 lastPage的大小关系，控制页面的切换方向
                 if currentPage > lastPage {
                     self.pageViewController.setViewControllers([controllers[currentPage]], direction: .forward, animated: true, completion: nil)
-                }
-                else {
+                } else {
                     self.pageViewController.setViewControllers([controllers[currentPage]], direction: .reverse, animated: true, completion: nil)
                 }
                 
@@ -85,7 +84,7 @@ class VCCarSeekResult: UIViewController {
         sliderImageView.backgroundColor = systemTintColor
         self.tabBottomLineView.addSubview(sliderImageView)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(VCConsignListPage.currentPageChanged(notification:)), name: NSNotification.Name(rawValue: "currentPageChanged"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(currentPageChanged(notification:)), name: NSNotification.Name(rawValue: "carDetailPageChanged"), object: nil)
     }
     
     /// 点击tab按钮切换页面

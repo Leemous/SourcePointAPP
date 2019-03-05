@@ -46,9 +46,9 @@ class CarPurchase: CommonModel {
                         let obj = json["obj"]
                         for i in 0..<obj.count {
                             let cp = CarPurchase()
-                            cp.id = obj[i]["inputNo"].string!
-                            cp.carLicenseNo = obj[i]["carNumber"].string!
-                            cp.carFrameNo = obj[i]["carShelfNumber"].string!
+                            cp.id = obj[i]["inputNo"].stringValue
+                            cp.carLicenseNo = obj[i]["carNumber"].stringValue
+                            cp.carFrameNo = obj[i]["carShelfNumber"].stringValue
                             cps.append(cp)
                         }
                         

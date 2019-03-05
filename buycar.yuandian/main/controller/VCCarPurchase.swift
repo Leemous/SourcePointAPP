@@ -204,7 +204,7 @@ class VCCarPurchase: ImagePickerViewController {
             }
             
             // 收车照片
-            self.photographTypeKey = self.drivingLicenseRightPhotoKey
+            self.photographTypeKey = self.otherPhotoKey
             self.presentImagePicker(true)
         }
         // 移除图片回调
